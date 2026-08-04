@@ -84,6 +84,7 @@
     max-width:1180px;margin:0 auto;padding:16px 32px;
   }
   .brand{display:flex;align-items:center;gap:10px;}
+  .brand img{height:42px;width:auto;display:block;border-radius:8px;}
   .brand span{font-family:'Baloo 2';font-weight:700;font-size:21px;color:#fff;letter-spacing:.01em;}
   .nav-links{display:flex;gap:32px;list-style:none;margin:0;padding:0;}
   .nav-links a{color:var(--lavender);font-size:15px;font-weight:600;transition:color .15s;}
@@ -93,25 +94,44 @@
   .nav-links{display:none;}
   @media(min-width:860px){.nav-links{display:flex;}}
 
-  /* HERO */
+  /* HERO — full-bleed background image carousel */
   .hero{
-    background:radial-gradient(1100px 620px at 78% 8%, var(--navy-700), transparent 60%), linear-gradient(160deg, var(--navy-900), var(--navy-800) 65%);
-    padding:72px 0 88px;
     position:relative;
+    padding:110px 0 140px;
     overflow:hidden;
-  }
-  .hero .wrap{
-    display:grid;
-    grid-template-columns:1fr;
-    gap:56px;
+    min-height:640px;
+    display:flex;
     align-items:center;
   }
-  @media(min-width:960px){
-    .hero .wrap{grid-template-columns:1.05fr .95fr;}
+  .hero-bg{
+    position:absolute;inset:0;z-index:0;
+    background:linear-gradient(135deg,#241a4a,#2f2260);
   }
+  .hero-bg .hc-slide{
+    position:absolute;inset:0;
+    opacity:0;
+    transition:opacity 1.2s ease;
+  }
+  .hero-bg .hc-slide.active{opacity:1;}
+  .hero-bg .hc-slide img{
+    width:100%;height:100%;object-fit:cover;object-position:center;
+    display:block;
+  }
+  .hero-bg::after{
+    content:"";
+    position:absolute;inset:0;
+    background:
+      linear-gradient(90deg, rgba(19,13,52,.94) 0%, rgba(19,13,52,.82) 32%, rgba(19,13,52,.42) 62%, rgba(19,13,52,.18) 100%),
+      linear-gradient(0deg, rgba(19,13,52,.55) 0%, rgba(19,13,52,0) 40%);
+  }
+  .hero .wrap{
+    position:relative;z-index:1;
+    display:block;
+  }
+  .hero-content{max-width:620px;}
   .hero h1{font-size:44px;color:#fff;font-weight:700;letter-spacing:-.01em;}
   .hero h1 em{color:var(--orange-500);font-style:normal;}
-  @media(min-width:600px){.hero h1{font-size:52px;}}
+  @media(min-width:600px){.hero h1{font-size:56px;}}
   .hero-eyebrow{margin-bottom:14px;}
   .hero p.lede{
     margin-top:22px;color:var(--lavender);font-size:17px;line-height:1.65;max-width:520px;
@@ -124,61 +144,16 @@
   }
   .pill.active{border-color:var(--orange-500);color:var(--orange-500);background:rgba(255,122,26,.1);}
 
-  /* HERO IMAGE CAROUSEL — fills the full hero column */
-  .hero-carousel{
-    position:relative;
-    border-radius:var(--radius-lg);
-    overflow:hidden;
-    aspect-ratio:4/3.6;
-    box-shadow:var(--shadow);
-    background:linear-gradient(135deg,#241a4a,#2f2260);
+  /* Hero background carousel dots */
+  .hero-dots{
+    position:absolute;left:32px;bottom:28px;z-index:1;
+    display:flex;gap:7px;
   }
-  @media(min-width:960px){.hero-carousel{aspect-ratio:4/4.2;}}
-  .hc-slide{
-    position:absolute;inset:0;
-    opacity:0;
-    transition:opacity .6s ease;
-  }
-  .hc-slide.active{opacity:1;}
-  .hc-slide img{
-    width:100%;height:100%;object-fit:cover;object-position:center;
-    display:block;
-  }
-  .hc-slide::after{
-    content:"";
-    position:absolute;inset:0;
-    background:linear-gradient(0deg, rgba(15,10,38,.92) 0%, rgba(15,10,38,.35) 38%, rgba(15,10,38,0) 62%);
-  }
-  .hc-bottom{
-    position:absolute;left:0;right:0;bottom:0;z-index:2;
-    display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
-    padding:26px 22px 22px;
-  }
-  .hc-caption .tag{
-    display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
-    color:var(--orange-500);margin-bottom:6px;
-  }
-  .hc-caption h3{color:#fff;font-size:21px;font-weight:600;font-family:'Baloo 2';}
-  .hc-caption p{color:var(--lavender);font-size:14px;margin-top:4px;line-height:1.45;max-width:300px;}
-  .hc-controls{
-    display:flex;flex-direction:column;align-items:flex-end;gap:14px;flex:none;
-  }
-  .hc-dots{display:flex;gap:7px;}
-  .hc-nav-dot{
+  .hero-dots .hc-nav-dot{
     width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4);
     border:none;padding:0;cursor:pointer;transition:all .2s;
   }
-  .hc-nav-dot.active{background:var(--orange-500);width:20px;border-radius:4px;}
-  .hc-arrows{display:flex;gap:8px;}
-  .hc-arrow{
-    width:36px;height:36px;border-radius:50%;
-    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
-    color:#fff;font-size:16px;cursor:pointer;
-    display:flex;align-items:center;justify-content:center;
-    transition:background .15s;
-    backdrop-filter:blur(4px);
-  }
-  .hc-arrow:hover{background:rgba(255,255,255,.24);}
+  .hero-dots .hc-nav-dot.active{background:var(--orange-500);width:20px;border-radius:4px;}
 
   /* FEATURES */
   .section-head{max-width:640px;margin-bottom:56px;}
@@ -326,7 +301,7 @@
 <header>
   <nav>
     <a class="brand" href="#">
-      <span>🐾 Toalhão</span>
+      <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/logo.png" alt="Toalhão">
     </a>
     <ul class="nav-links">
       <li><a href="#features">Por que o Toalhão</a></li>
@@ -339,8 +314,22 @@
 </header>
 
 <section class="hero">
+  <div class="hero-bg" id="heroBg">
+    <div class="hc-slide active" data-i="0">
+      <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-banho.jpg" alt="Cachorro tomando banho de espuma">
+    </div>
+    <div class="hc-slide" data-i="1">
+      <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-secagem.jpg" alt="Cachorro enrolado em toalha limpa">
+    </div>
+    <div class="hc-slide" data-i="2">
+      <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-qualidade.jpg" alt="Filhote dormindo sobre pilha de toalhas limpas">
+    </div>
+    <div class="hc-slide" data-i="3">
+      <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-tempo.jpg" alt="Balde de lavagem, relógio e toalhas dobradas">
+    </div>
+  </div>
   <div class="wrap">
-    <div>
+    <div class="hero-content">
       <p class="eyebrow hero-eyebrow">Anápolis · Goiânia</p>
       <h1>Toalha limpa sempre no seu petshop. <em>Sem lavar, sem contar.</em></h1>
       <p class="lede">O Toalhão entrega, recolhe e lava as toalhas do seu petshop ou clínica veterinária por assinatura — sem comprar, sem lavar, sem faltar. Fatura simples, direto no WhatsApp.</p>
@@ -354,37 +343,8 @@
         <span class="pill">Aparecida de Goiânia</span>
       </div>
     </div>
-
-    <div class="hero-carousel" id="heroCarousel">
-      <div class="hc-slide active" data-i="0">
-        <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-banho.jpg" alt="Cachorro tomando banho de espuma">
-      </div>
-      <div class="hc-slide" data-i="1">
-        <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-secagem.jpg" alt="Cachorro enrolado em toalha limpa">
-      </div>
-      <div class="hc-slide" data-i="2">
-        <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-qualidade.jpg" alt="Filhote dormindo sobre pilha de toalhas limpas">
-      </div>
-      <div class="hc-slide" data-i="3">
-        <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-tempo.jpg" alt="Balde de lavagem, relógio e toalhas dobradas">
-      </div>
-
-      <div class="hc-bottom">
-        <div class="hc-caption" id="hcCaption">
-          <span class="tag">Hora do banho</span>
-          <h3>Sem preocupação com a toalha</h3>
-          <p>Cuidar da saúde dos pets é mais do que amor — é responsabilidade.</p>
-        </div>
-        <div class="hc-controls">
-          <div class="hc-arrows">
-            <button class="hc-arrow" id="hcPrev" aria-label="Anterior">←</button>
-            <button class="hc-arrow" id="hcNext" aria-label="Próximo">→</button>
-          </div>
-          <div class="hc-dots" id="hcDots"></div>
-        </div>
-      </div>
-    </div>
   </div>
+  <div class="hero-dots" id="hcDots"></div>
 </section>
 
 <section id="features">
@@ -522,7 +482,7 @@
 <footer>
   <div class="wrap">
     <div class="footer-top">
-      <span>🐾 Toalhão — Locação de Toalhas para Petshop</span>
+      <span><img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/logo.png" alt="Toalhão" style="height:52px;width:auto;display:block;"></span>
       <ul class="footer-links">
         <li><a href="#features">Por que o Toalhão</a></li>
         <li><a href="#how-it-works">Como funciona</a></li>
@@ -538,44 +498,31 @@
 <a class="wa-float" href="https://wa.me/5562999987074" target="_blank" rel="noopener" aria-label="WhatsApp">☎</a>
 
 <script>
-  // Hero image carousel
+  // Hero background image carousel
   (function(){
-    const slides = document.querySelectorAll('.hc-slide');
+    const slides = document.querySelectorAll('#heroBg .hc-slide');
     const dotsWrap = document.getElementById('hcDots');
-    const captionEl = document.getElementById('hcCaption');
-    const captions = [
-      { tag:'Hora do banho', title:'Sem preocupação com a toalha', text:'Cuidar da saúde dos pets é mais do que amor — é responsabilidade.' },
-      { tag:'Troca profissional', title:'Faz toda a diferença', text:'Toalha macia e higienizada, segura pro contato direto com a pele.' },
-      { tag:'Controle de qualidade', title:'Higienização de verdade', text:'Toalhas sempre limpas, macias e prontas pro próximo banho.' },
-      { tag:'Lavar ou terceirizar?', title:'Água + energia + tempo = prejuízo', text:'Deixa a lavagem das toalhas com a gente.' }
-    ];
     let idx = 0, timer;
     slides.forEach((_,i)=>{
       const d = document.createElement('button');
       d.className = 'hc-nav-dot' + (i===0?' active':'');
+      d.setAttribute('aria-label', 'Slide ' + (i+1));
       d.addEventListener('click', ()=>go(i));
       dotsWrap.appendChild(d);
     });
     const dots = dotsWrap.querySelectorAll('.hc-nav-dot');
-    function renderCaption(i){
-      const c = captions[i];
-      captionEl.innerHTML = `<span class="tag">${c.tag}</span><h3>${c.title}</h3><p>${c.text}</p>`;
-    }
     function go(i){
       slides[idx].classList.remove('active');
       dots[idx].classList.remove('active');
       idx = (i + slides.length) % slides.length;
       slides[idx].classList.add('active');
       dots[idx].classList.add('active');
-      renderCaption(idx);
       resetTimer();
     }
     function resetTimer(){
       clearInterval(timer);
       timer = setInterval(()=>go(idx+1), 5000);
     }
-    document.getElementById('hcPrev').addEventListener('click', ()=>go(idx-1));
-    document.getElementById('hcNext').addEventListener('click', ()=>go(idx+1));
     resetTimer();
   })();
 
