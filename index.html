@@ -124,62 +124,61 @@
   }
   .pill.active{border-color:var(--orange-500);color:var(--orange-500);background:rgba(255,122,26,.1);}
 
-  /* HERO CAROUSEL CARD */
+  /* HERO IMAGE CAROUSEL — fills the full hero column */
   .hero-carousel{
-    background:linear-gradient(165deg, rgba(255,255,255,.08), rgba(255,255,255,.02));
-    border:1px solid rgba(255,255,255,.12);
-    border-radius:var(--radius-lg);
-    padding:14px;
-    box-shadow:var(--shadow);
-    backdrop-filter:blur(6px);
-  }
-  .hc-topbar{display:flex;gap:6px;padding:6px 8px 14px;}
-  .hc-dot{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.22);}
-  .hc-frame{
     position:relative;
-    border-radius:var(--radius-md);
+    border-radius:var(--radius-lg);
     overflow:hidden;
-    aspect-ratio:4/3.15;
+    aspect-ratio:4/3.6;
+    box-shadow:var(--shadow);
     background:linear-gradient(135deg,#241a4a,#2f2260);
-    display:flex;align-items:center;justify-content:center;
   }
+  @media(min-width:960px){.hero-carousel{aspect-ratio:4/4.2;}}
   .hc-slide{
     position:absolute;inset:0;
     opacity:0;
-    transition:opacity .55s ease;
-    display:flex;align-items:flex-end;
+    transition:opacity .6s ease;
   }
   .hc-slide.active{opacity:1;}
-  .hc-caption{
-    position:relative;width:100%;
-    padding:20px 20px 18px;
-    background:linear-gradient(0deg, rgba(15,10,38,.88), rgba(15,10,38,0));
+  .hc-slide img{
+    width:100%;height:100%;object-fit:cover;object-position:center;
+    display:block;
+  }
+  .hc-slide::after{
+    content:"";
+    position:absolute;inset:0;
+    background:linear-gradient(0deg, rgba(15,10,38,.92) 0%, rgba(15,10,38,.35) 38%, rgba(15,10,38,0) 62%);
+  }
+  .hc-bottom{
+    position:absolute;left:0;right:0;bottom:0;z-index:2;
+    display:flex;align-items:flex-end;justify-content:space-between;gap:16px;
+    padding:26px 22px 22px;
   }
   .hc-caption .tag{
     display:inline-block;font-size:11px;font-weight:800;letter-spacing:.08em;text-transform:uppercase;
     color:var(--orange-500);margin-bottom:6px;
   }
-  .hc-caption h3{color:#fff;font-size:19px;font-weight:600;font-family:'Baloo 2';}
-  .hc-caption p{color:var(--lavender);font-size:13.5px;margin-top:4px;line-height:1.4;}
+  .hc-caption h3{color:#fff;font-size:21px;font-weight:600;font-family:'Baloo 2';}
+  .hc-caption p{color:var(--lavender);font-size:14px;margin-top:4px;line-height:1.45;max-width:300px;}
   .hc-controls{
-    display:flex;align-items:center;justify-content:space-between;
-    padding:14px 6px 4px;
+    display:flex;flex-direction:column;align-items:flex-end;gap:14px;flex:none;
   }
   .hc-dots{display:flex;gap:7px;}
   .hc-nav-dot{
-    width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.25);
+    width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4);
     border:none;padding:0;cursor:pointer;transition:all .2s;
   }
   .hc-nav-dot.active{background:var(--orange-500);width:20px;border-radius:4px;}
   .hc-arrows{display:flex;gap:8px;}
   .hc-arrow{
-    width:34px;height:34px;border-radius:50%;
-    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.16);
+    width:36px;height:36px;border-radius:50%;
+    background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);
     color:#fff;font-size:16px;cursor:pointer;
     display:flex;align-items:center;justify-content:center;
     transition:background .15s;
+    backdrop-filter:blur(4px);
   }
-  .hc-arrow:hover{background:rgba(255,255,255,.18);}
+  .hc-arrow:hover{background:rgba(255,255,255,.24);}
 
   /* FEATURES */
   .section-head{max-width:640px;margin-bottom:56px;}
@@ -357,44 +356,31 @@
     </div>
 
     <div class="hero-carousel" id="heroCarousel">
-      <div class="hc-topbar">
-        <span class="hc-dot"></span><span class="hc-dot"></span><span class="hc-dot"></span>
+      <div class="hc-slide active" data-i="0">
+        <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-banho.jpg" alt="Cachorro tomando banho de espuma">
       </div>
-      <div class="hc-frame" id="hcFrame">
-        <div class="hc-slide active" data-i="0">
-          <div class="hc-caption">
-            <span class="tag">Hora do banho</span>
-            <h3>Sem preocupação com a toalha</h3>
-            <p>Cuidar da saúde dos pets é mais do que amor — é responsabilidade.</p>
-          </div>
-        </div>
-        <div class="hc-slide" data-i="1">
-          <div class="hc-caption">
-            <span class="tag">Troca profissional</span>
-            <h3>Faz toda a diferença</h3>
-            <p>Toalha macia e higienizada, segura pro contato direto com a pele.</p>
-          </div>
-        </div>
-        <div class="hc-slide" data-i="2">
-          <div class="hc-caption">
-            <span class="tag">Controle de qualidade</span>
-            <h3>Higienização de verdade</h3>
-            <p>Toalhas sempre limpas, macias e prontas pro próximo banho.</p>
-          </div>
-        </div>
-        <div class="hc-slide" data-i="3">
-          <div class="hc-caption">
-            <span class="tag">Lavar ou terceirizar?</span>
-            <h3>Água + energia + tempo = prejuízo</h3>
-            <p>Deixa a lavagem das toalhas com a gente.</p>
-          </div>
-        </div>
+      <div class="hc-slide" data-i="1">
+        <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-secagem.jpg" alt="Cachorro enrolado em toalha limpa">
       </div>
-      <div class="hc-controls">
-        <div class="hc-dots" id="hcDots"></div>
-        <div class="hc-arrows">
-          <button class="hc-arrow" id="hcPrev" aria-label="Anterior">←</button>
-          <button class="hc-arrow" id="hcNext" aria-label="Próximo">→</button>
+      <div class="hc-slide" data-i="2">
+        <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-qualidade.jpg" alt="Filhote dormindo sobre pilha de toalhas limpas">
+      </div>
+      <div class="hc-slide" data-i="3">
+        <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-tempo.jpg" alt="Balde de lavagem, relógio e toalhas dobradas">
+      </div>
+
+      <div class="hc-bottom">
+        <div class="hc-caption" id="hcCaption">
+          <span class="tag">Hora do banho</span>
+          <h3>Sem preocupação com a toalha</h3>
+          <p>Cuidar da saúde dos pets é mais do que amor — é responsabilidade.</p>
+        </div>
+        <div class="hc-controls">
+          <div class="hc-arrows">
+            <button class="hc-arrow" id="hcPrev" aria-label="Anterior">←</button>
+            <button class="hc-arrow" id="hcNext" aria-label="Próximo">→</button>
+          </div>
+          <div class="hc-dots" id="hcDots"></div>
         </div>
       </div>
     </div>
@@ -552,10 +538,17 @@
 <a class="wa-float" href="https://wa.me/5562999987074" target="_blank" rel="noopener" aria-label="WhatsApp">☎</a>
 
 <script>
-  // Hero carousel
+  // Hero image carousel
   (function(){
     const slides = document.querySelectorAll('.hc-slide');
     const dotsWrap = document.getElementById('hcDots');
+    const captionEl = document.getElementById('hcCaption');
+    const captions = [
+      { tag:'Hora do banho', title:'Sem preocupação com a toalha', text:'Cuidar da saúde dos pets é mais do que amor — é responsabilidade.' },
+      { tag:'Troca profissional', title:'Faz toda a diferença', text:'Toalha macia e higienizada, segura pro contato direto com a pele.' },
+      { tag:'Controle de qualidade', title:'Higienização de verdade', text:'Toalhas sempre limpas, macias e prontas pro próximo banho.' },
+      { tag:'Lavar ou terceirizar?', title:'Água + energia + tempo = prejuízo', text:'Deixa a lavagem das toalhas com a gente.' }
+    ];
     let idx = 0, timer;
     slides.forEach((_,i)=>{
       const d = document.createElement('button');
@@ -564,12 +557,17 @@
       dotsWrap.appendChild(d);
     });
     const dots = dotsWrap.querySelectorAll('.hc-nav-dot');
+    function renderCaption(i){
+      const c = captions[i];
+      captionEl.innerHTML = `<span class="tag">${c.tag}</span><h3>${c.title}</h3><p>${c.text}</p>`;
+    }
     function go(i){
       slides[idx].classList.remove('active');
       dots[idx].classList.remove('active');
       idx = (i + slides.length) % slides.length;
       slides[idx].classList.add('active');
       dots[idx].classList.add('active');
+      renderCaption(idx);
       resetTimer();
     }
     function resetTimer(){
