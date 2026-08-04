@@ -94,7 +94,7 @@
   .nav-links{display:none;}
   @media(min-width:860px){.nav-links{display:flex;}}
 
-  /* HERO — full-bleed background image carousel */
+  /* HERO — full-bleed background image carousel with scroll-driven resize */
   .hero{
     position:relative;
     padding:110px 0 140px;
@@ -102,10 +102,19 @@
     min-height:640px;
     display:flex;
     align-items:center;
+    background:var(--navy-900);
+    --hero-inset: 0px;
+    --hero-radius: 0px;
   }
   .hero-bg{
-    position:absolute;inset:0;z-index:0;
+    position:absolute;
+    inset: var(--hero-inset);
+    z-index:0;
+    border-radius: var(--hero-radius);
+    overflow:hidden;
     background:linear-gradient(135deg,#241a4a,#2f2260);
+    transition: border-radius .1s linear;
+    will-change: inset, border-radius;
   }
   .hero-bg .hc-slide{
     position:absolute;inset:0;
@@ -116,6 +125,7 @@
   .hero-bg .hc-slide img{
     width:100%;height:100%;object-fit:cover;object-position:center;
     display:block;
+    transform: scale(1.06);
   }
   .hero-bg::after{
     content:"";
@@ -128,7 +138,10 @@
     position:relative;z-index:1;
     display:block;
   }
-  .hero-content{max-width:620px;}
+  .hero-content{
+    max-width:620px;
+    transition: opacity .1s linear, transform .1s linear;
+  }
   .hero h1{font-size:44px;color:#fff;font-weight:700;letter-spacing:-.01em;}
   .hero h1 em{color:var(--orange-500);font-style:normal;}
   @media(min-width:600px){.hero h1{font-size:56px;}}
@@ -154,6 +167,28 @@
     border:none;padding:0;cursor:pointer;transition:all .2s;
   }
   .hero-dots .hc-nav-dot.active{background:var(--orange-500);width:20px;border-radius:4px;}
+
+  /* Scroll-reveal (fade + slide up) — applied throughout the page */
+  .reveal{
+    opacity:0;
+    transform:translateY(28px);
+    transition:opacity .7s cubic-bezier(.22,.61,.36,1), transform .7s cubic-bezier(.22,.61,.36,1);
+    transition-delay:var(--reveal-delay, 0s);
+  }
+  .reveal.in-view{
+    opacity:1;
+    transform:translateY(0);
+  }
+  @media (prefers-reduced-motion: reduce){
+    .reveal{opacity:1;transform:none;transition:none;}
+  }
+  :is(.features-grid, .steps, .alt-grid, .cov-grid, .faq-list) > *:nth-child(1){--reveal-delay:0s;}
+  :is(.features-grid, .steps, .alt-grid, .cov-grid, .faq-list) > *:nth-child(2){--reveal-delay:.08s;}
+  :is(.features-grid, .steps, .alt-grid, .cov-grid, .faq-list) > *:nth-child(3){--reveal-delay:.16s;}
+  :is(.features-grid, .steps, .alt-grid, .cov-grid, .faq-list) > *:nth-child(4){--reveal-delay:.24s;}
+  :is(.features-grid, .steps, .alt-grid, .cov-grid, .faq-list) > *:nth-child(5){--reveal-delay:.32s;}
+  :is(.features-grid, .steps, .alt-grid, .cov-grid, .faq-list) > *:nth-child(6){--reveal-delay:.4s;}
+
 
   /* FEATURES */
   .section-head{max-width:640px;margin-bottom:56px;}
@@ -498,6 +533,54 @@
 <a class="wa-float" href="https://wa.me/5562999987074" target="_blank" rel="noopener" aria-label="WhatsApp">☎</a>
 
 <script>
+  // Hero shrink-on-scroll (rounded corners + inset grow + subtle parallax)
+  (function(){
+    const hero = document.querySelector('.hero');
+    const heroContent = document.querySelector('.hero-content');
+    if(!hero) return;
+    let ticking = false;
+    function update(){
+      const heroHeight = hero.offsetHeight;
+      const progress = Math.min(Math.max(window.scrollY / (heroHeight * 0.85), 0), 1);
+      hero.style.setProperty('--hero-inset', (progress * 22) + 'px');
+      hero.style.setProperty('--hero-radius', (progress * 40) + 'px');
+      if(heroContent){
+        heroContent.style.transform = 'translateY(' + (progress * -30) + 'px)';
+        heroContent.style.opacity = String(1 - progress * 0.55);
+      }
+      ticking = false;
+    }
+    function onScroll(){
+      if(!ticking){
+        requestAnimationFrame(update);
+        ticking = true;
+      }
+    }
+    window.addEventListener('scroll', onScroll, { passive: true });
+    update();
+  })();
+
+  // Scroll reveal — fade + slide up as sections enter the viewport
+  (function(){
+    const targets = document.querySelectorAll(
+      '.feature-card, .step, .alt-card, .cov-card, .faq-item, .section-head, .alt-close, .lead-form'
+    );
+    targets.forEach(el => el.classList.add('reveal'));
+    if(!('IntersectionObserver' in window)){
+      targets.forEach(el => el.classList.add('in-view'));
+      return;
+    }
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if(entry.isIntersecting){
+          entry.target.classList.add('in-view');
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
+    targets.forEach(el => observer.observe(el));
+  })();
+
   // Hero background image carousel
   (function(){
     const slides = document.querySelectorAll('#heroBg .hc-slide');
