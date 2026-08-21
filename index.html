@@ -111,7 +111,7 @@
     border:1px solid rgba(255,255,255,.35);border-radius:var(--radius-pill);
     padding:9px 18px;display:flex;align-items:center;gap:8px;
   }
-  .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:var(--orange);flex:none;box-shadow:0 0 0 3px rgba(255,122,26,.25);}
+  .hero-badge .dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.75);flex:none;box-shadow:0 0 0 3px rgba(255,255,255,.15);}
   .hero-badge span{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:#fff;}
   @media(max-width:640px){.hero-badge{display:none;}}
 
@@ -200,7 +200,7 @@
   .alt-card .tag{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--graphite);}
   .alt-card h3{font-family:var(--font-display);font-size:17.5px;font-weight:600;margin:12px 0 10px;color:var(--navy);}
   .alt-card p{color:var(--graphite);font-size:14.5px;line-height:1.55;}
-  .alt-close{border-radius:var(--radius-card);padding:26px 30px;font-size:15.5px;line-height:1.6;color:var(--navy);background:var(--white);border:1px solid var(--hairline);}
+  .alt-close{border-radius:var(--radius-card);padding:26px 30px;font-size:15.5px;line-height:1.6;color:var(--navy);background:var(--surface);}
   .alt-close strong{color:var(--navy);}
 
   /* COBERTURA */
@@ -519,7 +519,9 @@
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/5562999987074" target="_blank" rel="noopener" aria-label="WhatsApp">☎</a>
+<a class="wa-float" href="https://wa.me/5562999987074" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" width="26" height="26" fill="none" stroke="#20130a" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M4 20l1.3-3.9A8 8 0 1 1 8.9 19L4 20z"/><path d="M8.5 9.5c0 3.5 2.5 6 6 6 .8 0 .8-1.6.3-2.1l-1.4-.8c-.4-.2-.9-.1-1.1.2l-.4.5c-1-.5-1.8-1.3-2.3-2.3l.5-.4c.3-.2.4-.7.2-1.1l-.8-1.4c-.5-.5-2.1-.5-2.1.3z"/></svg>
+</a>
 
 <script>
   // Header goes solid white once we've scrolled past the hero
