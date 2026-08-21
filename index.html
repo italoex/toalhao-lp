@@ -71,7 +71,7 @@
   header{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;transition:background .25s ease, border-color .25s ease;border-bottom:1px solid transparent;}
   header.solid{background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom-color:var(--border);}
   nav{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:20px 32px;}
-  .brand img{height:36px;width:auto;display:block;border-radius:8px;}
+  .brand img{height:44px;width:auto;display:block;}
   .nav-links{display:none;gap:36px;list-style:none;margin:0;padding:0;}
   @media(min-width:860px){.nav-links{display:flex;}}
   .nav-links a{color:rgba(255,255,255,.82);font-size:14.5px;font-weight:500;transition:color .15s;}
@@ -102,9 +102,7 @@
   .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
   .hero::after{
     content:"";position:absolute;inset:0;
-    background:
-      linear-gradient(90deg, rgba(15,11,36,.68) 0%, rgba(15,11,36,.5) 32%, rgba(15,11,36,.12) 62%, rgba(15,11,36,.02) 100%),
-      linear-gradient(0deg, rgba(15,11,36,.72) 0%, rgba(15,11,36,.22) 48%, rgba(15,11,36,.05) 72%, rgba(15,11,36,.22) 100%);
+    background: radial-gradient(ellipse 900px 620px at 0% 100%, rgba(15,11,36,.72) 0%, rgba(15,11,36,.4) 45%, rgba(15,11,36,0) 78%);
   }
   .hero .wrap{position:relative;z-index:1;padding-bottom:64px;width:100%;}
   .hero-top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;}
@@ -233,7 +231,7 @@
 
 <header>
   <nav>
-    <a class="brand" href="#"><img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/logo.png" alt="Toalhão"></a>
+    <a class="brand" href="#"><img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/logo-badge.png" alt="Toalhão"></a>
     <ul class="nav-links">
       <li><a href="#features">Por que o Toalhão</a></li>
       <li><a href="#ciclo">O ciclo</a></li>
@@ -463,7 +461,7 @@
 <section class="closing">
   <div class="wrap">
     <p class="eyebrow">Próximo passo</p>
-    <h2>Seu petshop ou clínica merece parar de <em>se preocupar</em> com toalha.</h2>
+    <h2>Seu petshop ou clínica merece parar de se <em>preocupar</em> com toalha.</h2>
     <p style="margin-top:14px;">Fale com o time do Toalhão e veja se a sua rotina encaixa na assinatura.</p>
     <a class="btn btn-primary" id="closingCta" href="#lead">Pedir cotação agora →</a>
   </div>
@@ -472,7 +470,7 @@
 <footer>
   <div class="wrap">
     <div class="footer-top">
-      <span><img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/logo.png" alt="Toalhão" style="height:44px;width:auto;display:block;border-radius:8px;"></span>
+      <span><img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/logo-badge.png" alt="Toalhão" style="height:52px;width:auto;display:block;"></span>
       <ul class="footer-links">
         <li><a href="#features">Por que o Toalhão</a></li>
         <li><a href="#ciclo">O ciclo</a></li>
