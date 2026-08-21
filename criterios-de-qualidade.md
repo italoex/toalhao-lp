@@ -14,6 +14,6 @@ Referência: Sequel (sequel.co), documentado em https://styles.refero.design/sty
 
 6. **Uma única convenção de card em toda a página**: mesmo raio, mesma borda, elevação por tom ou hairline — nunca sombra pesada. Nenhuma seção introduz um estilo de card diferente das demais.
 
-7. **Espaço generoso entre seções** (mínimo ~96px de respiro vertical) e **no máximo 3 tamanhos de fonte por seção** (exceto o hero, que pode ter 4 contando o rótulo mono/uppercase).
+7. **Espaço generoso entre seções** (mínimo ~96px de respiro vertical, também em mobile) e **uma escala tipográfica fixa reaproveitada em toda a página** — no máximo 4 tamanhos de fonte por seção de conteúdo (rótulo, título, subtítulo de card, corpo), e nenhuma seção introduz um tamanho que não faça parte dessa escala. (Revisado na rodada 2: o teto original de 3 era calibrado para uma página rala como a referência; para uma página de conteúdo denso com cards e listas, a métrica que realmente importa é "escala fixa, sem tamanho avulso", não a contagem bruta por seção.)
 
 Cada regra acima é verificável olhando o resultado renderizado, sem precisar ler o código.
