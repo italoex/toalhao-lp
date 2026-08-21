@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Toalhão — Locação de Toalhas para Petshop</title>
+<title>Toalhão — Locação de Toalhas para Petshop e Clínica Veterinária</title>
 <meta name="description" content="Aluguel de toalhas higienizadas para petshops e clínicas veterinárias em Anápolis e Goiânia. Sem comprar, sem lavar, sem faltar toalha no banho e tosa.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -28,6 +28,8 @@
     --text-body: 15px;
     --text-card-title: 18px;
     --text-feature-title: 24px;
+    --text-h2: 32px;
+    --text-h2-lg: 42px;
   }
   *{box-sizing:border-box;}
   html{scroll-behavior:smooth;}
@@ -142,8 +144,9 @@
 
   /* SECTION HEAD */
   .section-head{max-width:680px;margin-bottom:56px;}
-  .section-head h2{font-family:var(--font-sans);font-weight:300;font-size:32px;color:var(--ink);margin:14px 0 0;letter-spacing:-.01em;text-wrap:balance;}
-  @media(min-width:640px){.section-head h2{font-size:42px;}}
+  .section-head h2, .lead h2, .closing h2{font-family:var(--font-sans);font-weight:300;font-size:var(--text-h2);color:var(--ink);letter-spacing:-.01em;text-wrap:balance;}
+  @media(min-width:640px){.section-head h2, .lead h2, .closing h2{font-size:var(--text-h2-lg);}}
+  .section-head h2{margin:14px 0 0;}
 
   /* CARDS — one convention, everywhere */
   .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:30px 26px;}
@@ -180,7 +183,7 @@
   .faq-list{max-width:100%;display:flex;flex-direction:column;gap:10px;}
   .faq-item{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);overflow:hidden;}
   .faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:20px 24px;font-family:var(--font-sans);font-size:var(--text-card-title);font-weight:500;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:16px;}
-  .faq-q .plus{font-size:20px;color:var(--orange);transition:transform .2s;flex:none;font-weight:300;}
+  .faq-q .plus{font-size:var(--text-card-title);color:var(--orange);transition:transform .2s;flex:none;font-weight:300;line-height:1;}
   .faq-item.open .faq-q .plus{transform:rotate(45deg);}
   .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
   .faq-a p{padding:0 24px 22px;font-size:var(--text-body);line-height:1.6;}
@@ -189,7 +192,7 @@
   .lead{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
   .lead-wrap{display:grid;grid-template-columns:1fr;gap:44px;}
   @media(min-width:900px){.lead-wrap{grid-template-columns:.9fr 1.1fr;align-items:start;}}
-  .lead h2{font-family:var(--font-sans);font-weight:300;font-size:32px;color:var(--ink);}
+  .lead h2{margin:14px 0 0;}
   .lead p.sub{margin-top:14px;font-size:var(--text-body);line-height:1.6;max-width:400px;}
   .lead-form{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:16px;}
   .field label{display:block;font-size:var(--text-small);font-weight:600;color:var(--muted);margin-bottom:7px;}
@@ -203,8 +206,7 @@
   #leadFallback a{color:var(--orange-ink);font-weight:600;text-decoration:underline;}
 
   .closing{text-align:center;}
-  .closing h2{font-family:var(--font-sans);font-weight:300;font-size:32px;color:var(--ink);max-width:560px;margin:14px auto 0;text-wrap:balance;}
-  @media(min-width:600px){.closing h2{font-size:40px;}}
+  .closing h2{max-width:560px;margin:14px auto 0;}
   .closing .btn{margin-top:30px;}
 
   footer{background:var(--canvas);color:var(--muted);padding:44px 0 30px;border-top:1px solid var(--border);}
@@ -288,7 +290,7 @@
   <div class="wrap">
     <div class="section-head">
       <p class="eyebrow">Por que o Toalhão</p>
-      <h2>O que tira o sono de quem cuida de banho e tosa, <em>resolvido</em></h2>
+      <h2>O que tira o sono de petshops e clínicas veterinárias, <em>resolvido</em></h2>
     </div>
     <div class="grid-3">
       <div class="card">
@@ -313,7 +315,7 @@
       </div>
       <div class="card">
         <div class="ic"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.7-7 9-4-1.3-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3>Zero risco de contaminação</h3>
+        <h3>Reduz o risco de contaminação cruzada</h3>
         <p>Toalha mal lavada pode passar pulga, fungo ou bactéria de um pet pro outro. A nossa sai higienizada em água quente, pronta pra encostar na pele.</p>
       </div>
       <div class="card">
@@ -431,8 +433,8 @@
       <p class="sub">Preencha os dados abaixo — o formulário monta uma mensagem pronta e abre direto no seu WhatsApp.</p>
     </div>
     <form class="lead-form" id="leadForm">
-      <div class="field"><label for="nome">Nome do responsável</label><input id="nome" required placeholder="Seu nome"></div>
-      <div class="field"><label for="petshop">Nome do petshop / clínica</label><input id="petshop" required placeholder="Nome do negócio"></div>
+      <div class="field"><label for="nome">Nome do responsável</label><input id="nome" name="nome" autocomplete="name" required placeholder="Seu nome"></div>
+      <div class="field"><label for="petshop">Nome do petshop / clínica</label><input id="petshop" name="petshop" autocomplete="organization" required placeholder="Nome do negócio"></div>
       <div class="field"><label for="cidade">Cidade</label>
         <select id="cidade">
           <option>Anápolis</option>
@@ -441,7 +443,7 @@
           <option>Outra região</option>
         </select>
       </div>
-      <div class="field"><label for="whats">WhatsApp</label><input id="whats" required placeholder="(62) 9 9999-9999"></div>
+      <div class="field"><label for="whats">WhatsApp</label><input id="whats" name="whats" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(62) 9 9999-9999"></div>
       <div class="field"><label for="volume">Quantas toalhas usa por dia (aprox.)</label>
         <select id="volume">
           <option value="até 20">Até 20</option>
@@ -450,10 +452,10 @@
           <option value="mais de 100">Mais de 100</option>
         </select>
       </div>
-      <label class="consent"><input type="checkbox" id="consent" required> Concordo em ser contatado pelo Toalhão sobre esta cotação, por WhatsApp ou e-mail.</label>
+      <label class="consent"><input type="checkbox" id="consent" required> Concordo em ser contatado pelo Toalhão sobre esta cotação, por WhatsApp.</label>
       <button type="submit" class="btn btn-primary" id="leadSubmit" style="justify-content:center;">Enviar no WhatsApp →</button>
-      <p class="lead-note" id="leadNote">Ao enviar, você será direcionado ao WhatsApp do Toalhão com a mensagem já preenchida.</p>
-      <div id="leadFallback" style="display:none;"></div>
+      <p class="lead-note" id="leadNote">Ao enviar, abrimos uma conversa no WhatsApp com a mensagem pronta — falta só você tocar em enviar por lá.</p>
+      <div id="leadFallback" style="display:none;" aria-live="polite"></div>
     </form>
   </div>
 </section>
@@ -461,7 +463,7 @@
 <section class="closing">
   <div class="wrap">
     <p class="eyebrow">Próximo passo</p>
-    <h2>Seu petshop merece parar de <em>se preocupar</em> com toalha.</h2>
+    <h2>Seu petshop ou clínica merece parar de <em>se preocupar</em> com toalha.</h2>
     <p style="margin-top:14px;">Fale com o time do Toalhão e veja se a sua rotina encaixa na assinatura.</p>
     <a class="btn btn-primary" id="closingCta" href="#lead">Pedir cotação agora →</a>
   </div>
@@ -553,16 +555,24 @@
     const cidade = document.getElementById('cidade').value;
     const whats = document.getElementById('whats').value;
     const volume = document.getElementById('volume').value;
-    const msg = `Olá! Sou ${nome}, responsável pelo ${petshop} em ${cidade}. Meu WhatsApp é ${whats}. Usamos ${volume} toalhas por dia. Gostaria de pedir uma cotação do Toalhão.`;
+    const msg = `Olá! Sou ${nome}, responsável por ${petshop} em ${cidade}. Meu WhatsApp é ${whats}. Usamos ${volume} toalhas por dia. Gostaria de pedir uma cotação do Toalhão.`;
     const waUrl = 'https://wa.me/5562999987074?text=' + encodeURIComponent(msg);
-    const mailUrl = 'mailto:contato@toalhao.com.br?subject=' + encodeURIComponent('Cotação — ' + petshop) + '&body=' + encodeURIComponent(msg);
     const opened = window.open(waUrl, '_blank');
     const note = document.getElementById('leadNote');
     const fallback = document.getElementById('leadFallback');
-    note.textContent = 'Se o WhatsApp não abriu automaticamente, use os links abaixo.';
+
+    note.textContent = opened
+      ? 'Abrimos sua conversa no WhatsApp — confira a mensagem e toque em enviar por lá pra concluir.'
+      : 'Não conseguimos abrir o WhatsApp automaticamente. Toque no link abaixo pra continuar.';
+
+    fallback.textContent = '';
     fallback.style.display = 'block';
-    fallback.innerHTML = `Prontinho, ${nome}! <a href="${waUrl}" target="_blank" rel="noopener">Abrir conversa no WhatsApp</a> · <a href="${mailUrl}">Enviar por e-mail</a>`;
-    if(opened){ setTimeout(()=>{ try{ opened.focus(); }catch(err){} }, 300); }
+    const link = document.createElement('a');
+    link.href = waUrl;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.textContent = 'Abrir conversa no WhatsApp';
+    fallback.append('Link direto: ', link);
   });
 </script>
 
