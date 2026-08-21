@@ -23,7 +23,7 @@
     --lavender:#C6C1DE;
     --border:#ECE8F7;
     --surface:#FFFFFF;
-    --surface-alt:#FBF8FF;
+    --surface-alt:#FFF8F1;
     --shadow: 0 20px 45px -20px rgba(19,13,52,.16);
     --radius-lg: 28px;
     --radius-md: 18px;
@@ -85,9 +85,14 @@
   /* NAV */
   header{
     position:fixed;top:0;left:0;right:0;z-index:50;
-    background:rgba(255,255,255,.82);
+    background:transparent;
+    border-bottom:1px solid transparent;
+    transition:background .25s ease, border-color .25s ease;
+  }
+  header.solid{
+    background:rgba(255,255,255,.88);
     backdrop-filter:blur(14px);
-    border-bottom:1px solid var(--border);
+    border-bottom-color:var(--border);
   }
   nav{
     display:flex;align-items:center;justify-content:space-between;
@@ -96,8 +101,10 @@
   .brand{display:flex;align-items:center;gap:10px;}
   .brand img{height:42px;width:auto;display:block;border-radius:8px;}
   .nav-links{display:flex;gap:32px;list-style:none;margin:0;padding:0;}
-  .nav-links a{color:var(--muted);font-size:15px;font-weight:600;transition:color .15s;}
-  .nav-links a:hover{color:var(--ink);}
+  .nav-links a{color:rgba(255,255,255,.85);font-size:15px;font-weight:600;transition:color .15s;}
+  .nav-links a:hover{color:#fff;}
+  header.solid .nav-links a{color:var(--muted);}
+  header.solid .nav-links a:hover{color:var(--ink);}
   .nav-cta{display:none;}
   @media(min-width:860px){.nav-cta{display:inline-flex;}}
   .nav-links{display:none;}
@@ -147,7 +154,7 @@
     transition: opacity .1s linear, transform .1s linear;
   }
   .hero h1{font-size:44px;color:#fff;font-weight:700;letter-spacing:-.01em;}
-  .hero h1 em{color:var(--orange-500);font-style:normal;}
+  .hero h1 em{color:#fff;font-style:normal;opacity:.86;}
   @media(min-width:600px){.hero h1{font-size:56px;}}
   .hero-eyebrow{margin-bottom:14px;}
   .hero p.lede{
@@ -161,7 +168,7 @@
   }
   .pill.active{border-color:var(--orange-500);color:var(--orange-500);background:rgba(255,122,26,.1);}
 
-  /* 3D loop badge — the signature element: the endless clean-towel cycle, made physical */
+  /* Loop badge — small persistent reminder of the endless clean-towel cycle */
   .loop-badge{
     position:absolute;right:28px;bottom:104px;z-index:2;
     width:152px;
@@ -169,11 +176,10 @@
     backdrop-filter:blur(10px);
     border:1px solid rgba(255,255,255,.16);
     border-radius:22px;
-    padding:10px 10px 12px;
+    padding:16px 10px;
     box-shadow:var(--shadow);
-    display:flex;flex-direction:column;align-items:center;
+    display:flex;flex-direction:column;align-items:center;gap:8px;
   }
-  .loop-badge canvas{width:100%;height:104px;display:block;}
   .loop-badge-label{
     font-family:var(--font-mono);font-size:8.5px;letter-spacing:.1em;text-transform:uppercase;
     color:var(--orange-500);margin-top:6px;text-align:center;line-height:1.4;
@@ -299,13 +305,12 @@
     padding:26px 22px;
     background:var(--cream);
     border:1px solid var(--border);
-    border-top:3px solid var(--orange-500);
   }
   .alt-card .tag{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange-600);}
   .alt-card h3{font-family:var(--font-display);font-size:17.5px;font-weight:600;margin:10px 0 10px;}
   .alt-card p{color:var(--muted);font-size:14.5px;line-height:1.55;}
   .alt-close{
-    background:var(--surface-alt);border:1px solid var(--border);border-left:3px solid var(--orange-500);
+    background:var(--cream);border:1px solid var(--border);
     border-radius:var(--radius-md);
     padding:26px 30px;font-size:15.5px;line-height:1.6;color:var(--muted);
   }
@@ -330,11 +335,11 @@
   .cov-list{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-direction:column;gap:10px;}
   .cov-list li{display:flex;justify-content:space-between;gap:12px;font-size:14px;color:var(--ink);border-top:1px solid var(--border);padding-top:10px;}
   .cov-list li:first-child{border-top:none;padding-top:0;}
-  .cov-list b{color:var(--orange-600);font-weight:700;}
+  .cov-list b{color:var(--ink);font-weight:700;}
   .cov-intro{max-width:640px;margin-bottom:40px;color:var(--muted);font-size:15.5px;}
 
   /* FAQ */
-  .faq-list{max-width:760px;display:flex;flex-direction:column;gap:12px;}
+  .faq-list{max-width:880px;display:flex;flex-direction:column;gap:12px;}
   .faq-item{border:1px solid var(--border);border-radius:var(--radius-sm);background:#fff;overflow:hidden;}
   .faq-q{
     width:100%;text-align:left;background:none;border:none;cursor:pointer;
@@ -437,7 +442,7 @@
     </div>
   </div>
   <div class="loop-badge">
-    <canvas id="loop3d"></canvas>
+    <svg viewBox="0 0 24 24" width="30" height="30" fill="none" stroke="var(--orange-500)" stroke-width="1.8" stroke-linecap="round"><path d="M20 11a8 8 0 1 0-2.5 6.2"/><path d="M20 6v5h-5"/></svg>
     <div class="loop-badge-label">Ciclo contínuo<br>de toalha limpa</div>
   </div>
 </section>
@@ -654,14 +659,16 @@
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/5562999987074" target="_blank" rel="noopener" aria-label="WhatsApp">☎</a>
+<a class="wa-float" href="https://wa.me/5562999987074" target="_blank" rel="noopener" aria-label="WhatsApp">
+  <svg viewBox="0 0 24 24" width="30" height="30" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.4-1.42a9.87 9.87 0 0 0 4.64 1.18h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.21-8.25 8.21zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.57.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+</a>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
 <script>
   // Hero shrink-on-scroll (rounded corners + inset grow + subtle parallax)
   (function(){
     const hero = document.querySelector('.hero');
     const heroContent = document.querySelector('.hero-content');
+    const header = document.querySelector('header');
     if(!hero) return;
     let ticking = false;
     function update(){
@@ -669,6 +676,9 @@
       const progress = Math.min(Math.max(window.scrollY / (heroHeight * 0.85), 0), 1);
       hero.style.setProperty('--hero-inset', (progress * 22) + 'px');
       hero.style.setProperty('--hero-radius', (progress * 40) + 'px');
+      if(header){
+        header.classList.toggle('solid', window.scrollY > 16);
+      }
       if(heroContent){
         heroContent.style.transform = 'translateY(' + (progress * -30) + 'px)';
         heroContent.style.opacity = String(1 - progress * 0.55);
@@ -764,63 +774,6 @@
       btn.addEventListener('mouseleave', ()=>{
         btn.style.transform = '';
       });
-    });
-  })();
-
-  // 3D loop badge — a rotating ring of towel tiles, rendered with Three.js
-  (function(){
-    if (!window.THREE) return;
-    const canvas = document.getElementById('loop3d');
-    if(!canvas) return;
-    const renderer = new THREE.WebGLRenderer({canvas, alpha:true, antialias:true});
-    let w = canvas.clientWidth, h = canvas.clientHeight;
-    renderer.setSize(w, h, false);
-    renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 2));
-
-    const scene = new THREE.Scene();
-    const camera = new THREE.PerspectiveCamera(38, w / h, 0.1, 100);
-    camera.position.set(0, 0.55, 4.1);
-    camera.lookAt(0, 0, 0);
-
-    const group = new THREE.Group();
-    scene.add(group);
-
-    const count = 8;
-    const radius = 1.1;
-    const geo = new THREE.BoxGeometry(0.58, 0.4, 0.15);
-    for (let i = 0; i < count; i++) {
-      const color = i % 2 === 0 ? 0xff7a1a : 0xffffff;
-      const mat = new THREE.MeshStandardMaterial({ color, roughness: 0.85, metalness: 0.05 });
-      const mesh = new THREE.Mesh(geo, mat);
-      const angle = (i / count) * Math.PI * 2;
-      mesh.position.set(Math.cos(angle) * radius, Math.sin(angle * 0.6) * 0.16, Math.sin(angle) * radius);
-      mesh.rotation.y = -angle;
-      mesh.rotation.x = 0.15;
-      group.add(mesh);
-    }
-
-    const key = new THREE.DirectionalLight(0xffffff, 1.1);
-    key.position.set(2, 3, 2);
-    scene.add(key);
-    const rim = new THREE.DirectionalLight(0xff7a1a, 0.9);
-    rim.position.set(-2, -1, -2);
-    scene.add(rim);
-    scene.add(new THREE.AmbientLight(0x8880ff, 0.4));
-
-    let raf;
-    function animate() {
-      group.rotation.y += 0.006;
-      renderer.render(scene, camera);
-      raf = requestAnimationFrame(animate);
-    }
-    animate();
-
-    window.addEventListener('resize', () => {
-      w = canvas.clientWidth; h = canvas.clientHeight;
-      if (!w || !h) return;
-      renderer.setSize(w, h, false);
-      camera.aspect = w / h;
-      camera.updateProjectionMatrix();
     });
   })();
 </script>
