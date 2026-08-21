@@ -11,21 +11,22 @@ Toalhão é a versão operacional e luminosa do "private screening after dark": 
 | Nome | Valor | Token | Papel |
 |------|-------|-------|-------|
 | Branco Puro | `#FFFFFF` | `--color-white` | Canvas da página, fundo do nav quando no topo — o estado padrão; tudo é construído SOBRE o branco |
-| Azul-Marinho | `#161335` | `--color-navy` | Texto primário, headings, ícone stroke — a cor de leitura e estrutura (equivalente ao "Pure White" do sistema invertido) |
-| Superfície | `#F7F5F1` | `--color-surface` | Card elevado, painéis secundários — um passo quieto acima do branco puro, implica elevação sem sombra |
+| Azul-Marinho (texto) | `#161335` | `--color-navy` | Texto primário, headings, ícone stroke, valores em destaque dentro de listas — a cor de leitura e estrutura |
+| Azul-Marinho (contraste) | `#0B1220` | `--color-navy-contrast` | Fundo da ÚNICA seção de contraste escura (CTA final + footer) e fundo por trás do vídeo do hero. Tom deliberadamente frio (G ≥ R) — nunca deve ler como roxo/violeta |
+| Superfície | `#F4F4F6` | `--color-surface` | Card elevado, painéis secundários — um passo quieto e FRIO (nunca creme/amarelado) acima do branco puro, implica elevação sem sombra |
 | Linha | `#E7E3DA` | `--color-hairline` | Bordas finas, contornos de badge, divisores sutis |
-| Laranja Toalhão | `#FF7A1A` | `--color-orange` | Ação primária preenchida — o único acento cromático do sistema; nunca decorativo, só em CTA e nos poucos pontos que precisam de urgência |
-| Grafite | `#6B6875` | `--color-graphite` | Texto secundário sobre branco, legendas, metadados |
+| Laranja Toalhão | `#FF7A1A` | `--color-orange` | Ação primária preenchida — o único acento cromático do sistema inteiro, incluindo utilitários fixos como o botão flutuante de WhatsApp (nunca usar o verde de marca do WhatsApp) |
+| Grafite | `#6B6875` | `--color-graphite` | Texto secundário sobre branco, legendas, metadados, labels/tags que NÃO são a ênfase principal da seção |
 
-**Regra central:** o laranja aparece no máximo 2 vezes por tela (CTA primário + 1 destaque de texto). Fora isso, a página é branco + azul-marinho + grafite.
+**Regra central (a mais violada na prática, seguir à risca):** por seção da página, o laranja só pode aparecer em **(a)** um botão de ação preenchido e **(b)** no máximo UMA palavra de destaque no heading. Nada mais — não em números, não em valores de lista, não em ícones de estado padrão, não em tags/eyebrows de card. Quando em dúvida se um elemento "merece" laranja, a resposta é não: use `--color-navy` com peso 700 pra dar ênfase sem cor.
 
 ## Tokens — Tipografia
 
-### Display / Corpo — `Baloo 2` (peso 300–800) + fallback `Poppins, Inter, sans-serif`
-- Pesos: 300 (headline narrativa), 600–700 (peso de leitura padrão), 800 (a palavra operacional de destaque)
+### Display / Corpo — `Baloo 2` (peso 400–800; **a família NÃO tem peso 300 no Google Fonts** — não pedir esse peso) + fallback `Poppins, Inter, sans-serif`
+- Pesos: 400 (headline narrativa — é o peso mais leve que a fonte realmente tem), 600–700 (peso de leitura padrão), 800 (a palavra operacional de destaque)
 - Tamanhos: 15, 16, 18, 21, 30, 40, 54, 72px
 - Letter-spacing: -0.03em em display ≥54px; +0.06–0.08em em labels uppercase ≤13px
-- Regra: nunca dois pesos fortes na mesma frase — a headline é 300, só a palavra-chave sobe pra 800
+- Regra: nunca dois pesos fortes na mesma frase — a headline é 400 regular, só a palavra-chave sobe pra 800. O contraste vem de 400→800, não de um peso ultra-leve inexistente na fonte.
 
 ### Mono — `Space Mono` (labels operacionais)
 - Uso: eyebrows, badges de rota/entrega, números de fatura, timestamps — qualquer coisa que precise "parecer um log real"
@@ -74,7 +75,10 @@ Fundo transparente, borda `1.5px` `--color-navy` (sobre branco) ou `1.5px rgba(2
 Fundo `rgba(255,255,255,.14)` com `backdrop-filter: blur(16px) saturate(1.4)`, borda `1px rgba(255,255,255,.35)`, texto branco uppercase 12px mono, `9999px` radius, padding `8px 16px`. Usado para "ROTA CONFIRMADA", "ANÁPOLIS · GOIÂNIA" etc — a mesma função do "Frosted Glass Badge" do Sequel, só que aqui carrega dado operacional, não categoria editorial.
 
 ### Card Elevado
-Fundo `--color-surface`, `16px` radius, sem sombra, sem borda. A mudança de branco puro pra `#F7F5F1` é o único sinal de elevação.
+Fundo `--color-surface`, `16px` radius, sem sombra, sem borda. A mudança de branco puro pra `--color-surface` é o único sinal de elevação. Usado por todo card de conteúdo estático: benefícios, passos do ciclo, alternativas, cobertura, painel de rotas.
+
+### Item de Lista Interativa (exceção documentada)
+Fundo `--color-white`, borda `1px --color-hairline`, `12px` radius, sem sombra. É a ÚNICA família de componente que usa borda em vez de troca de tom — reservada pra linhas clicáveis/expansíveis (ex: FAQ accordion), onde um contorno fino comunica "isto é uma linha de lista com estado" melhor que um preenchimento sólido. Nunca usar esse tratamento em card de conteúdo estático.
 
 ### Botão de Play do Vídeo
 Circular, `50%` radius, borda `1.5px rgba(255,255,255,.6)`, fundo `rgba(255,255,255,.1)` com blur, contém triângulo de play + label "Ver como funciona" 13px mono uppercase. Flutua sobre o vídeo, nunca dentro de um card.

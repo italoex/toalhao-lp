@@ -7,14 +7,14 @@
 <meta name="description" content="Assinatura de toalhas higienizadas para petshops e clínicas veterinárias em Anápolis e Goiânia. Entrega, recolhe, lava e repõe — rastreável, flexível e com fatura transparente.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@300;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Inter:wght@400;500;600;700;800&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root{
     --white:#FFFFFF;
     --navy:#161335;
-    --navy-deep:#100D28;
-    --navy-soft:#231C4D;
-    --surface:#F7F5F1;
+    --navy-deep:#0B1220;
+    --navy-soft:#1A2338;
+    --surface:#F4F4F6;
     --hairline:#E7E3DA;
     --orange:#FF7A1A;
     --orange-deep:#E8630A;
@@ -39,7 +39,7 @@
     background:var(--white);
     -webkit-font-smoothing:antialiased;
   }
-  h1,h2,h3,.display{font-family:var(--font-display);line-height:1.08;margin:0;font-weight:300;}
+  h1,h2,h3,.display{font-family:var(--font-display);line-height:1.08;margin:0;font-weight:400;}
   p{margin:0;}
   a{color:inherit;text-decoration:none;}
   img{max-width:100%;display:block;}
@@ -88,17 +88,18 @@
   /* HERO — full-bleed client video */
   .hero{position:relative;min-height:100vh;min-height:100svh;overflow:hidden;background:var(--navy-deep);display:flex;align-items:flex-end;--hero-inset:0px;--hero-radius:0px;}
   .hero-media{position:absolute;inset:var(--hero-inset);z-index:0;border-radius:var(--hero-radius);overflow:hidden;background:var(--navy-deep);transition:border-radius .1s linear;will-change:inset,border-radius;}
-  .hero-media video{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;}
+  .hero-media video{width:100%;height:100%;object-fit:cover;object-position:center 30%;display:block;filter:saturate(.4) brightness(.88);}
   .hero-media::after{
     content:"";position:absolute;inset:0;
     background:
-      linear-gradient(0deg, rgba(16,13,40,.86) 0%, rgba(16,13,40,.35) 42%, rgba(16,13,40,.15) 65%, rgba(16,13,40,.35) 100%),
-      linear-gradient(90deg, rgba(16,13,40,.55) 0%, rgba(16,13,40,0) 46%);
+      linear-gradient(rgba(11,18,32,.4), rgba(11,18,32,.4)),
+      linear-gradient(0deg, rgba(11,18,32,.9) 0%, rgba(11,18,32,.55) 42%, rgba(11,18,32,.32) 65%, rgba(11,18,32,.55) 100%),
+      linear-gradient(90deg, rgba(11,18,32,.65) 0%, rgba(11,18,32,.1) 46%);
   }
   .hero .wrap{position:relative;z-index:1;width:100%;padding-bottom:76px;padding-top:170px;}
   .hero-content{max-width:640px;transition:opacity .1s linear, transform .1s linear;}
   .hero-eyebrow{color:var(--on-navy-strong);opacity:.72;margin-bottom:18px;}
-  .hero h1{font-size:38px;color:#fff;font-weight:300;letter-spacing:-.01em;}
+  .hero h1{font-size:38px;color:#fff;font-weight:400;letter-spacing:-.01em;}
   @media(min-width:640px){.hero h1{font-size:52px;}}
   @media(min-width:1024px){.hero h1{font-size:60px;}}
   .hero p.lede{margin-top:24px;color:var(--on-navy);font-size:16.5px;line-height:1.65;max-width:520px;}
@@ -143,7 +144,7 @@
   :is(.features-grid,.cycle-row,.alt-grid,.cov-grid,.faq-list,.trust-items) > *:nth-child(6){--reveal-delay:.4s;}
 
   .section-head{max-width:660px;margin-bottom:56px;}
-  .section-head h2{font-size:32px;color:var(--navy);font-weight:300;margin-top:14px;letter-spacing:-.01em;}
+  .section-head h2{font-size:32px;color:var(--navy);font-weight:400;margin-top:14px;letter-spacing:-.01em;}
   @media(min-width:640px){.section-head h2{font-size:40px;}}
 
   /* FEATURES */
@@ -158,9 +159,9 @@
   /* MECANISMO / CYCLE */
   .cycle-row{display:grid;grid-template-columns:1fr;gap:0;position:relative;}
   @media(min-width:860px){.cycle-row{grid-template-columns:repeat(4,1fr);align-items:stretch;}}
-  .cycle-step{border:1px solid var(--hairline);border-radius:var(--radius-card);padding:26px 22px;background:var(--white);position:relative;margin-bottom:18px;}
+  .cycle-step{border-radius:var(--radius-card);padding:26px 22px;background:var(--surface);position:relative;margin-bottom:18px;}
   @media(min-width:860px){.cycle-step{margin-bottom:0;margin-right:18px;}}
-  .cycle-step .num{font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--orange);letter-spacing:.06em;}
+  .cycle-step .num{font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--navy);opacity:.5;letter-spacing:.06em;}
   .cycle-step h3{font-family:var(--font-display);font-size:18px;font-weight:600;margin:14px 0 8px;color:var(--navy);}
   .cycle-step p{color:var(--graphite);font-size:14px;line-height:1.55;}
   .cycle-arrow{display:none;position:absolute;top:50%;right:-18px;transform:translate(50%,-50%);width:20px;height:20px;color:var(--hairline);z-index:2;}
@@ -176,63 +177,61 @@
   .trust-copy p.lede{color:var(--graphite);font-size:16px;line-height:1.65;margin-top:16px;max-width:480px;}
   .trust-items{margin-top:32px;display:flex;flex-direction:column;gap:22px;}
   .trust-item{display:flex;gap:16px;}
-  .trust-item .tlabel{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-deep);flex:none;width:112px;padding-top:2px;}
+  .trust-item .tlabel{font-family:var(--font-mono);font-size:11.5px;letter-spacing:.08em;text-transform:uppercase;color:var(--navy);flex:none;width:112px;padding-top:2px;}
   .trust-item p{font-size:14.5px;line-height:1.6;color:var(--navy);}
 
-  .log-card{background:var(--white);border-radius:var(--radius-card);padding:0;overflow:hidden;border:1px solid var(--hairline);}
+  .log-card{background:var(--surface);border-radius:var(--radius-card);padding:0;overflow:hidden;}
   .log-head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--hairline);}
   .log-head span{font-family:var(--font-mono);font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--graphite);}
   .log-head .live{display:flex;align-items:center;gap:7px;}
-  .log-head .live .dot{width:6px;height:6px;border-radius:50%;background:var(--orange);}
-  .log-head .live span{color:var(--orange-deep);}
+  .log-head .live .dot{width:6px;height:6px;border-radius:50%;background:var(--navy);opacity:.4;}
   .log-row{display:flex;justify-content:space-between;align-items:center;gap:14px;padding:16px 22px;border-bottom:1px solid var(--hairline);font-family:var(--font-mono);font-size:12.5px;}
   .log-row:last-of-type{border-bottom:none;}
   .log-route{color:var(--navy);font-weight:700;letter-spacing:.02em;}
   .log-meta{color:var(--graphite);text-align:right;}
   .log-check{color:var(--navy);opacity:.55;flex:none;margin-left:6px;}
-  .log-foot{padding:16px 22px;background:var(--surface);font-size:12.5px;color:var(--graphite);}
+  .log-foot{padding:16px 22px;background:var(--white);font-size:12.5px;color:var(--graphite);}
   .log-foot b{color:var(--navy);}
 
   /* ALTERNATIVAS */
   .alt-grid{display:grid;grid-template-columns:1fr;gap:18px;margin-bottom:36px;}
   @media(min-width:700px){.alt-grid{grid-template-columns:repeat(3,1fr);}}
   .alt-card{border-radius:var(--radius-card);padding:26px 22px;background:var(--surface);}
-  .alt-card .tag{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--orange-deep);}
+  .alt-card .tag{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--graphite);}
   .alt-card h3{font-family:var(--font-display);font-size:17.5px;font-weight:600;margin:12px 0 10px;color:var(--navy);}
   .alt-card p{color:var(--graphite);font-size:14.5px;line-height:1.55;}
   .alt-close{border-radius:var(--radius-card);padding:26px 30px;font-size:15.5px;line-height:1.6;color:var(--navy);background:var(--white);border:1px solid var(--hairline);}
-  .alt-close strong{color:var(--orange-deep);}
+  .alt-close strong{color:var(--navy);}
 
   /* COBERTURA */
   .cov-grid{display:grid;grid-template-columns:1fr;gap:20px;}
   @media(min-width:760px){.cov-grid{grid-template-columns:1fr 1fr;}}
   .cov-card{border-radius:var(--radius-card);padding:32px 28px;background:var(--surface);}
-  .cov-card .tag{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--orange-deep);}
+  .cov-card .tag{font-family:var(--font-mono);font-size:11px;font-weight:700;letter-spacing:.08em;text-transform:uppercase;color:var(--graphite);}
   .cov-card h3{font-family:var(--font-display);font-size:26px;font-weight:600;margin:12px 0 14px;color:var(--navy);}
   .cov-card > p{color:var(--graphite);font-size:14.5px;line-height:1.6;margin-bottom:18px;}
   .cov-list{list-style:none;margin:0 0 22px;padding:0;display:flex;flex-direction:column;gap:10px;}
   .cov-list li{display:flex;justify-content:space-between;gap:12px;font-size:13.5px;color:var(--navy);border-top:1px solid var(--hairline);padding-top:10px;}
   .cov-list li:first-child{border-top:none;padding-top:0;}
-  .cov-list b{color:var(--orange-deep);font-weight:700;}
+  .cov-list b{color:var(--navy);font-weight:700;}
   .cov-intro{max-width:640px;margin-bottom:40px;color:var(--graphite);font-size:15.5px;}
 
   /* FAQ */
   .faq-list{max-width:760px;display:flex;flex-direction:column;gap:10px;}
   .faq-item{border:1px solid var(--hairline);border-radius:12px;background:var(--white);overflow:hidden;}
   .faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:18px 22px;font-family:var(--font-display);font-size:16px;font-weight:600;color:var(--navy);display:flex;justify-content:space-between;align-items:center;gap:16px;}
-  .faq-q .plus{font-size:20px;color:var(--orange);transition:transform .2s var(--ease);flex:none;}
-  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
+  .faq-q .plus{font-size:20px;color:var(--graphite);transition:transform .2s var(--ease), color .2s var(--ease);flex:none;}
+  .faq-item.open .faq-q .plus{transform:rotate(45deg);color:var(--orange);}
   .faq-a{max-height:0;overflow:hidden;transition:max-height .25s var(--ease);}
   .faq-a p{padding:0 22px 20px;color:var(--graphite);font-size:14.5px;line-height:1.6;}
 
   /* LEAD / CLOSING — the one navy contrast block */
   .lead{background:var(--navy-deep);color:#fff;position:relative;overflow:hidden;}
-  .lead::before{content:"";position:absolute;inset:0;background:radial-gradient(60% 60% at 85% 0%, rgba(255,122,26,.10), transparent 60%);pointer-events:none;}
   .lead .wrap{position:relative;}
   .lead-wrap{display:grid;grid-template-columns:1fr;gap:44px;}
   @media(min-width:900px){.lead-wrap{grid-template-columns:.9fr 1.1fr;align-items:start;}}
   .lead .eyebrow{color:var(--on-navy);opacity:.75;}
-  .lead h2{color:#fff;font-size:34px;font-weight:300;}
+  .lead h2{color:#fff;font-size:34px;font-weight:400;}
   @media(min-width:640px){.lead h2{font-size:42px;}}
   .lead p.sub{color:var(--on-navy);margin-top:16px;font-size:15.5px;line-height:1.65;max-width:440px;}
   .lead-form{background:rgba(255,255,255,.04);border:1px solid var(--on-navy-hairline);border-radius:var(--radius-card);padding:28px;display:flex;flex-direction:column;gap:16px;}
@@ -249,7 +248,7 @@
   .footer-links a:hover{color:#fff;}
   .footer-bottom{font-family:var(--font-mono);font-size:12px;color:rgba(255,255,255,.35);border-top:1px solid var(--on-navy-hairline);padding-top:22px;letter-spacing:.03em;}
 
-  .wa-float{position:fixed;right:22px;bottom:22px;z-index:60;width:56px;height:56px;border-radius:50%;background:#25D366;color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -8px rgba(37,211,102,.55);font-size:27px;transition:transform .2s var(--ease);}
+  .wa-float{position:fixed;right:22px;bottom:22px;z-index:60;width:56px;height:56px;border-radius:50%;background:var(--orange);color:#20130a;display:flex;align-items:center;justify-content:center;box-shadow:var(--shadow-btn);font-size:27px;transition:transform .2s var(--ease);}
   .wa-float:hover{transform:translateY(-2px);}
 
   @media(max-width:640px){
@@ -312,7 +311,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <p class="eyebrow">Por que o Toalhão</p>
-      <h2>O que tira o sono de quem cuida de banho e tosa — <span class="accent">resolvido</span></h2>
+      <h2>O que tira o sono de quem cuida de banho e tosa, resolvido</h2>
     </div>
     <div class="features-grid">
       <div class="feature-card">
@@ -400,11 +399,11 @@
       <div class="log-card reveal">
         <div class="log-head">
           <span>Painel de entregas · Toalhão</span>
-          <span class="live"><span class="dot"></span><span>Ao vivo</span></span>
+          <span class="live"><span class="dot"></span><span>Registro de um dia</span></span>
         </div>
         <div class="log-row"><span class="log-route">Rota 04 · Goiânia Sul</span><span class="log-meta">42 entregues / 38 recolhidas<svg class="log-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg></span></div>
         <div class="log-row"><span class="log-route">Rota 01 · Anápolis Centro</span><span class="log-meta">30 entregues / 30 recolhidas<svg class="log-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg></span></div>
-        <div class="log-row"><span class="log-route">Rota 07 · Aparecida de Goiânia</span><span class="log-meta">55 entregues / 50 recolhidas<svg class="log-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg></span></div>
+        <div class="log-row"><span class="log-route">Rota 07 · Goiânia Norte</span><span class="log-meta">55 entregues / 50 recolhidas<svg class="log-check" width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12l5 5L20 7"/></svg></span></div>
         <div class="log-foot"><b>Fatura consolidada</b> · Pix ou boleto · enviada no WhatsApp</div>
       </div>
     </div>
@@ -431,7 +430,7 @@
   <div class="wrap">
     <div class="section-head reveal">
       <p class="eyebrow">Cobertura</p>
-      <h2>Duas praças, o <span class="accent">mesmo</span> cuidado — Anápolis e Goiânia</h2>
+      <h2>Duas praças, o mesmo cuidado — Anápolis e Goiânia</h2>
     </div>
     <p class="cov-intro">A entrega chega sempre no mesmo dia da semana no seu petshop — sem imprevisto, sem "esqueci de avisar".</p>
     <div class="cov-grid">
