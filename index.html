@@ -22,7 +22,9 @@
     --muted:#635D7C;
     --lavender:#C6C1DE;
     --border:#ECE8F7;
-    --shadow: 0 20px 45px -20px rgba(19,13,52,.35);
+    --surface:#FFFFFF;
+    --surface-alt:#FBF8FF;
+    --shadow: 0 20px 45px -20px rgba(19,13,52,.16);
     --radius-lg: 28px;
     --radius-md: 18px;
     --radius-sm: 12px;
@@ -83,9 +85,9 @@
   /* NAV */
   header{
     position:fixed;top:0;left:0;right:0;z-index:50;
-    background:rgba(19,13,52,.72);
+    background:rgba(255,255,255,.82);
     backdrop-filter:blur(14px);
-    border-bottom:1px solid rgba(255,255,255,.06);
+    border-bottom:1px solid var(--border);
   }
   nav{
     display:flex;align-items:center;justify-content:space-between;
@@ -94,8 +96,8 @@
   .brand{display:flex;align-items:center;gap:10px;}
   .brand img{height:42px;width:auto;display:block;border-radius:8px;}
   .nav-links{display:flex;gap:32px;list-style:none;margin:0;padding:0;}
-  .nav-links a{color:var(--lavender);font-size:15px;font-weight:600;transition:color .15s;}
-  .nav-links a:hover{color:#fff;}
+  .nav-links a{color:var(--muted);font-size:15px;font-weight:600;transition:color .15s;}
+  .nav-links a:hover{color:var(--ink);}
   .nav-cta{display:none;}
   @media(min-width:860px){.nav-cta{display:inline-flex;}}
   .nav-links{display:none;}
@@ -124,23 +126,17 @@
     transition: border-radius .1s linear;
     will-change: inset, border-radius;
   }
-  .hero-bg .hc-slide{
+  .hero-bg video{
     position:absolute;inset:0;
-    opacity:0;
-    transition:opacity 1.2s ease;
-  }
-  .hero-bg .hc-slide.active{opacity:1;}
-  .hero-bg .hc-slide img{
     width:100%;height:100%;object-fit:cover;object-position:center;
     display:block;
-    transform: scale(1.06);
   }
   .hero-bg::after{
     content:"";
     position:absolute;inset:0;
     background:
-      linear-gradient(90deg, rgba(19,13,52,.94) 0%, rgba(19,13,52,.82) 32%, rgba(19,13,52,.42) 62%, rgba(19,13,52,.18) 100%),
-      linear-gradient(0deg, rgba(19,13,52,.55) 0%, rgba(19,13,52,0) 40%);
+      linear-gradient(90deg, rgba(19,13,52,.92) 0%, rgba(19,13,52,.78) 32%, rgba(19,13,52,.46) 62%, rgba(19,13,52,.22) 100%),
+      linear-gradient(0deg, rgba(19,13,52,.5) 0%, rgba(19,13,52,0) 40%);
   }
   .hero .wrap{
     position:relative;z-index:1;
@@ -165,20 +161,9 @@
   }
   .pill.active{border-color:var(--orange-500);color:var(--orange-500);background:rgba(255,122,26,.1);}
 
-  /* Hero background carousel dots */
-  .hero-dots{
-    position:absolute;left:32px;bottom:28px;z-index:2;
-    display:flex;gap:7px;
-  }
-  .hero-dots .hc-nav-dot{
-    width:7px;height:7px;border-radius:50%;background:rgba(255,255,255,.4);
-    border:none;padding:0;cursor:pointer;transition:all .2s;
-  }
-  .hero-dots .hc-nav-dot.active{background:var(--orange-500);width:20px;border-radius:4px;}
-
   /* 3D loop badge — the signature element: the endless clean-towel cycle, made physical */
   .loop-badge{
-    position:absolute;right:28px;bottom:28px;z-index:2;
+    position:absolute;right:28px;bottom:104px;z-index:2;
     width:152px;
     background:rgba(14,9,40,.55);
     backdrop-filter:blur(10px);
@@ -197,7 +182,9 @@
 
   /* STATS STRIP */
   .stats{
-    background:var(--navy-950);
+    background:var(--surface-alt);
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
     padding:22px 0;
     overflow:hidden;
   }
@@ -210,7 +197,7 @@
     display:flex;align-items:center;gap:10px;
     font-family:var(--font-mono);
     font-size:12px;letter-spacing:.06em;text-transform:uppercase;
-    color:var(--lavender);
+    color:var(--muted);
     white-space:nowrap;
   }
   .stats-item .dot{width:5px;height:5px;border-radius:50%;background:var(--orange-500);flex:none;}
@@ -260,9 +247,9 @@
   .feature-card p{color:var(--muted);font-size:14.5px;line-height:1.55;}
 
   /* CYCLE — the repeating clean-towel loop, shown as what it is: a cycle */
-  .cycle{background:var(--navy-900);color:#fff;position:relative;overflow:hidden;}
-  .cycle .eyebrow{color:var(--orange-500);}
-  .cycle .section-head h2{color:#fff;}
+  .cycle{background:var(--surface);color:var(--ink);position:relative;overflow:hidden;}
+  .cycle .eyebrow{color:var(--orange-600);}
+  .cycle .section-head h2{color:var(--ink);}
   .cycle-row{
     display:grid;grid-template-columns:1fr;gap:0;
     position:relative;
@@ -271,20 +258,20 @@
     .cycle-row{grid-template-columns:repeat(4,1fr);align-items:stretch;}
   }
   .cycle-step{
-    border:1px solid rgba(255,255,255,.1);
+    border:1px solid var(--border);
     border-radius:var(--radius-md);
     padding:26px 22px;
-    background:rgba(255,255,255,.03);
+    background:var(--surface-alt);
     position:relative;
     margin-bottom:20px;
   }
   @media(min-width:860px){.cycle-step{margin-bottom:0;margin-right:20px;}}
   .cycle-step .num{
-    font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--orange-500);
+    font-family:var(--font-mono);font-size:13px;font-weight:700;color:var(--orange-600);
     letter-spacing:.08em;
   }
-  .cycle-step h3{font-family:var(--font-display);font-size:18px;font-weight:600;margin:12px 0 8px;}
-  .cycle-step p{color:var(--lavender);font-size:14px;line-height:1.55;}
+  .cycle-step h3{font-family:var(--font-display);font-size:18px;font-weight:600;margin:12px 0 8px;color:var(--ink);}
+  .cycle-step p{color:var(--muted);font-size:14px;line-height:1.55;}
   .cycle-arrow{
     display:none;
     position:absolute;top:50%;right:-20px;transform:translate(50%,-50%);
@@ -298,10 +285,10 @@
     display:flex;flex-direction:column;align-items:center;gap:10px;
     text-align:center;
   }
-  .cycle-loopback svg{width:220px;height:36px;color:rgba(255,122,26,.6);}
+  .cycle-loopback svg{width:220px;height:36px;color:rgba(232,99,10,.55);}
   .cycle-loopback span{
     font-family:var(--font-mono);font-size:11.5px;letter-spacing:.1em;text-transform:uppercase;
-    color:var(--lavender);
+    color:var(--muted);
   }
 
   /* ALTERNATIVAS */
@@ -318,10 +305,11 @@
   .alt-card h3{font-family:var(--font-display);font-size:17.5px;font-weight:600;margin:10px 0 10px;}
   .alt-card p{color:var(--muted);font-size:14.5px;line-height:1.55;}
   .alt-close{
-    background:var(--navy-900);color:#fff;border-radius:var(--radius-md);
-    padding:26px 30px;font-size:15.5px;line-height:1.6;color:var(--lavender);
+    background:var(--surface-alt);border:1px solid var(--border);border-left:3px solid var(--orange-500);
+    border-radius:var(--radius-md);
+    padding:26px 30px;font-size:15.5px;line-height:1.6;color:var(--muted);
   }
-  .alt-close strong{color:#fff;}
+  .alt-close strong{color:var(--ink);}
 
   /* COBERTURA */
   .cov-grid{display:grid;grid-template-columns:1fr;gap:24px;}
@@ -359,26 +347,27 @@
   .faq-a p{padding:0 22px 20px;color:var(--muted);font-size:14.5px;line-height:1.6;}
 
   /* LEAD FORM */
-  .lead{background:var(--navy-900);color:#fff;}
+  .lead{background:var(--surface-alt);color:var(--ink);border-top:1px solid var(--border);}
   .lead-wrap{display:grid;grid-template-columns:1fr;gap:40px;}
   @media(min-width:900px){.lead-wrap{grid-template-columns:.9fr 1.1fr;align-items:start;}}
-  .lead h2{color:#fff;font-size:34px;}
-  .lead p.sub{color:var(--lavender);margin-top:14px;font-size:15.5px;line-height:1.6;max-width:420px;}
+  .lead h2{color:var(--ink);font-size:34px;}
+  .lead p.sub{color:var(--muted);margin-top:14px;font-size:15.5px;line-height:1.6;max-width:420px;}
   .lead-form{
-    background:rgba(255,255,255,.04);
-    border:1px solid rgba(255,255,255,.1);
+    background:#fff;
+    border:1px solid var(--border);
     border-radius:var(--radius-lg);
     padding:28px;
+    box-shadow:var(--shadow);
     display:flex;flex-direction:column;gap:16px;
   }
-  .field label{display:block;font-size:13px;font-weight:700;color:var(--lavender);margin-bottom:7px;}
+  .field label{display:block;font-size:13px;font-weight:700;color:var(--muted);margin-bottom:7px;}
   .field input, .field select{
-    width:100%;padding:13px 14px;border-radius:10px;border:1px solid rgba(255,255,255,.15);
-    background:rgba(255,255,255,.05);color:#fff;font-family:var(--font-body);font-size:14.5px;
+    width:100%;padding:13px 14px;border-radius:10px;border:1.5px solid var(--border);
+    background:#fff;color:var(--ink);font-family:var(--font-body);font-size:14.5px;
   }
-  .field input::placeholder{color:#8781a0;}
+  .field input::placeholder{color:#a7a2bc;}
   .field input:focus, .field select:focus{outline:2px solid var(--orange-500);outline-offset:1px;}
-  .lead-note{font-size:12.5px;color:#8781a0;margin-top:2px;}
+  .lead-note{font-size:12.5px;color:var(--muted);margin-top:2px;}
 
   /* CLOSING CTA */
   .closing{text-align:center;}
@@ -386,12 +375,12 @@
   @media(min-width:600px){.closing h2{font-size:38px;}}
   .closing .btn{margin-top:30px;}
 
-  footer{background:var(--navy-900);color:var(--lavender);padding:44px 0 30px;border-top:1px solid rgba(255,255,255,.06);}
+  footer{background:var(--surface);color:var(--muted);padding:44px 0 30px;border-top:1px solid var(--border);}
   .footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;margin-bottom:28px;}
   .footer-links{display:flex;flex-wrap:wrap;gap:24px;list-style:none;padding:0;margin:0;}
-  .footer-links a{font-size:14px;font-weight:600;}
-  .footer-links a:hover{color:#fff;}
-  .footer-bottom{font-family:var(--font-mono);font-size:12px;color:#726d8c;border-top:1px solid rgba(255,255,255,.06);padding-top:22px;letter-spacing:.03em;}
+  .footer-links a{font-size:14px;font-weight:600;color:var(--muted);}
+  .footer-links a:hover{color:var(--ink);}
+  .footer-bottom{font-family:var(--font-mono);font-size:12px;color:#9a94b3;border-top:1px solid var(--border);padding-top:22px;letter-spacing:.03em;}
 
   .wa-float{
     position:fixed;right:22px;bottom:22px;z-index:60;
@@ -425,19 +414,11 @@
 </header>
 
 <section class="hero">
-  <div class="hero-bg" id="heroBg">
-    <div class="hc-slide active" data-i="0">
-      <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-banho.jpg" alt="Cachorro tomando banho de espuma">
-    </div>
-    <div class="hc-slide" data-i="1">
-      <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-secagem.jpg" alt="Cachorro enrolado em toalha limpa">
-    </div>
-    <div class="hc-slide" data-i="2">
-      <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-qualidade.jpg" alt="Filhote dormindo sobre pilha de toalhas limpas">
-    </div>
-    <div class="hc-slide" data-i="3">
-      <img src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/slide-tempo.jpg" alt="Balde de lavagem, relógio e toalhas dobradas">
-    </div>
+  <div class="hero-bg">
+    <video autoplay muted loop playsinline
+      poster="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/hero-poster.jpg">
+      <source src="https://raw.githubusercontent.com/italoex/toalhao-lp/main/images/hero-video.mp4" type="video/mp4">
+    </video>
   </div>
   <div class="wrap">
     <div class="hero-content">
@@ -459,14 +440,14 @@
     <canvas id="loop3d"></canvas>
     <div class="loop-badge-label">Ciclo contínuo<br>de toalha limpa</div>
   </div>
-  <div class="hero-dots" id="hcDots"></div>
 </section>
 
 <div class="stats">
   <div class="wrap stats-row">
     <span class="stats-item"><span class="dot"></span>Anápolis + Goiânia</span>
     <span class="stats-item"><span class="dot"></span>Centenas de clientes ativos</span>
-    <span class="stats-item"><span class="dot"></span>Toalha 100% algodão</span>
+    <span class="stats-item"><span class="dot"></span>Múltiplas rotas simultâneas</span>
+    <span class="stats-item"><span class="dot"></span>Cada entrega registrada</span>
     <span class="stats-item"><span class="dot"></span>Fatura pelo WhatsApp</span>
   </div>
 </div>
@@ -479,28 +460,28 @@
     </div>
     <div class="features-grid">
       <div class="feature-card">
+        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="16" rx="2.5"/><path d="M3.5 9.5h17"/><path d="M8 3v3M16 3v3"/><path d="M8.5 14.5l2 2 4.5-4.5" stroke="var(--orange-500)"/></svg></div>
+        <h3>Nunca fica sem toalha limpa</h3><p>Reposição automática, em rota programada: toalha suja sai, toalha limpa entra — sem seu petshop precisar pedir ou controlar estoque.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/><circle cx="17" cy="16.5" r="2" stroke="var(--orange-500)"/></svg></div>
+        <h3>Logística de verdade, não um favor informal</h3><p>Cada entrega, cada toalha e cada centavo ficam registrados e conciliados na fatura. Não é o rapaz da lavanderia aparecendo quando dá — é rota, conferência e nota certinhas.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><path d="M4 17l4-5 4 3 5-7 3 4"/><circle cx="19" cy="6.5" r="1.4" fill="var(--orange-500)" stroke="none"/></svg></div>
+        <h3>Reforço nos dias de pico</h3><p>Fim de semana lotado ou alta temporada de banho e tosa? Peça entrega extra fora do ciclo fixo e a rota se ajusta ao seu movimento.</p>
+      </div>
+      <div class="feature-card">
+        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><path d="M4 5.5h16v11H8l-4 3.5v-3.5H4z"/><path d="M8 10h8M8 13h5"/></svg></div>
+        <h3>Fatura transparente, sem surpresa</h3><p>Fatura detalhada chega pelo WhatsApp, com o que foi entregue e cobrado. Você paga por Pix ou boleto, no seu tempo.</p>
+      </div>
+      <div class="feature-card">
         <div class="ic"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.7-7 9-4-1.3-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
         <h3>Zero risco de contaminação</h3><p>Toalha mal lavada pode passar pulga, fungo ou bactéria de um pet pro outro. A nossa sai higienizada com água quente, pronta pra encostar na pele sem medo.</p>
       </div>
       <div class="feature-card">
-        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5"/><path d="M12 7.5V12l3 2"/></svg></div>
-        <h3>Seu tempo de volta pro atendimento</h3><p>Nada de parar o dia pra lavar, secar e dobrar toalha. Esse tempo vira mais cliente atendido — ou simplesmente um respiro no meio do corre.</p>
-      </div>
-      <div class="feature-card">
-        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><rect x="4" y="5" width="16" height="5" rx="1.5"/><rect x="4" y="12" width="16" height="5" rx="1.5"/></svg></div>
-        <h3>Toalha que não estraga rápido</h3><p>Toalha própria resseca e perde a maciez em poucos meses de uso pesado. As nossas chegam sempre macias e absorventes, sem custo de reposição pra você.</p>
-      </div>
-      <div class="feature-card">
-        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="16" rx="2.5"/><path d="M3.5 9.5h17"/><path d="M8 3v3M16 3v3"/><path d="M8.5 14.5l2 2 4.5-4.5" stroke="var(--orange-500)"/></svg></div>
-        <h3>Nunca mais fica sem no meio do banho</h3><p>Sabe aquele desespero de faltar toalha limpa numa sexta lotada? A gente reforça a entrega quando o movimento aumenta.</p>
-      </div>
-      <div class="feature-card">
-        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><path d="M4 5.5h16v11H8l-4 3.5v-3.5H4z"/><path d="M8 10h8M8 13h5"/></svg></div>
-        <h3>Fatura simples, sem dor de cabeça</h3><p>Nada de boleto perdido ou cobrança confusa. Você recebe tudo certinho pelo WhatsApp, com Pix ou boleto.</p>
-      </div>
-      <div class="feature-card">
-        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3s6 6.5 6 11a6 6 0 0 1-12 0c0-4.5 6-11 6-11z"/><path d="M4 4l16 16" stroke="var(--orange-500)"/></svg></div>
-        <h3>Sem gastar água, luz nem espaço</h3><p>Sem máquina rodando o dia todo, sem conta de água e energia mais alta, sem estoque de toalha suja ocupando lugar.</p>
+        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><circle cx="8" cy="16" r="3"/><circle cx="16" cy="16" r="3"/><circle cx="12" cy="8" r="3" stroke="var(--orange-500)"/></svg></div>
+        <h3>Escala que já é confiança</h3><p>Centenas de clientes ativos e múltiplas rotas rodando ao mesmo tempo em Anápolis e Goiânia — operação que já provou que aguenta o tranco.</p>
       </div>
     </div>
   </div>
@@ -714,34 +695,6 @@
       });
     }, { threshold: 0.15, rootMargin: '0px 0px -60px 0px' });
     targets.forEach(el => observer.observe(el));
-  })();
-
-  // Hero background image carousel
-  (function(){
-    const slides = document.querySelectorAll('#heroBg .hc-slide');
-    const dotsWrap = document.getElementById('hcDots');
-    let idx = 0, timer;
-    slides.forEach((_,i)=>{
-      const d = document.createElement('button');
-      d.className = 'hc-nav-dot' + (i===0?' active':'');
-      d.setAttribute('aria-label', 'Slide ' + (i+1));
-      d.addEventListener('click', ()=>go(i));
-      dotsWrap.appendChild(d);
-    });
-    const dots = dotsWrap.querySelectorAll('.hc-nav-dot');
-    function go(i){
-      slides[idx].classList.remove('active');
-      dots[idx].classList.remove('active');
-      idx = (i + slides.length) % slides.length;
-      slides[idx].classList.add('active');
-      dots[idx].classList.add('active');
-      resetTimer();
-    }
-    function resetTimer(){
-      clearInterval(timer);
-      timer = setInterval(()=>go(idx+1), 5000);
-    }
-    resetTimer();
   })();
 
   // FAQ accordion
