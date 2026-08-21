@@ -431,7 +431,7 @@
       </div>
       <div class="hero-pills">
         <span class="pill">Anápolis</span>
-        <span class="pill active">Goiânia — praça consolidada</span>
+        <span class="pill active">Goiânia — crescimento acelerado</span>
         <span class="pill">Aparecida de Goiânia</span>
       </div>
     </div>
@@ -465,7 +465,7 @@
       </div>
       <div class="feature-card">
         <div class="ic"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/><circle cx="17" cy="16.5" r="2" stroke="var(--orange-500)"/></svg></div>
-        <h3>Logística de verdade, não um favor informal</h3><p>Cada entrega, cada toalha e cada centavo ficam registrados e conciliados na fatura. Não é o rapaz da lavanderia aparecendo quando dá — é rota, conferência e nota certinhas.</p>
+        <h3>Logística de verdade, não um favor informal</h3><p>Toda visita tem conferência na hora com o responsável do petshop: quanto entrou limpo, quanto saiu sujo. É esse número — não uma estimativa — que aparece item por item na sua fatura seguinte.</p>
       </div>
       <div class="feature-card">
         <div class="ic"><svg class="icon" viewBox="0 0 24 24"><path d="M4 17l4-5 4 3 5-7 3 4"/><circle cx="19" cy="6.5" r="1.4" fill="var(--orange-500)" stroke="none"/></svg></div>
@@ -508,8 +508,8 @@
       </div>
       <div class="cycle-step">
         <span class="num">03</span>
-        <h3>A gente recolhe</h3>
-        <p>No dia combinado, buscamos as toalhas sujas. Você não se preocupa com nada.</p>
+        <h3>A gente recolhe e confere</h3>
+        <p>No dia combinado, buscamos as toalhas sujas e contamos junto com você — o número vai direto pra sua próxima fatura.</p>
         <svg class="cycle-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M9 5l7 7-7 7"/></svg>
       </div>
       <div class="cycle-step">
@@ -564,7 +564,7 @@
         <a class="btn btn-outline" href="#lead">Falar com o time</a>
       </div>
       <div class="cov-card">
-        <span class="tag">Praça consolidada</span>
+        <span class="tag">Crescimento acelerado</span>
         <h3>Goiânia</h3>
         <p>Hoje é onde mais petshops e clínicas trocaram a lavanderia própria pela assinatura — dezenas já sentiram a diferença.</p>
         <ul class="cov-list">
@@ -588,6 +588,7 @@
       <div class="faq-item"><button class="faq-q">Preciso comprar as toalhas?<span class="plus">+</span></button><div class="faq-a"><p>Não — e nem deveria. As toalhas são do Toalhão: a gente aluga, lava e repõe. Você recebe prontas pra usar e devolve sujas na próxima visita, sem investir um real em enxoval.</p></div></div>
       <div class="faq-item"><button class="faq-q">Como funciona a cobrança?<span class="plus">+</span></button><div class="faq-a"><p>Você escolhe o ciclo que combina com o seu movimento — semanal, quinzenal ou mensal. A fatura chega pelo WhatsApp com boleto em PDF, e também dá pra pagar por Pix.</p></div></div>
       <div class="faq-item"><button class="faq-q">Existe quantidade mínima?<span class="plus">+</span></button><div class="faq-a"><p>Sim, ajustamos uma quantidade mínima conforme o movimento do seu petshop. E se a demanda subir de repente, é só pedir reforço extra.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Como eu sei que a conferência bate certinho?<span class="plus">+</span></button><div class="faq-a"><p>Em toda visita, contamos as toalhas entregues e recolhidas junto com o responsável pelo petshop — não é uma estimativa nossa. Esse número é o que aparece, item por item, na fatura que chega em seguida pelo WhatsApp.</p></div></div>
       <div class="faq-item"><button class="faq-q">Atendem clínica veterinária também?<span class="plus">+</span></button><div class="faq-a"><p>Sim — atendemos petshops, clínicas veterinárias e banho e tosa, com o mesmo cuidado e padrão de higienização pra todo mundo.</p></div></div>
       <div class="faq-item"><button class="faq-q">Por que não levar numa lavanderia comum?<span class="plus">+</span></button><div class="faq-a"><p>Porque toalha de banho e tosa passa de pet em pet — e uma lavagem malfeita vira porta de entrada pra pulga, fungo e bactéria. Nosso processo foi pensado só pra isso, com água quente e o cuidado que esse tipo de toalha exige.</p></div></div>
       <div class="faq-item"><button class="faq-q">Minha região ainda não é atendida. E agora?<span class="plus">+</span></button><div class="faq-a"><p>Hoje atendemos Anápolis e Goiânia com força. Se você está em outra cidade da região, preencha o formulário abaixo — a gente avalia incluir seu petshop no próximo ciclo de visitas.</p></div></div>
@@ -614,6 +615,14 @@
         </select>
       </div>
       <div class="field"><label for="whats">WhatsApp</label><input id="whats" required placeholder="(62) 9 9999-9999"></div>
+      <div class="field"><label for="volume">Quantas toalhas usa por dia (aprox.)</label>
+        <select id="volume">
+          <option>Até 20</option>
+          <option>21 a 50</option>
+          <option>51 a 100</option>
+          <option>Mais de 100</option>
+        </select>
+      </div>
       <button type="submit" class="btn btn-primary" id="leadSubmit" style="justify-content:center;">Enviar no WhatsApp →</button>
       <p class="lead-note">Ao enviar, você será direcionado ao WhatsApp do Toalhão com a mensagem já preenchida.</p>
     </form>
@@ -721,7 +730,8 @@
     const petshop = document.getElementById('petshop').value;
     const cidade = document.getElementById('cidade').value;
     const whats = document.getElementById('whats').value;
-    const msg = `Olá! Sou ${nome}, responsável pelo ${petshop} em ${cidade}. Meu WhatsApp é ${whats}. Gostaria de pedir uma cotação do Toalhão.`;
+    const volume = document.getElementById('volume').value;
+    const msg = `Olá! Sou ${nome}, responsável pelo ${petshop} em ${cidade}. Meu WhatsApp é ${whats}. Usamos cerca de ${volume} toalhas por dia. Gostaria de pedir uma cotação do Toalhão.`;
     window.open('https://wa.me/5562999987074?text=' + encodeURIComponent(msg), '_blank');
   });
 
