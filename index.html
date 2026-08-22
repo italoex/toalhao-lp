@@ -140,6 +140,43 @@
   .stat{display:flex;align-items:center;gap:10px;font-size:var(--text-small);color:var(--muted);white-space:nowrap;}
   .stat .dot{width:5px;height:5px;border-radius:50%;background:var(--orange);flex:none;}
 
+  /* VALUE PROP — single centered statement, no card, no image */
+  .value-prop{text-align:center;}
+  .value-prop .wrap{max-width:880px;}
+  .value-prop h2{margin:0;}
+
+  /* SEGMENT GRID — two image cards */
+  .segment-grid{display:grid;grid-template-columns:1fr;gap:24px;}
+  @media(min-width:760px){.segment-grid{grid-template-columns:1fr 1fr;}}
+  .segment-card{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);background:var(--surface);}
+  .segment-card .imgwrap{aspect-ratio:4/3;overflow:hidden;background:var(--surface-2);}
+  .segment-card .imgwrap img{width:100%;height:100%;object-fit:cover;}
+  .segment-card .body{padding:28px;}
+  .segment-card h3{font-family:var(--font-sans);font-weight:300;font-size:var(--text-feature-title);color:var(--ink);margin:0 0 10px;}
+  .segment-card p{font-size:var(--text-body);line-height:1.6;margin-bottom:16px;}
+  .segment-card .link{font-size:14px;font-weight:600;color:var(--orange-ink);}
+
+  /* BELIEFS — manifesto-style list, same card convention */
+  .belief-list{display:grid;grid-template-columns:1fr;gap:18px;}
+  @media(min-width:700px){.belief-list{grid-template-columns:repeat(2,1fr);}}
+  .belief-item .num{font-family:var(--font-sans);font-weight:500;font-size:var(--text-card-title);color:var(--orange-ink);}
+  .belief-item p{margin-top:10px;}
+
+  /* VALUE DELIVERY — centered statement + supporting copy */
+  .value-delivery{text-align:center;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .value-delivery .wrap{max-width:820px;}
+  .value-delivery p.lead-copy{margin:22px auto 0;font-size:17px;line-height:1.6;max-width:640px;}
+
+  /* NETWORK STATS — full section, not just a strip */
+  .stats-full{text-align:center;}
+  .stats-full .wrap{max-width:880px;}
+  .stats-full p.lead-copy{margin:18px auto 0;font-size:var(--text-body);line-height:1.6;max-width:600px;}
+  .stat-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:48px;text-align:left;}
+  @media(min-width:700px){.stat-grid{grid-template-columns:repeat(4,1fr);}}
+  .stat-block{border-top:1px solid var(--border);padding-top:16px;}
+  .stat-block b{display:block;font-family:var(--font-sans);font-weight:300;font-size:22px;color:var(--ink);margin-bottom:4px;letter-spacing:-.01em;}
+  .stat-block span{font-size:var(--text-small);color:var(--muted);}
+
   /* SECTION HEAD */
   .section-head{max-width:680px;margin-bottom:56px;}
   .section-head h2, .lead h2, .closing h2{font-family:var(--font-sans);font-weight:300;font-size:var(--text-h2);color:var(--ink);letter-spacing:-.01em;text-wrap:balance;}
@@ -207,24 +244,28 @@
   .closing h2{max-width:560px;margin:14px auto 0;}
   .closing .btn{margin-top:30px;}
 
-  footer{background:var(--canvas);color:var(--muted);padding:44px 0 30px;border-top:1px solid var(--border);}
-  .footer-top{display:flex;flex-wrap:wrap;justify-content:space-between;align-items:center;gap:24px;margin-bottom:28px;}
-  .footer-links{display:flex;flex-wrap:wrap;gap:24px;list-style:none;padding:0;margin:0;}
-  .footer-links a{font-size:14px;font-weight:500;color:var(--muted);}
-  .footer-links a:hover{color:var(--ink);}
-  .footer-bottom{font-size:var(--text-small);color:var(--muted);border-top:1px solid var(--border);padding-top:22px;}
+  footer{background:var(--canvas);color:var(--muted);padding:64px 0 30px;border-top:1px solid var(--border);}
+  .footer-brand{margin-bottom:48px;}
+  .footer-brand img{height:44px;width:auto;display:block;}
+  .footer-grid{display:grid;grid-template-columns:1fr;gap:32px;margin-bottom:40px;}
+  @media(min-width:700px){.footer-grid{grid-template-columns:repeat(4,1fr);}}
+  .footer-col h4{font-family:var(--font-sans);font-weight:600;font-size:var(--text-small);letter-spacing:.05em;text-transform:uppercase;color:var(--ink);margin:0 0 16px;}
+  .footer-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
+  .footer-col a, .footer-col span{font-size:14px;font-weight:500;color:var(--muted);}
+  .footer-col a:hover{color:var(--ink);}
+  .footer-bottom{font-size:var(--text-small);color:var(--muted);border-top:1px solid var(--border);padding-top:22px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;}
 
   .wa-float{position:fixed;right:22px;bottom:22px;z-index:60;width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -8px rgba(27,20,64,.45);}
 
   .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1);transition-delay:var(--reveal-delay,0s);}
   .reveal.in-view{opacity:1;transform:translateY(0);}
   @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
-  :is(.grid-3,.grid-2,.cycle-row,.faq-list) > *:nth-child(1){--reveal-delay:0s;}
-  :is(.grid-3,.grid-2,.cycle-row,.faq-list) > *:nth-child(2){--reveal-delay:.07s;}
-  :is(.grid-3,.grid-2,.cycle-row,.faq-list) > *:nth-child(3){--reveal-delay:.14s;}
-  :is(.grid-3,.grid-2,.cycle-row,.faq-list) > *:nth-child(4){--reveal-delay:.21s;}
-  :is(.grid-3,.grid-2,.cycle-row,.faq-list) > *:nth-child(5){--reveal-delay:.28s;}
-  :is(.grid-3,.grid-2,.cycle-row,.faq-list) > *:nth-child(6){--reveal-delay:.35s;}
+  :is(.grid-3,.grid-2,.cycle-row,.faq-list,.segment-grid,.belief-list,.stat-grid) > *:nth-child(1){--reveal-delay:0s;}
+  :is(.grid-3,.grid-2,.cycle-row,.faq-list,.segment-grid,.belief-list,.stat-grid) > *:nth-child(2){--reveal-delay:.07s;}
+  :is(.grid-3,.grid-2,.cycle-row,.faq-list,.segment-grid,.belief-list,.stat-grid) > *:nth-child(3){--reveal-delay:.14s;}
+  :is(.grid-3,.grid-2,.cycle-row,.faq-list,.segment-grid,.belief-list,.stat-grid) > *:nth-child(4){--reveal-delay:.21s;}
+  :is(.grid-3,.grid-2,.cycle-row,.faq-list,.segment-grid,.belief-list,.stat-grid) > *:nth-child(5){--reveal-delay:.28s;}
+  :is(.grid-3,.grid-2,.cycle-row,.faq-list,.segment-grid,.belief-list,.stat-grid) > *:nth-child(6){--reveal-delay:.35s;}
 </style>
 </head>
 <body>
@@ -233,7 +274,7 @@
   <nav>
     <a class="brand" href="#"><img src="images/logo-badge.png" alt="Toalhão"></a>
     <ul class="nav-links">
-      <li><a href="#features">Por que o Toalhão</a></li>
+      <li><a href="#segmentos">Por que o Toalhão</a></li>
       <li><a href="#ciclo">O ciclo</a></li>
       <li><a href="#cobertura">Cobertura</a></li>
       <li><a href="#faq">Dúvidas</a></li>
@@ -244,7 +285,7 @@
     </button>
   </nav>
   <div class="nav-sheet" id="navSheet">
-    <a href="#features">Por que o Toalhão</a>
+    <a href="#segmentos">Por que o Toalhão</a>
     <a href="#ciclo">O ciclo</a>
     <a href="#cobertura">Cobertura</a>
     <a href="#faq">Dúvidas</a>
@@ -275,52 +316,53 @@
   </div>
 </section>
 
-<div class="stats">
+<!-- VALUE PROPOSITION — single centered statement, mirrors Sequel's post-hero mission line -->
+<section class="value-prop">
   <div class="wrap">
-    <span class="stat"><span class="dot"></span>Centenas de clientes ativos</span>
-    <span class="stat"><span class="dot"></span>Múltiplas rotas simultâneas</span>
-    <span class="stat"><span class="dot"></span>Anápolis e Goiânia</span>
-    <span class="stat"><span class="dot"></span>Toda entrega conferida na hora</span>
+    <h2>A logística que garante toalha limpa pra quem cuida da <em>saúde</em> e do bem-estar dos pets.</h2>
   </div>
-</div>
+</section>
 
-<section id="features">
+<!-- SEGMENT GRID — two large image cards, mirrors Sequel's Founders/Members grid -->
+<section id="segmentos">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Por que o Toalhão</p>
-      <h2>O que tira o sono de petshops e clínicas veterinárias, <em>resolvido</em></h2>
+      <p class="eyebrow">Feito sob medida</p>
+      <h2>Duas rotinas, a mesma <em>entrega</em></h2>
     </div>
-    <div class="grid-3">
-      <div class="card">
-        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><rect x="3.5" y="4.5" width="17" height="16" rx="2.5"/><path d="M3.5 9.5h17"/><path d="M8 3v3M16 3v3"/><path d="M8.5 14.5l2 2 4.5-4.5"/></svg></div>
-        <h3>Nunca fica sem toalha limpa</h3>
-        <p>Reposição automática, em rota programada: toalha suja sai, toalha limpa entra — sem precisar pedir ou controlar estoque.</p>
+    <div class="segment-grid">
+      <div class="segment-card">
+        <div class="imgwrap"><img src="images/hero-poster.jpg" alt="Balcão de petshop com toalhas do Toalhão"></div>
+        <div class="body">
+          <h3>Pra quem faz banho e tosa</h3>
+          <p>Volume alto, agenda cheia nos fins de semana, toalha molhada o dia inteiro. A rota se ajusta ao seu movimento, sem você ter que administrar estoque.</p>
+          <a class="link" href="#ciclo">Ver como funciona →</a>
+        </div>
       </div>
-      <div class="card">
-        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M7 9h10M7 13h6"/><circle cx="17" cy="16.5" r="1.6"/></svg></div>
-        <h3>Logística de verdade, não um favor informal</h3>
-        <p>Toda visita tem conferência na hora com o responsável do petshop: quanto entrou limpo, quanto saiu sujo. É esse número — não uma estimativa — que aparece item por item na sua fatura seguinte.</p>
+      <div class="segment-card">
+        <div class="imgwrap"><img src="images/towel-detail.jpg" alt="Cão enrolado em toalha do Toalhão"></div>
+        <div class="body">
+          <h3>Pra quem cuida da saúde do pet</h3>
+          <p>Higienização com água quente pensada pra reduzir contaminação cruzada entre pacientes — o mesmo padrão de cuidado que a rotina clínica exige.</p>
+          <a class="link" href="#faq">Falar com o time →</a>
+        </div>
       </div>
-      <div class="card">
-        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><path d="M4 17l4-5 4 3 5-7 3 4"/><circle cx="19" cy="6.5" r="1.3" fill="var(--orange-ink)" stroke="none"/></svg></div>
-        <h3>Reforço nos dias de pico</h3>
-        <p>Fim de semana lotado ou alta temporada de banho e tosa? Peça entrega extra fora do ciclo fixo e a rota se ajusta ao seu movimento.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><path d="M4 5.5h16v11H8l-4 3.5v-3.5H4z"/><path d="M8 10h8M8 13h5"/></svg></div>
-        <h3>Fatura transparente, sem surpresa</h3>
-        <p>Fatura detalhada chega pelo WhatsApp, com o que foi entregue e cobrado. Você paga por Pix ou boleto, no seu tempo.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><path d="M12 3l7 3v6c0 4.5-3 7.7-7 9-4-1.3-7-4.5-7-9V6l7-3z"/><path d="M9 12l2 2 4-4"/></svg></div>
-        <h3>Reduz o risco de contaminação cruzada</h3>
-        <p>Toalha mal lavada pode passar pulga, fungo ou bactéria de um pet pro outro. A nossa sai higienizada em água quente, pronta pra encostar na pele.</p>
-      </div>
-      <div class="card">
-        <div class="ic"><svg class="icon" viewBox="0 0 24 24"><circle cx="8" cy="16" r="3"/><circle cx="16" cy="16" r="3"/><circle cx="12" cy="8" r="3"/></svg></div>
-        <h3>Escala que já é confiança</h3>
-        <p>Centenas de clientes ativos e múltiplas rotas rodando ao mesmo tempo em Anápolis e Goiânia — operação que já provou que aguenta o tranco.</p>
-      </div>
+    </div>
+  </div>
+</section>
+
+<!-- BELIEFS / MANIFESTO — mirrors Sequel's "We believe in" section -->
+<section>
+  <div class="wrap">
+    <div class="section-head">
+      <p class="eyebrow">No que a gente acredita</p>
+      <h2>Quatro coisas que não <em>abrem mão</em></h2>
+    </div>
+    <div class="belief-list">
+      <div class="belief-item"><span class="num">01</span><p>Toalha limpa nunca é opcional — reposição automática, em rota programada.</p></div>
+      <div class="belief-item"><span class="num">02</span><p>Registro vale mais que promessa — cada visita é conferida na hora, não estimada depois.</p></div>
+      <div class="belief-item"><span class="num">03</span><p>Sua rotina manda no calendário — reforço extra quando o movimento pede, sem burocracia.</p></div>
+      <div class="belief-item"><span class="num">04</span><p>Fatura clara é o mínimo — detalhada, pelo WhatsApp, sem letra miúda.</p></div>
     </div>
   </div>
 </section>
@@ -336,7 +378,7 @@
 <section id="ciclo">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">O ciclo</p>
+      <p class="eyebrow">Como isso funciona, na prática</p>
       <h2>Um ciclo que não para — você só recebe a toalha <em>pronta</em></h2>
     </div>
     <div class="cycle-row">
@@ -355,26 +397,25 @@
   </div>
 </section>
 
-<section>
+<!-- VALUE DELIVERY — centered statement + supporting comparison, mirrors Sequel's "beyond capital" section -->
+<section class="value-delivery">
   <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">O que todo petshop e clínica já tentou</p>
-      <h2>As 3 saídas mais comuns — e o que cada uma custa de verdade</h2>
+    <p class="eyebrow">Além da toalha limpa</p>
+    <h2>A gente resolve o que a alternativa mais óbvia <em>deixa</em> passar</h2>
+    <p class="lead-copy">Antes de assinar o Toalhão, praticamente todo petshop ou clínica já passou por lavar em casa, usar descartável ou terceirizar informalmente. Nenhuma dessas opções mostra o custo completo na etiqueta.</p>
+    <div class="grid-3" style="margin-top:48px;text-align:left;">
+      <div class="card"><span class="eyebrow">Toalha própria</span><h3 style="margin-top:10px;">Lavada no petshop</h3><p>O dinheiro fica parado comprando toalha, e ainda soma água, energia, máquina e hora de trabalho de alguém que podia estar atendendo cliente.</p></div>
+      <div class="card"><span class="eyebrow">Descartável</span><h3 style="margin-top:10px;">Parece barata, não é</h3><p>Um cão de porte grande encharca mais de uma — gera compra recorrente, estoque de caixas e lixo a cada atendimento.</p></div>
+      <div class="card"><span class="eyebrow">Lavanderia informal</span><h3 style="margin-top:10px;">Resolve até faltar</h3><p>Sem contrato, sem rota fixa e sem conferência — quando falta toalha ou a conta não bate, não tem pra quem reclamar.</p></div>
     </div>
-    <p style="max-width:680px;font-size:var(--text-body);margin-bottom:32px;">Antes de assinar o Toalhão, praticamente todo petshop ou clínica já passou por uma dessas três opções. Nenhuma delas é "errada" — mas quase nenhuma mostra o custo completo na etiqueta.</p>
-    <div class="grid-3" style="margin-bottom:20px;">
-      <div class="card"><span class="eyebrow">Opção 1</span><h3 style="margin-top:10px;">Toalha própria, lavada no petshop</h3><p>O dinheiro fica parado comprando toalha, e ainda soma água, energia, máquina e hora de trabalho de alguém que podia estar atendendo cliente.</p></div>
-      <div class="card"><span class="eyebrow">Opção 2</span><h3 style="margin-top:10px;">Toalha descartável</h3><p>Parece barata na unidade, mas um cão de porte grande encharca mais de uma — gera compra recorrente, estoque de caixas e lixo a cada atendimento.</p></div>
-      <div class="card"><span class="eyebrow">Opção 3</span><h3 style="margin-top:10px;">Terceirizar com lavanderia informal</h3><p>Resolve no início, mas sem contrato, sem rota fixa e sem conferência — quando falta toalha ou a conta não bate, não tem pra quem reclamar.</p></div>
-    </div>
-    <div class="alt-close"><strong>O Toalhão entra como a peça que resolve as três ao mesmo tempo:</strong> toalha 100% algodão, de alta absorção, sempre disponível por assinatura — sem comprar, sem lavar, sem parar de estoque.</div>
   </div>
 </section>
 
+<!-- SPOTLIGHT — two-city cards, mirrors Sequel's testimonial pair (real coverage facts, not fabricated quotes) -->
 <section id="cobertura">
   <div class="wrap">
     <div class="section-head">
-      <p class="eyebrow">Cobertura</p>
+      <p class="eyebrow">Onde já rodamos</p>
       <h2>Duas praças, o mesmo <em>cuidado</em></h2>
     </div>
     <p class="cov-intro">A entrega chega sempre no mesmo dia da semana no seu negócio — sem imprevisto, sem "esqueci de avisar".</p>
@@ -402,6 +443,41 @@
         <a class="btn btn-ink" href="#lead">Comparar com a minha rotina atual</a>
       </div>
     </div>
+  </div>
+</section>
+
+<!-- NETWORK STATS — full section, mirrors Sequel's "From early momentum to global awareness" -->
+<section class="stats-full">
+  <div class="wrap">
+    <p class="eyebrow">Escala</p>
+    <h2>De uma rota a uma <em>operação</em></h2>
+    <p class="lead-copy">O que começou em Anápolis hoje roda em duas cidades, com rotas simultâneas e conferência em cada uma delas — sem perder o padrão do primeiro dia.</p>
+    <div class="stat-grid">
+      <div class="stat-block"><b>Centenas</b><span>de clientes ativos</span></div>
+      <div class="stat-block"><b>Múltiplas</b><span>rotas simultâneas</span></div>
+      <div class="stat-block"><b>2 cidades</b><span>Anápolis e Goiânia</span></div>
+      <div class="stat-block"><b>100%</b><span>das entregas conferidas na hora</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- SEGMENTS STRIP — thin horizontal bar, mirrors Sequel's credential-logo strip (real categories served, not fabricated certifications) -->
+<div class="stats">
+  <div class="wrap">
+    <span class="stat"><span class="dot"></span>Petshops</span>
+    <span class="stat"><span class="dot"></span>Clínicas veterinárias</span>
+    <span class="stat"><span class="dot"></span>Estúdios de banho e tosa</span>
+    <span class="stat"><span class="dot"></span>Anápolis · Goiânia · Aparecida de Goiânia</span>
+  </div>
+</div>
+
+<!-- PARTNERSHIP / CLOSING — mirrors Sequel's "Build what endures" closing statement -->
+<section class="closing">
+  <div class="wrap">
+    <p class="eyebrow">Próximo passo</p>
+    <h2>Seu petshop ou clínica merece parar de se <em>preocupar</em> com toalha.</h2>
+    <p style="margin-top:14px;">Fale com o time do Toalhão e veja se a sua rotina encaixa na assinatura.</p>
+    <a class="btn btn-primary" id="closingCta" href="#lead">Pedir cotação agora →</a>
   </div>
 </section>
 
@@ -458,28 +534,44 @@
   </div>
 </section>
 
-<section class="closing">
-  <div class="wrap">
-    <p class="eyebrow">Próximo passo</p>
-    <h2>Seu petshop ou clínica merece parar de se <em>preocupar</em> com toalha.</h2>
-    <p style="margin-top:14px;">Fale com o time do Toalhão e veja se a sua rotina encaixa na assinatura.</p>
-    <a class="btn btn-primary" id="closingCta" href="#lead">Pedir cotação agora →</a>
-  </div>
-</section>
-
 <footer>
   <div class="wrap">
-    <div class="footer-top">
-      <span><img src="images/logo-badge.png" alt="Toalhão" style="height:52px;width:auto;display:block;"></span>
-      <ul class="footer-links">
-        <li><a href="#features">Por que o Toalhão</a></li>
-        <li><a href="#ciclo">O ciclo</a></li>
-        <li><a href="#cobertura">Cobertura</a></li>
-        <li><a href="#faq">Dúvidas</a></li>
-        <li><a href="https://www.instagram.com/toalhao_toalheiro" target="_blank" rel="noopener">Instagram</a></li>
-      </ul>
+    <div class="footer-brand"><img src="images/logo-badge.png" alt="Toalhão"></div>
+    <div class="footer-grid">
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <ul>
+          <li><a href="#segmentos">Início</a></li>
+          <li><a href="#ciclo">Como funciona</a></li>
+          <li><a href="#cobertura">Cobertura</a></li>
+          <li><a href="#faq">Dúvidas</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Empresa</h4>
+        <ul>
+          <li><a href="https://www.instagram.com/toalhao_toalheiro" target="_blank" rel="noopener">Instagram</a></li>
+          <li><a href="#lead">Pedir cotação</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Cidades atendidas</h4>
+        <ul>
+          <li><span>Anápolis, GO</span></li>
+          <li><span>Goiânia, GO</span></li>
+          <li><span>Aparecida de Goiânia, GO</span></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contato</h4>
+        <ul>
+          <li><a href="https://wa.me/5562999987074" target="_blank" rel="noopener">WhatsApp</a></li>
+        </ul>
+      </div>
     </div>
-    <div class="footer-bottom">© Toalhão — Anápolis · Goiânia</div>
+    <div class="footer-bottom">
+      <span>© Toalhão — Anápolis · Goiânia</span>
+    </div>
   </div>
 </footer>
 
@@ -513,7 +605,7 @@
   })();
 
   (function(){
-    const targets = document.querySelectorAll('.card, .faq-item, .section-head, .alt-close, .lead-form, .cycle-loopback, .stat');
+    const targets = document.querySelectorAll('.card, .faq-item, .section-head, .alt-close, .lead-form, .cycle-loopback, .stat, .segment-card, .belief-item, .stat-block');
     targets.forEach(el => el.classList.add('reveal'));
     if(!('IntersectionObserver' in window)){
       targets.forEach(el => el.classList.add('in-view'));
