@@ -1,8 +1,7 @@
-# Originais das mídias: ficam só na sua máquina.
-# São arquivos grandes e o site não os carrega — ele usa os otimizados
-# gerados em images/ por scripts/midias.py.
-midias/*
-!midias/LEIA-ME.txt
-
-# Temporários do processamento
+# Temporários do processamento de mídia
 images/.tmp-conversao.*
+
+# Observação: a pasta midias/ É versionada de propósito.
+# É ela que permite subir os originais pelo site do GitHub e deixar o
+# GitHub Actions gerar sozinho os arquivos otimizados em images/.
+# Limite do upload pelo navegador: 25 MB por arquivo.

@@ -1,5 +1,9 @@
 Coloque aqui os arquivos ORIGINAIS das mídias do site — os maiores que você
-tiver, direto da câmera ou do celular. Nada aqui é alterado pelo script.
+tiver, direto da câmera ou do celular.
+
+Ao subir um arquivo aqui pelo GitHub, um robô otimiza automaticamente e grava
+o resultado em images/, que é o que o site carrega. Acompanhe na aba Actions.
+Leva cerca de um minuto. Nada aqui é alterado.
 
 Nomeie cada arquivo com o nome do slot. A extensão pode ser qualquer uma:
 
@@ -11,10 +15,8 @@ Nomeie cada arquivo com o nome do slot. A extensão pode ser qualquer uma:
     cobertura-goiania.jpg    -> card de cobertura, Goiânia
     logo.png                 -> logo (PNG com fundo transparente)
 
-Depois rode, na raiz do projeto:
+LIMITE DE 25 MB por arquivo ao subir pelo navegador do GitHub. Se o seu vídeo
+passar disso: corte a duração (8 a 12 segundos bastam, é um loop) ou exporte
+em 1080p em vez de 4K. Veja MIDIAS.md para as outras saídas.
 
-    python3 scripts/midias.py
-
-Os arquivos otimizados vão para images/, que é o que o site carrega.
-
-Detalhes de tamanho, enquadramento e formatos aceitos: veja MIDIAS.md.
+Tamanhos, enquadramento e formatos aceitos: MIDIAS.md.

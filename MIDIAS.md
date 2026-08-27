@@ -1,22 +1,40 @@
 # Como trocar as mídias do site
 
 Cada foto e vídeo da página tem um **slot** com nome fixo. Você não precisa
-mexer no código: basta colocar o arquivo com o nome certo e rodar um comando.
+mexer no código: basta subir o arquivo com o nome certo.
 
 ---
 
-## O jeito recomendado (mantém a qualidade máxima)
+## Pelo site do GitHub (sem instalar nada)
 
-1. Coloque seus arquivos **originais** — os maiores que você tiver, direto da
-   câmera ou do celular — na pasta `midias/`, com o nome do slot. A extensão
-   pode ser qualquer uma:
+1. Abra a pasta **`midias/`** no GitHub e clique em
+   **Add file → Upload files**.
+
+2. Suba o arquivo com o **nome do slot**. A extensão pode ser qualquer uma:
 
    ```
-   midias/hero.mov
-   midias/card-petshop.jpg
-   midias/card-clinica.heic
-   midias/cobertura-anapolis.png
+   hero.mp4                 (vídeo do topo)
+   card-petshop.jpg
+   cobertura-anapolis.png
    ```
+
+3. Clique em **Commit changes**.
+
+Pronto. Um robô do próprio GitHub (o arquivo
+`.github/workflows/midias.yml`) percebe o arquivo novo, otimiza e grava o
+resultado em `images/` sozinho, num commit separado. Leva cerca de um minuto.
+Você pode acompanhar na aba **Actions** do repositório.
+
+> **Limite de 25 MB por arquivo.** É uma restrição do upload pelo navegador do
+> GitHub, não do projeto. Se o seu vídeo passar disso, veja
+> "Arquivo grande demais" mais abaixo.
+
+---
+
+## Pelo terminal (se você tiver o projeto na máquina)
+
+1. Coloque os originais — os maiores que você tiver, direto da câmera ou do
+   celular — na pasta `midias/`, com o nome do slot.
 
 2. Rode:
 
@@ -24,9 +42,8 @@ mexer no código: basta colocar o arquivo com o nome certo e rodar um comando.
    python3 scripts/midias.py
    ```
 
-3. Pronto. Os arquivos otimizados vão para `images/`, que é o que o site usa.
-   **Seus originais em `midias/` nunca são alterados** — dá para rodar de novo
-   quantas vezes quiser.
+3. Os arquivos otimizados vão para `images/`, que é o que o site usa.
+   **Seus originais nunca são alterados** — dá para rodar quantas vezes quiser.
 
 O script avisa se algum arquivo estiver com resolução baixa demais para o
 espaço em que vai aparecer. Esse aviso é o mais importante de todos: é a causa
@@ -34,11 +51,37 @@ número um de foto borrada em tela grande.
 
 ---
 
-## O jeito rápido (sem rodar nada)
+## Arquivo grande demais (acima de 25 MB)
 
-Se preferir, substitua direto o arquivo dentro de `images/`, mantendo o mesmo
-nome e a mesma extensão. Funciona na hora. A diferença é que aí a compressão
-fica por sua conta — o script existe justamente para acertar isso sozinho.
+Um vídeo de fundo **não precisa** ser grande. Um original de câmera pode ter
+200 MB, mas depois de otimizado ele fica entre 1 e 3 MB, sem diferença visível
+na tela. O problema é só subir o original bruto pelo navegador.
+
+Três saídas, da mais simples para a mais técnica:
+
+1. **Corte a duração.** O vídeo do topo roda em loop — 8 a 12 segundos bastam.
+   Cortar no editor do celular já costuma resolver o tamanho.
+
+2. **Exporte em 1080p.** Se estiver gravando em 4K, exporte em 1920×1080. É a
+   resolução que o site usa de qualquer forma.
+
+3. **Use o terminal.** O limite de 25 MB é só do navegador; pelo `git` o teto
+   é 100 MB:
+
+   ```bash
+   git add midias/hero.mp4
+   git commit -m "Adiciona vídeo do topo"
+   git push
+   ```
+
+---
+
+## O jeito mais rápido de todos (substituição direta)
+
+Se preferir, substitua direto o arquivo dentro de **`images/`**, mantendo o
+mesmo nome e a mesma extensão. Vale na hora, sem passar pelo robô. A diferença
+é que aí a compressão fica por sua conta — o script existe justamente para
+acertar isso sozinho.
 
 ---
 
