@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Toalhão — Rouparia para Petshops e Clínicas Veterinárias</title>
+<title>Toalhão — Lavanderia de Toalhas para Petshops e Clínicas Veterinárias</title>
 <meta name="description" content="Locação e logística de toalhas para petshops e clínicas veterinárias em Anápolis e Goiânia. Rota programada, conferência a cada visita, fatura detalhada.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -155,6 +155,8 @@
     width:20px;height:20px;border-radius:9999px;background:rgba(255,255,255,.22);
     display:inline-flex;align-items:center;justify-content:center;flex:none;
   }
+  .hero-cta{display:flex;flex-wrap:wrap;gap:10px;}
+  .hero-micro{font-size:12px;color:rgba(255,255,255,.6)!important;margin-top:-6px;}
 
   /* ---------- STATEMENT — single centered line ---------- */
   .statement{text-align:center;}
@@ -166,6 +168,7 @@
     font-size:var(--lede);line-height:1.55;color:var(--smoke);
   }
   .statement .btn{margin-top:34px;}
+  .closing-micro{margin-top:16px;font-size:var(--small);color:var(--smoke);}
 
   /* ---------- MEDIA CARD GRID — full-bleed image + scrim ---------- */
   .pair{display:grid;grid-template-columns:1fr;gap:20px;}
@@ -225,6 +228,16 @@
   .quote-meta b{display:block;font-size:14px;font-weight:500;color:var(--white);}
   .quote-meta span{font-size:var(--small);color:var(--smoke);}
 
+  /* ---------- INLINE CTA (meio do scroll) ---------- */
+  .inline-cta{
+    margin-top:20px;background:var(--charcoal);border-radius:14px;
+    padding:26px 30px;display:flex;flex-wrap:wrap;align-items:center;
+    justify-content:space-between;gap:20px;
+  }
+  .inline-cta b{display:block;font-size:var(--h3);font-weight:300;letter-spacing:-.02em;margin-bottom:6px;}
+  .inline-cta span{font-size:var(--small);color:var(--smoke);}
+  .inline-cta .btn{flex:none;}
+
   /* ---------- METRICS ---------- */
   .metrics{text-align:center;}
   .metrics .wrap{max-width:980px;}
@@ -283,6 +296,22 @@
   @media(min-width:900px){.contact-grid{grid-template-columns:1fr 1fr;align-items:start;gap:80px;}}
   .contact h2{font-size:var(--h2);line-height:1.12;}
   .contact p.sub{margin-top:20px;font-size:var(--body);line-height:1.6;color:var(--smoke);max-width:42ch;}
+  .contact-wa{margin-top:30px;}
+  .contact-alt{margin-top:14px;font-size:var(--small);color:var(--smoke);}
+  @media(max-width:899px){.contact-alt{margin-bottom:4px;}}
+  .contact-trust{
+    list-style:none;margin:40px 0 0;padding:32px 0 0;
+    border-top:1px solid var(--graphite);
+    display:flex;flex-direction:column;gap:14px;
+  }
+  .contact-trust li{
+    font-size:var(--small);color:var(--smoke);line-height:1.5;
+    display:flex;align-items:flex-start;gap:11px;
+  }
+  .contact-trust li::before{
+    content:"";flex:none;margin-top:6px;width:5px;height:5px;
+    border-radius:9999px;background:var(--accent);
+  }
   form{display:flex;flex-direction:column;gap:18px;}
   .field label{display:block;font-size:var(--label);letter-spacing:.08em;text-transform:uppercase;color:var(--smoke);margin-bottom:9px;}
   .field input,.field select{
@@ -393,11 +422,15 @@
     <div class="hero-row">
       <h1>Toalha limpa, <em>sempre</em>.</h1>
       <div class="hero-aside">
-        <p>A rouparia que abastece petshops e clínicas veterinárias de Anápolis e Goiânia — rota programada, conferência a cada visita, nenhuma máquina no seu balcão.</p>
-        <a class="btn btn-glass" href="#assinatura">
-          <span class="play-dot"><svg width="7" height="8" viewBox="0 0 7 8" fill="currentColor"><path d="M0 0l7 4-7 4z"/></svg></span>
-          Ver o ciclo
-        </a>
+        <p>A lavanderia de toalhas que abastece petshops e clínicas veterinárias de Anápolis e Goiânia — rota programada, conferência a cada visita, nenhuma máquina no seu balcão.</p>
+        <div class="hero-cta">
+          <a class="btn btn-accent" href="https://wa.me/5562999987074?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20saber%20quanto%20fica%20a%20assinatura%20de%20toalhas%20para%20o%20meu%20petshop." target="_blank" rel="noopener">Falar no WhatsApp →</a>
+          <a class="btn btn-glass" href="#assinatura">
+            <span class="play-dot"><svg width="7" height="8" viewBox="0 0 7 8" fill="currentColor"><path d="M0 0l7 4-7 4z"/></svg></span>
+            Ver o ciclo
+          </a>
+        </div>
+        <p class="hero-micro">Resposta no mesmo dia útil · sem compromisso</p>
       </div>
     </div>
   </div>
@@ -406,7 +439,7 @@
 <!-- ============ STATEMENT ============ -->
 <section class="statement" id="operacao">
   <div class="wrap">
-    <h2>A rouparia que sustenta a rotina de quem cuida de <em>animais</em> todos os dias.</h2>
+    <h2>A lavanderia que sustenta a rotina de quem cuida de <em>animais</em> todos os dias.</h2>
   </div>
 </section>
 
@@ -418,8 +451,8 @@
         <!-- slot: card-petshop -->
         <img src="images/card-petshop.jpg" alt="Atendimento no balcão de um petshop abastecido pelo Toalhão">
         <div class="inner">
-          <h3>Não é lavanderia.</h3>
-          <p>Lavanderia devolve o que você mandou. A gente mantém um enxoval girando: o que sai sujo é reposto no mesmo instante por um lote limpo que já estava pronto.</p>
+          <h3>Você nunca espera a sua toalha voltar.</h3>
+          <p>Na lavanderia comum, você manda e aguarda. Aqui o enxoval é nosso e fica girando: o que sai sujo é substituído no mesmo instante por um lote limpo que já estava pronto.</p>
           <span class="go">Para petshops <span>→</span></span>
         </div>
       </article>
@@ -494,6 +527,13 @@
         </div>
       </article>
     </div>
+    <div class="inline-cta rv">
+      <div>
+        <b>Quer saber quanto fica no seu volume?</b>
+        <span>Diga quantas toalhas você usa por dia e a proposta sai no mesmo dia útil.</span>
+      </div>
+      <a class="btn btn-accent" href="https://wa.me/5562999987074?text=Ol%C3%A1!%20Vim%20pelo%20site.%20Gostaria%20de%20saber%20o%20valor%20da%20assinatura%20de%20toalhas%20para%20o%20meu%20volume." target="_blank" rel="noopener">Pedir valor no WhatsApp →</a>
+    </div>
   </div>
 </section>
 
@@ -564,7 +604,8 @@
   <div class="wrap">
     <h2>Construa uma rotina que não <em>depende</em> de você lembrar.</h2>
     <p class="sub">Conte quantas toalhas o seu movimento consome por dia e a gente monta a rota, o lote e o ciclo de cobrança que encaixam nisso.</p>
-    <a class="btn btn-accent" href="#contato">Pedir proposta →</a>
+    <a class="btn btn-accent" href="https://wa.me/5562999987074?text=Ol%C3%A1!%20Vim%20pelo%20site.%20Quero%20montar%20a%20assinatura%20de%20toalhas%20para%20o%20meu%20movimento." target="_blank" rel="noopener">Falar no WhatsApp →</a>
+    <p class="closing-micro">Resposta no mesmo dia útil · sem taxa de adesão</p>
   </div>
 </section>
 
@@ -573,6 +614,7 @@
   <div class="wrap">
     <p class="label" style="margin-bottom:22px;">Dúvidas</p>
     <div class="faq">
+      <div class="faq-item"><button class="faq-q">Quanto custa?<span class="pm">+</span></button><div class="faq-a"><p>O preço é por toalha e varia conforme o volume e a frequência da rota — quanto maior o giro, menor o valor unitário. Não há taxa de adesão nem investimento inicial em enxoval. Mande no WhatsApp quantas toalhas você usa por dia e devolvemos o valor fechado no mesmo dia útil, sem compromisso.</p></div></div>
       <div class="faq-item"><button class="faq-q">Preciso comprar as toalhas?<span class="pm">+</span></button><div class="faq-a"><p>Não. O enxoval é do Toalhão. Você recebe os lotes prontos e devolve os usados na visita seguinte — não há investimento inicial em toalha nem custo de reposição por desgaste.</p></div></div>
       <div class="faq-item"><button class="faq-q">Como funciona a cobrança?<span class="pm">+</span></button><div class="faq-a"><p>Você escolhe o ciclo — semanal, quinzenal ou mensal. A fatura chega pelo WhatsApp com o detalhamento por visita e boleto em PDF anexo; também aceitamos Pix.</p></div></div>
       <div class="faq-item"><button class="faq-q">E se faltar toalha num dia cheio?<span class="pm">+</span></button><div class="faq-a"><p>Você pede reforço fora do ciclo fixo pelo mesmo WhatsApp. Nas semanas de pico previsíveis — feriado, alta temporada de tosa — a gente já sobe o lote sem você precisar pedir.</p></div></div>
@@ -590,7 +632,16 @@
     <div>
       <p class="label" style="margin-bottom:22px;">Fale com a gente</p>
       <h2>Peça uma <em>proposta</em>.</h2>
-      <p class="sub">Preencha os campos e a gente abre a conversa no WhatsApp com seus dados já preenchidos. Um consultor responde no mesmo dia útil.</p>
+      <p class="sub">Diga quantas toalhas você usa por dia e devolvemos o valor fechado no mesmo dia útil. Sem taxa de adesão, sem compromisso.</p>
+
+      <a class="btn btn-accent contact-wa" href="https://wa.me/5562999987074?text=Ol%C3%A1!%20Vim%20pelo%20site%20e%20quero%20uma%20proposta%20da%20assinatura%20de%20toalhas." target="_blank" rel="noopener">Chamar agora no WhatsApp →</a>
+      <p class="contact-alt">Prefere que a gente chame você? Preencha ao lado.</p>
+
+      <ul class="contact-trust">
+        <li>Sem investimento inicial em enxoval</li>
+        <li>Conferência na sua frente a cada visita</li>
+        <li>Fatura detalhada por WhatsApp, Pix ou boleto</li>
+      </ul>
     </div>
     <form id="leadForm">
       <div class="field"><label for="nome">Responsável</label><input id="nome" name="nome" autocomplete="name" required placeholder="Seu nome"></div>
