@@ -96,6 +96,13 @@ SLOTS = [
         # diferença visível, e CRF 20 custa 2,8 MB a mais. 23 é o ponto certo
         # aqui; os outros slots seguem o nível global.
         "crf": 23,
+        # O material veio gerado por IA (Gemini/Veo) e traz a marca d'água em
+        # estrela, estática, por volta de x 3400-3570 / y 1730-1920 no quadro
+        # 4K. O filtro delogo apaga a estrela mas deixa um borrão retangular
+        # pior que ela; recortar não deixa artefato nenhum. Esta janela 16:9
+        # exclui a marca e ainda entrega 3076x1730, bem acima do 1080p final.
+        # Remova esta linha se trocar por um vídeo sem marca.
+        "recortar": "3076:1730:0:0",
     },
     {
         "nome": "hero-poster",
@@ -256,8 +263,13 @@ def processar_video(origem, slot):
 
     # scale só reduz: se já couber no alvo, mantém o tamanho original.
     alvo_l, alvo_a = alvo(slot)
-    filtro = (f"scale='min({alvo_l},iw)':'min({alvo_a},ih)'"
-              f":force_original_aspect_ratio=decrease:force_divisible_by=2")
+    etapas = []
+    # Recorte opcional, aplicado ANTES da escala (ver "recortar" no slot).
+    if slot.get("recortar"):
+        etapas.append(f"crop={slot['recortar']}")
+    etapas.append(f"scale='min({alvo_l},iw)':'min({alvo_a},ih)'"
+                  f":force_original_aspect_ratio=decrease:force_divisible_by=2")
+    filtro = ",".join(etapas)
 
     cmd = ["ffmpeg", "-y", "-i", origem]
     # Corte opcional de duração (ver "cortar_em" na definição do slot).
