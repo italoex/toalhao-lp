@@ -267,6 +267,8 @@
   }
   .metric span{font-size:var(--small);color:var(--smoke);line-height:1.45;display:block;}
 
+  .foot-id{margin-bottom:10px;color:var(--smoke);}
+
   /* ---------- MARQUEE STRIP ---------- */
   .strip{border-top:1px solid var(--graphite);border-bottom:1px solid var(--graphite);overflow:hidden;padding:30px 0;}
   .strip-track{display:flex;gap:56px;align-items:center;width:max-content;animation:slide 42s linear infinite;}
@@ -341,6 +343,7 @@
   .field input:focus,.field select:focus{outline:none;border-bottom-color:var(--accent);}
   .consent{display:flex;align-items:flex-start;gap:10px;font-size:var(--small);color:var(--smoke);line-height:1.5;cursor:pointer;}
   .consent input{margin-top:3px;accent-color:var(--accent);flex:none;}
+  .consent a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;}
   form .btn{justify-content:center;margin-top:6px;}
   .form-note{font-size:var(--small);color:var(--smoke);line-height:1.55;}
   #formOut{display:none;border:1px solid var(--graphite);border-radius:12px;padding:16px 18px;font-size:var(--small);color:var(--smoke);line-height:1.6;}
@@ -629,20 +632,21 @@
 </section>
 
 <!--
-  TERMOS COMERCIAIS A CONFIRMAR COM O DONO
-  ----------------------------------------
-  Os pontos abaixo foram escritos por mim como valores plausíveis para o
-  serviço; o Italo ainda não confirmou nenhum. Se algum estiver errado, é
-  promessa que o site faz e a operação não cumpre. Onde cada um aparece:
+  TERMOS COMERCIAIS — confirmados pelo dono em 27/08/2026
+  ------------------------------------------------------
+  Confirmados como verdadeiros:
+    - não há taxa de adesão
+    - proposta respondida no mesmo dia útil
+    - lavagem térmica a 75°C
 
-  1. "Não há taxa de adesão"        FAQ "Quanto custa?" e seção Contato
-  2. "no mesmo dia útil"            hero, CTA intermediário, FAQ e Contato
-  3. "Lavagem térmica a 75°C"       card "Higiene com protocolo" e FAQ
-  4. ciclo semanal/quinzenal/mensal FAQ "Como funciona a cobrança?"
-  5. existência de volume mínimo    FAQ "Existe quantidade mínima?"
+  Corrigidos porque eu tinha escrito errado:
+    - a cobrança NÃO tem ciclo semanal/quinzenal/mensal à escolha;
+      a resposta do FAQ agora fala só da fatura e das formas de pagamento
+    - NÃO existe quantidade mínima; a resposta foi invertida
 
-  Já corrigidos por não terem origem nenhuma: os dois depoimentos assinados,
-  os números 320+ e 9 rotas, e Aparecida de Goiânia como cidade atendida.
+  Removidos antes por não terem origem nenhuma: os dois depoimentos
+  assinados, os números 320+ e 9 rotas, e Aparecida de Goiânia como cidade
+  atendida.
 -->
 
 <!-- ============ FAQ ============ -->
@@ -652,11 +656,11 @@
     <div class="faq">
       <div class="faq-item"><button class="faq-q">Quanto custa?<span class="pm">+</span></button><div class="faq-a"><p>O preço é por toalha e varia conforme o volume e a frequência da rota — quanto maior o giro, menor o valor unitário. Não há taxa de adesão nem investimento inicial em enxoval. Mande no WhatsApp quantas toalhas você usa por dia e devolvemos o valor fechado no mesmo dia útil, sem compromisso.</p></div></div>
       <div class="faq-item"><button class="faq-q">Preciso comprar as toalhas?<span class="pm">+</span></button><div class="faq-a"><p>Não. O enxoval é do Toalhão. Você recebe os lotes prontos e devolve os usados na visita seguinte — não há investimento inicial em toalha nem custo de reposição por desgaste.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Como funciona a cobrança?<span class="pm">+</span></button><div class="faq-a"><p>Você escolhe o ciclo — semanal, quinzenal ou mensal. A fatura chega pelo WhatsApp com o detalhamento por visita e boleto em PDF anexo; também aceitamos Pix.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Como funciona a cobrança?<span class="pm">+</span></button><div class="faq-a"><p>A fatura chega pelo WhatsApp com o detalhamento por visita — o que entrou limpo e o que saiu sujo em cada parada — e boleto em PDF anexo. Também aceitamos Pix.</p></div></div>
       <div class="faq-item"><button class="faq-q">E se faltar toalha num dia cheio?<span class="pm">+</span></button><div class="faq-a"><p>Você pede reforço fora do ciclo fixo pelo mesmo WhatsApp. Nas semanas de pico previsíveis — feriado, alta temporada de tosa — a gente já sobe o lote sem você precisar pedir.</p></div></div>
       <div class="faq-item"><button class="faq-q">Como sei que a contagem está certa?<span class="pm">+</span></button><div class="faq-a"><p>A conferência é feita na sua frente, a cada visita: conta-se o que entra limpo e o que sai sujo, com o responsável presente. Esse número — não uma estimativa nossa — é o que aparece item a item na fatura.</p></div></div>
       <div class="faq-item"><button class="faq-q">Qual o padrão de higienização?<span class="pm">+</span></button><div class="faq-a"><p>Lavagem térmica a 75°C, secagem industrial e separação por lote, sem misturar enxoval entre clientes. O processo foi montado para o risco específico de contaminação cruzada entre animais.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Existe quantidade mínima?<span class="pm">+</span></button><div class="faq-a"><p>Sim, definida conforme o seu movimento — é o que garante que a rota feche e o preço por toalha faça sentido. Na proposta a gente dimensiona isso junto com você.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Existe quantidade mínima?<span class="pm">+</span></button><div class="faq-a"><p>Não. A rota é dimensionada pelo seu movimento real: se você usa vinte toalhas por dia, é para vinte que ela é montada. Não há pacote mínimo para começar.</p></div></div>
       <div class="faq-item"><button class="faq-q">Atendem fora de Anápolis e Goiânia?<span class="pm">+</span></button><div class="faq-a"><p>Hoje a rota própria cobre Anápolis e Goiânia. Para outras cidades da região, envie seus dados abaixo: avaliamos a inclusão no próximo ciclo de expansão de rota.</p></div></div>
     </div>
   </div>
@@ -675,6 +679,7 @@
 
       <ul class="contact-trust">
         <li>Sem investimento inicial em enxoval</li>
+        <li>Sem taxa de adesão e sem quantidade mínima</li>
         <li>Conferência na sua frente a cada visita</li>
         <li>Fatura detalhada por WhatsApp, Pix ou boleto</li>
       </ul>
@@ -698,7 +703,7 @@
           <option value="mais de 100">Mais de 100</option>
         </select>
       </div>
-      <label class="consent"><input type="checkbox" id="consent" required> Autorizo o Toalhão a me contatar por WhatsApp sobre esta proposta.</label>
+      <label class="consent"><input type="checkbox" id="consent" required><span>Autorizo o Toalhão a me contatar por WhatsApp sobre esta proposta. Li a <a href="privacidade.html" target="_blank" rel="noopener">política de privacidade</a>.</span></label>
       <button type="submit" class="btn btn-accent">Abrir conversa no WhatsApp →</button>
       <p class="form-note" id="formNote" aria-live="polite">A mensagem vai pronta — falta só você tocar em enviar dentro do WhatsApp.</p>
       <div id="formOut"></div>
@@ -725,6 +730,7 @@
         <ul>
           <li><a href="#duvidas">Dúvidas</a></li>
           <li><a href="#contato">Pedir proposta</a></li>
+          <li><a href="privacidade.html">Política de privacidade</a></li>
           <li><a href="https://www.instagram.com/toalhao_toalheiro" target="_blank" rel="noopener">Instagram</a></li>
         </ul>
       </div>
@@ -753,6 +759,10 @@
         </a>
       </div>
     </div>
+    <p class="foot-legal foot-id">
+      Claudia Deniane de Moraes Pedroso · CNPJ 26.439.708/0001-37<br>
+      Rua Bela Vista — Residencial Rio Jordão · Anápolis/GO · CEP 75143-744
+    </p>
     <p class="foot-legal">Toalhão é um serviço de locação e higienização de enxoval têxtil para estabelecimentos que prestam serviços a animais. Coleta, lavagem e reposição executadas em rota programada nas cidades listadas acima.</p>
   </div>
 </footer>
