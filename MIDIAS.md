@@ -129,7 +129,7 @@ acertar isso sozinho.
 |---|---|---|---|
 | `hero` | `hero-video.mp4` | Vídeo de fundo do topo, tela inteira | 1920×1080, horizontal |
 | `hero-poster` | `hero-poster.jpg` | Primeiro quadro do topo, enquanto o vídeo carrega | 1920×1080 |
-| `card-petshop` | `card-petshop.jpg` | Card "Não é lavanderia" | 1400×1400, quadrado |
+| `card-petshop` | `card-petshop.jpg` | Card "Você nunca espera a sua toalha voltar" | 1400×1400, quadrado |
 | `card-clinica` | `card-clinica.jpg` | Card "Higiene com protocolo" | 1400×1400, quadrado |
 | `cobertura-anapolis` | `cobertura-anapolis.jpg` | Card de cobertura — Anápolis | 1400×1400, quadrado |
 | `cobertura-goiania` | `cobertura-goiania.jpg` | Card de cobertura — Goiânia | 1400×1400, quadrado |
