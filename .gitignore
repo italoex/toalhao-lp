@@ -1,0 +1,8 @@
+# Originais das mídias: ficam só na sua máquina.
+# São arquivos grandes e o site não os carrega — ele usa os otimizados
+# gerados em images/ por scripts/midias.py.
+midias/*
+!midias/LEIA-ME.txt
+
+# Temporários do processamento
+images/.tmp-conversao.*

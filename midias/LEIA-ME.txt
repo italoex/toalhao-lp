@@ -1,0 +1,20 @@
+Coloque aqui os arquivos ORIGINAIS das mídias do site — os maiores que você
+tiver, direto da câmera ou do celular. Nada aqui é alterado pelo script.
+
+Nomeie cada arquivo com o nome do slot. A extensão pode ser qualquer uma:
+
+    hero.mp4                 -> vídeo de fundo do topo (tela inteira)
+    hero-poster.jpg          -> opcional; se faltar, é extraído do vídeo
+    card-petshop.jpg         -> card "Não é lavanderia"
+    card-clinica.jpg         -> card "Higiene com protocolo"
+    cobertura-anapolis.jpg   -> card de cobertura, Anápolis
+    cobertura-goiania.jpg    -> card de cobertura, Goiânia
+    logo.png                 -> logo (PNG com fundo transparente)
+
+Depois rode, na raiz do projeto:
+
+    python3 scripts/midias.py
+
+Os arquivos otimizados vão para images/, que é o que o site carrega.
+
+Detalhes de tamanho, enquadramento e formatos aceitos: veja MIDIAS.md.

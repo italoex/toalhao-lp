@@ -385,6 +385,7 @@
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
+  <!-- slots: hero (vídeo) + hero-poster (primeiro quadro) -->
   <video autoplay muted loop playsinline poster="images/hero-poster.jpg">
     <source src="images/hero-video.mp4" type="video/mp4">
   </video>
@@ -414,7 +415,8 @@
   <div class="wrap">
     <div class="pair">
       <article class="media-card rv">
-        <img src="images/hero-poster.jpg" alt="Atendimento no balcão de um petshop abastecido pelo Toalhão">
+        <!-- slot: card-petshop -->
+        <img src="images/card-petshop.jpg" alt="Atendimento no balcão de um petshop abastecido pelo Toalhão">
         <div class="inner">
           <h3>Não é lavanderia.</h3>
           <p>Lavanderia devolve o que você mandou. A gente mantém um enxoval girando: o que sai sujo é reposto no mesmo instante por um lote limpo que já estava pronto.</p>
@@ -422,7 +424,8 @@
         </div>
       </article>
       <article class="media-card rv">
-        <img src="images/towel-detail.jpg" alt="Cão sendo secado com toalha higienizada do Toalhão">
+        <!-- slot: card-clinica -->
+        <img src="images/card-clinica.jpg" alt="Cão sendo secado com toalha higienizada do Toalhão">
         <div class="inner">
           <h3>Higiene com protocolo.</h3>
           <p>Lavagem térmica a 75°C, secagem industrial e separação por lote. O padrão que uma sala de atendimento veterinário exige, sem depender da máquina da recepção.</p>
@@ -535,7 +538,8 @@
   <div class="wrap">
     <div class="pair">
       <article class="media-card rv">
-        <img src="images/towel-detail.jpg" alt="Toalha higienizada do Toalhão em uso">
+        <!-- slot: cobertura-anapolis -->
+        <img src="images/cobertura-anapolis.jpg" alt="Toalha higienizada do Toalhão em uso em Anápolis">
         <div class="inner">
           <p class="label" style="margin-bottom:14px;">Onde nasceu</p>
           <h3>Anápolis</h3>
@@ -543,7 +547,8 @@
         </div>
       </article>
       <article class="media-card rv">
-        <img src="images/hero-poster.jpg" alt="Balcão de petshop atendido em Goiânia">
+        <!-- slot: cobertura-goiania -->
+        <img src="images/cobertura-goiania.jpg" alt="Balcão de petshop atendido em Goiânia">
         <div class="inner">
           <p class="label" style="margin-bottom:14px;">Em expansão</p>
           <h3>Goiânia</h3>
