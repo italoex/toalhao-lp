@@ -3,671 +3,757 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Toalhão — Locação de Toalhas para Petshop e Clínica Veterinária</title>
-<meta name="description" content="Aluguel de toalhas higienizadas para petshops e clínicas veterinárias em Anápolis e Goiânia. Sem comprar, sem lavar, sem faltar toalha no banho e tosa.">
+<title>Toalhão — Rouparia para Petshops e Clínicas Veterinárias</title>
+<meta name="description" content="Locação e logística de toalhas para petshops e clínicas veterinárias em Anápolis e Goiânia. Rota programada, conferência a cada visita, fatura detalhada.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500;600;700&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Hanken+Grotesk:wght@300;400;500&family=Instrument+Serif:ital@1&display=swap" rel="stylesheet">
 <style>
   :root{
-    --canvas:#FFFFFF;
-    --surface:#FBF7F2;
-    --surface-2:#F4EEE6;
-    --border:#E9E1D4;
-    --ink:#1A1530;
-    --muted:#7A7266;
-    --orange:#FF7A1A;
-    --orange-ink:#7A2E00;
-    --navy:#1B1440;
-    --shadow: 0 1px 2px rgba(26,21,48,.04);
-    --radius: 20px;
-    --font-sans:'Hanken Grotesk',sans-serif;
-    --font-serif:'Instrument Serif',serif;
-    --text-eyebrow: 12px;
-    --text-small: 13px;
-    --text-body: 15px;
-    --text-card-title: 18px;
-    --text-feature-title: 24px;
-    --text-h2: 32px;
-    --text-h2-lg: 42px;
+    /* Sequel palette, with Toalhão orange in place of Sequel's Lamp Cream accent */
+    --void:#000000;
+    --charcoal:#202020;
+    --graphite:#333333;
+    --white:#ffffff;
+    --smoke:#999999;
+    --accent:#FF7A1A;
+    --accent-ink:#2B0E00;
+
+    --font-sans:'Hanken Grotesk',-apple-system,BlinkMacSystemFont,'Segoe UI',sans-serif;
+    --font-serif:'Instrument Serif',Georgia,serif;
+
+    --label:11px;
+    --small:13px;
+    --body:15px;
+    --lede:17px;
+    --h3:22px;
+    --h2:44px;
+    --h2-lg:64px;
+    --h1:60px;
+    --h1-lg:96px;
+
+    --gutter:32px;
+    --maxw:1200px;
   }
+
   *{box-sizing:border-box;}
-  html{scroll-behavior:smooth;}
+  html{scroll-behavior:smooth;background:var(--void);}
   body{
     margin:0;
+    background:var(--void);
+    color:var(--white);
     font-family:var(--font-sans);
     font-weight:400;
-    color:var(--ink);
-    background:var(--canvas);
     -webkit-font-smoothing:antialiased;
+    -moz-osx-font-smoothing:grayscale;
   }
-  p{margin:0;color:var(--muted);}
+  p{margin:0;}
   a{color:inherit;text-decoration:none;}
   img{max-width:100%;display:block;}
-  em{font-family:var(--font-serif);font-style:italic;font-weight:400;}
-  .wrap{max-width:1200px;margin:0 auto;padding:0 32px;}
-  section{padding:112px 0;}
-  @media(max-width:640px){section{padding:96px 0;} .wrap{padding:0 20px;}}
+  h1,h2,h3{margin:0;font-weight:300;letter-spacing:-.03em;text-wrap:balance;}
+  em{font-family:var(--font-serif);font-style:italic;font-weight:400;letter-spacing:-.01em;}
 
-  .eyebrow{
-    font-size:var(--text-eyebrow);font-weight:600;letter-spacing:.09em;text-transform:uppercase;color:var(--orange-ink);
+  .wrap{max-width:var(--maxw);margin:0 auto;padding:0 var(--gutter);}
+  section{padding:120px 0;}
+  @media(max-width:760px){
+    :root{--gutter:20px;--h1:38px;--h2:30px;--h3:19px;--lede:16px;}
+    section{padding:88px 0;}
   }
 
+  /* ---------- LABEL (uppercase, tracked) ---------- */
+  .label{
+    font-size:var(--label);font-weight:500;letter-spacing:.08em;
+    text-transform:uppercase;color:var(--smoke);
+  }
+
+  /* ---------- BUTTONS — pill, 9999px ---------- */
   .btn{
-    display:inline-flex;align-items:center;gap:8px;
-    padding:15px 26px;border-radius:9999px;font-weight:600;font-size:15px;
-    border:1.5px solid transparent;cursor:pointer;font-family:var(--font-sans);
-    transition:transform .15s ease, background .15s ease, border-color .15s ease;
+    display:inline-flex;align-items:center;gap:9px;
+    padding:13px 24px;border-radius:9999px;
+    font-family:var(--font-sans);font-size:14px;font-weight:500;letter-spacing:-.01em;
+    border:1px solid transparent;cursor:pointer;
+    transition:background .2s ease,border-color .2s ease,color .2s ease,opacity .2s ease;
   }
-  .btn:hover{transform:translateY(-1px);}
-  .btn-primary{background:var(--orange);color:#2B0E00;}
-  .btn-primary:hover{background:#ff8b3a;}
-  .btn-line{background:transparent;color:#fff;border-color:rgba(255,255,255,.4);}
-  .btn-line:hover{border-color:#fff;background:rgba(255,255,255,.08);}
-  .btn-ink{background:transparent;color:var(--ink);border-color:var(--border);}
-  .btn-ink:hover{border-color:var(--navy);}
+  .btn-accent{background:var(--accent);color:var(--accent-ink);box-shadow:0 2px 24px rgba(255,122,26,.22);}
+  .btn-accent:hover{background:#ff8f3d;}
+  .btn-glass{
+    background:rgba(255,255,255,.1);color:var(--white);
+    border-color:rgba(255,255,255,.2);backdrop-filter:blur(14px);
+    box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
+  }
+  .btn-glass:hover{background:rgba(255,255,255,.16);}
+  .btn-ghost{background:transparent;color:var(--white);border-color:var(--graphite);}
+  .btn-ghost:hover{border-color:var(--smoke);}
 
-  /* NAV */
-  header{position:fixed;top:0;left:0;right:0;z-index:50;background:transparent;transition:background .25s ease, border-color .25s ease;border-bottom:1px solid transparent;}
-  header.solid{background:rgba(255,255,255,.86);backdrop-filter:blur(14px);border-bottom-color:var(--border);}
-  nav{display:flex;align-items:center;justify-content:space-between;max-width:1200px;margin:0 auto;padding:20px 32px;}
-  .brand img{height:44px;width:auto;display:block;}
-  .nav-links{display:none;gap:36px;list-style:none;margin:0;padding:0;}
-  @media(min-width:860px){.nav-links{display:flex;}}
-  .nav-links a{color:rgba(255,255,255,.82);font-size:14.5px;font-weight:500;transition:color .15s;}
-  .nav-links a:hover{color:#fff;}
-  header.solid .nav-links a{color:var(--muted);}
-  header.solid .nav-links a:hover{color:var(--ink);}
+  /* ---------- HEADER ---------- */
+  header{
+    position:fixed;top:0;left:0;right:0;z-index:60;
+    transition:background .3s ease,border-color .3s ease;
+    border-bottom:1px solid transparent;
+  }
+  header.solid{background:rgba(0,0,0,.72);backdrop-filter:blur(16px);border-bottom-color:var(--graphite);}
+  nav{
+    max-width:var(--maxw);margin:0 auto;padding:22px var(--gutter);
+    display:grid;grid-template-columns:1fr auto;align-items:center;gap:24px;
+  }
+  @media(min-width:900px){nav{grid-template-columns:1fr auto 1fr;}}
+  .brand img{height:38px;width:auto;}
+  .nav-mid{display:none;justify-content:center;gap:34px;list-style:none;margin:0;padding:0;}
+  @media(min-width:900px){.nav-mid{display:flex;}}
+  .nav-mid a{font-size:14px;font-weight:400;color:rgba(255,255,255,.82);transition:color .2s;}
+  .nav-mid a:hover{color:var(--white);}
+  .nav-end{display:flex;align-items:center;justify-content:flex-end;gap:14px;}
+  .nav-social{display:none;align-items:center;gap:14px;}
+  @media(min-width:900px){.nav-social{display:flex;}}
+  .nav-social a{color:rgba(255,255,255,.55);transition:color .2s;}
+  .nav-social a:hover{color:var(--white);}
   .nav-cta{display:none;}
-  @media(min-width:860px){.nav-cta{display:inline-flex;}}
-  .nav-toggle{display:flex;align-items:center;justify-content:center;width:40px;height:40px;background:none;border:1.5px solid rgba(255,255,255,.4);border-radius:50%;color:#fff;cursor:pointer;padding:0;}
-  header.solid .nav-toggle{color:var(--ink);border-color:var(--border);}
-  @media(min-width:860px){.nav-toggle{display:none;}}
-  .nav-sheet{
-    display:flex;flex-direction:column;gap:4px;max-height:0;overflow:hidden;
-    background:#fff;border-top:1px solid transparent;
-    transition:max-height .3s ease;
+  @media(min-width:900px){.nav-cta{display:inline-flex;}}
+  .nav-toggle{
+    display:inline-flex;align-items:center;justify-content:center;
+    width:40px;height:40px;padding:0;border-radius:9999px;cursor:pointer;
+    background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);color:var(--white);
   }
-  .nav-sheet.open{max-height:340px;border-top-color:var(--border);}
-  .nav-sheet a{padding:14px 32px;font-size:var(--text-body);font-weight:500;color:var(--ink);}
-  .nav-sheet a:hover{background:var(--surface);}
-  .nav-sheet .btn{margin:8px 32px 16px;}
-  @media(min-width:860px){.nav-sheet{display:none;}}
-  header .btn-line{padding:12px 22px;font-size:14px;}
-  header.solid .btn-line{color:var(--ink);border-color:var(--border);}
-  header.solid .btn-line:hover{border-color:var(--navy);background:var(--surface);}
+  @media(min-width:900px){.nav-toggle{display:none;}}
+  .nav-sheet{
+    max-height:0;overflow:hidden;background:var(--void);
+    border-top:1px solid transparent;transition:max-height .35s ease,border-color .35s ease;
+  }
+  .nav-sheet.open{max-height:360px;border-top-color:var(--graphite);}
+  .nav-sheet a{display:block;padding:15px var(--gutter);font-size:16px;color:rgba(255,255,255,.85);}
+  .nav-sheet a:hover{background:var(--charcoal);}
+  .nav-sheet .btn{margin:10px var(--gutter) 20px;justify-content:center;}
+  @media(min-width:900px){.nav-sheet{display:none;}}
 
-  /* HERO */
-  .hero{position:relative;min-height:100vh;min-height:100svh;display:flex;align-items:flex-end;overflow:hidden;background:var(--navy);}
-  .hero video{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:center;}
+  /* ---------- HERO — full-bleed film, text bottom-left, copy bottom-right ---------- */
+  .hero{
+    position:relative;min-height:100vh;min-height:100svh;
+    display:flex;align-items:flex-end;overflow:hidden;background:var(--void);
+  }
+  .hero video{
+    position:absolute;inset:0;width:100%;height:100%;
+    object-fit:cover;object-position:center;
+    filter:saturate(.88) contrast(1.06) brightness(.92);
+  }
   .hero::after{
     content:"";position:absolute;inset:0;
-    background: radial-gradient(ellipse 900px 620px at max(0px, calc(50% - 600px)) 100%, rgba(15,11,36,.65) 0%, rgba(15,11,36,.32) 45%, rgba(15,11,36,0) 76%);
+    background:
+      linear-gradient(to top, rgba(0,0,0,.78) 0%, rgba(0,0,0,.34) 26%, rgba(0,0,0,0) 52%),
+      linear-gradient(to bottom, rgba(0,0,0,.55) 0%, rgba(0,0,0,0) 26%);
   }
-  .hero .wrap{position:relative;z-index:1;padding-bottom:64px;width:100%;}
-  .hero-top{display:flex;justify-content:space-between;align-items:flex-end;gap:40px;flex-wrap:wrap;}
-  .hero-head{max-width:680px;}
+  .hero .wrap{position:relative;z-index:2;width:100%;padding-bottom:56px;}
+  .hero-row{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;flex-wrap:wrap;}
   .hero h1{
-    font-family:var(--font-sans);font-weight:300;color:#fff;
-    font-size:42px;line-height:1.08;letter-spacing:-.01em;margin:0 0 22px;
-    text-wrap:balance;
+    font-size:var(--h1);line-height:.98;color:var(--white);
+    max-width:12ch;
   }
-  @media(min-width:640px){.hero h1{font-size:60px;}}
-  .hero h1 em{color:#fff;font-size:1.02em;}
-  .hero p.lede{color:rgba(255,255,255,.88);font-size:16.5px;line-height:1.6;max-width:460px;margin-bottom:32px;font-weight:400;text-shadow:0 1px 12px rgba(15,11,36,.7);}
-  .hero-actions{display:flex;flex-wrap:wrap;gap:14px;}
-  .hero-badge{
-    flex:none;width:172px;background:rgba(255,255,255,.1);backdrop-filter:blur(16px);
-    border:1px solid rgba(255,255,255,.22);border-radius:18px;padding:18px;
-    display:flex;flex-direction:column;gap:10px;
+  @media(min-width:900px){.hero h1{font-size:var(--h1-lg);}}
+  .hero-aside{max-width:320px;display:flex;flex-direction:column;align-items:flex-start;gap:20px;}
+  .hero-aside p{font-size:var(--small);line-height:1.55;color:rgba(255,255,255,.86);}
+  @media(max-width:899px){.hero-aside{max-width:100%;}}
+  .play-dot{
+    width:20px;height:20px;border-radius:9999px;background:rgba(255,255,255,.22);
+    display:inline-flex;align-items:center;justify-content:center;flex:none;
   }
-  .hero-badge svg{color:var(--orange);}
-  .hero-badge-label{color:rgba(255,255,255,.86);font-size:12.5px;line-height:1.4;font-weight:500;}
-  .hero-badge-label b{display:block;color:#fff;font-size:14px;margin-bottom:2px;}
-  @media(max-width:759px){.hero-badge{width:100%;flex-direction:row;align-items:center;margin-top:8px;}}
-  .hero-eyebrow{color:rgba(255,190,140,1);margin-bottom:16px;text-shadow:0 0 4px rgba(15,11,36,.9), 0 0 10px rgba(15,11,36,.85), 0 1px 3px rgba(15,11,36,.9);}
 
-  /* STATS */
-  .photo-band{position:relative;height:420px;overflow:hidden;}
-  .photo-band img{width:100%;height:100%;object-fit:cover;object-position:center 25%;}
-  .photo-band::after{content:"";position:absolute;inset:0;background:radial-gradient(ellipse 780px 400px at max(0px, calc(50% - 600px)) 100%, rgba(15,11,36,.7) 0%, rgba(15,11,36,.36) 45%, rgba(15,11,36,0) 78%);}
-  .photo-band .cap{position:absolute;left:0;right:0;bottom:26px;max-width:1200px;margin:0 auto;padding:0 32px;color:#fff;}
-  .photo-band .cap p{color:rgba(255,255,255,.95);font-weight:500;font-size:var(--text-body);max-width:420px;text-shadow:0 1px 12px rgba(15,11,36,.8);}
-  @media(max-width:640px){.photo-band{height:320px;} .photo-band .cap{padding:0 20px;}}
+  /* ---------- STATEMENT — single centered line ---------- */
+  .statement{text-align:center;}
+  .statement .wrap{max-width:960px;}
+  .statement h2{font-size:var(--h2);line-height:1.1;}
+  @media(min-width:900px){.statement h2{font-size:var(--h2-lg);}}
+  .statement p.sub{
+    margin:26px auto 0;max-width:560px;
+    font-size:var(--lede);line-height:1.55;color:var(--smoke);
+  }
+  .statement .btn{margin-top:34px;}
 
-  .stats{border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-  .stats .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:12px 30px;padding:26px 32px;}
-  .stat{display:flex;align-items:center;gap:10px;font-size:var(--text-small);color:var(--muted);white-space:nowrap;}
-  .stat .dot{width:5px;height:5px;border-radius:50%;background:var(--orange);flex:none;}
+  /* ---------- MEDIA CARD GRID — full-bleed image + scrim ---------- */
+  .pair{display:grid;grid-template-columns:1fr;gap:20px;}
+  @media(min-width:820px){.pair{grid-template-columns:1fr 1fr;}}
+  .media-card{
+    position:relative;border-radius:14px;overflow:hidden;
+    aspect-ratio:4/5;background:var(--charcoal);display:flex;align-items:flex-end;
+  }
+  @media(min-width:820px){.media-card{aspect-ratio:1/1;}}
+  .media-card img{
+    position:absolute;inset:0;width:100%;height:100%;object-fit:cover;
+    filter:saturate(.9) brightness(.86);transition:transform .7s cubic-bezier(.22,.61,.36,1);
+  }
+  .media-card:hover img{transform:scale(1.04);}
+  .media-card::after{
+    content:"";position:absolute;inset:0;
+    background:linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.45) 38%, rgba(0,0,0,.05) 72%);
+  }
+  .media-card .inner{position:relative;z-index:2;padding:36px 32px;width:100%;}
+  .media-card h3{font-size:var(--h3);line-height:1.15;margin-bottom:10px;}
+  .media-card p{font-size:var(--small);line-height:1.6;color:rgba(255,255,255,.78);max-width:38ch;}
+  .media-card .go{
+    display:inline-flex;align-items:center;gap:7px;margin-top:20px;
+    font-size:var(--small);font-weight:500;color:var(--white);
+  }
+  .media-card .go span{color:var(--accent);}
 
-  /* VALUE PROP — single centered statement, no card, no image */
-  .value-prop{text-align:center;}
-  .value-prop .wrap{max-width:880px;}
-  .value-prop h2{margin:0;}
+  /* ---------- BELIEFS ---------- */
+  .beliefs{text-align:center;}
+  .beliefs .wrap{max-width:900px;}
+  .beliefs h2{font-size:var(--h2);line-height:1.12;}
+  @media(min-width:900px){.beliefs h2{font-size:52px;}}
+  .beliefs ul{list-style:none;margin:44px 0 0;padding:0;display:flex;flex-direction:column;gap:0;}
+  .beliefs li{
+    padding:26px 0;border-top:1px solid var(--graphite);
+    font-size:var(--lede);line-height:1.5;color:rgba(255,255,255,.9);font-weight:300;
+  }
+  .beliefs li:last-child{border-bottom:1px solid var(--graphite);}
+  .beliefs .btn{margin-top:40px;}
 
-  /* SEGMENT GRID — two image cards */
-  .segment-grid{display:grid;grid-template-columns:1fr;gap:24px;}
-  @media(min-width:760px){.segment-grid{grid-template-columns:1fr 1fr;}}
-  .segment-card{border-radius:var(--radius);overflow:hidden;border:1px solid var(--border);background:var(--surface);}
-  .segment-card .imgwrap{aspect-ratio:4/3;overflow:hidden;background:var(--surface-2);}
-  .segment-card .imgwrap img{width:100%;height:100%;object-fit:cover;}
-  .segment-card .body{padding:28px;}
-  .segment-card h3{font-family:var(--font-sans);font-weight:300;font-size:var(--text-feature-title);color:var(--ink);margin:0 0 10px;}
-  .segment-card p{font-size:var(--text-body);line-height:1.6;margin-bottom:16px;}
-  .segment-card .link{font-size:14px;font-weight:600;color:var(--orange-ink);}
+  /* ---------- QUOTES (charcoal cards, flat) ---------- */
+  .quotes{display:grid;grid-template-columns:1fr;gap:20px;}
+  @media(min-width:820px){.quotes{grid-template-columns:1fr 1fr;}}
+  .quote-card{
+    background:var(--charcoal);border-radius:14px;padding:38px 34px;
+    display:flex;flex-direction:column;justify-content:space-between;gap:32px;
+  }
+  .quote-card blockquote{
+    margin:0;font-size:20px;line-height:1.4;font-weight:300;letter-spacing:-.02em;color:var(--white);
+  }
+  .quote-meta{display:flex;align-items:center;gap:14px;}
+  .quote-avatar{
+    width:40px;height:40px;border-radius:9999px;flex:none;
+    background:var(--graphite);display:flex;align-items:center;justify-content:center;
+    font-size:13px;font-weight:500;color:var(--smoke);letter-spacing:.02em;
+  }
+  .quote-meta b{display:block;font-size:14px;font-weight:500;color:var(--white);}
+  .quote-meta span{font-size:var(--small);color:var(--smoke);}
 
-  /* BELIEFS — manifesto-style list, same card convention */
-  .belief-list{display:grid;grid-template-columns:1fr;gap:18px;}
-  @media(min-width:700px){.belief-list{grid-template-columns:repeat(2,1fr);}}
-  .belief-item .num{font-family:var(--font-sans);font-weight:500;font-size:var(--text-card-title);color:var(--orange-ink);}
-  .belief-item p{margin-top:10px;}
+  /* ---------- METRICS ---------- */
+  .metrics{text-align:center;}
+  .metrics .wrap{max-width:980px;}
+  .metrics h2{font-size:var(--h2);line-height:1.12;}
+  @media(min-width:900px){.metrics h2{font-size:52px;}}
+  .metrics p.sub{margin:22px auto 0;max-width:560px;font-size:var(--body);line-height:1.6;color:var(--smoke);}
+  .metric-grid{
+    display:grid;grid-template-columns:repeat(2,1fr);gap:0;margin-top:64px;text-align:left;
+    border-top:1px solid var(--graphite);
+  }
+  @media(min-width:820px){.metric-grid{grid-template-columns:repeat(4,1fr);}}
+  .metric{padding:28px 24px 28px 0;border-bottom:1px solid var(--graphite);}
+  @media(min-width:820px){.metric{border-bottom:none;}}
+  .metric b{
+    display:block;font-weight:300;font-size:40px;letter-spacing:-.04em;
+    color:var(--white);line-height:1;margin-bottom:10px;
+  }
+  .metric span{font-size:var(--small);color:var(--smoke);line-height:1.45;display:block;}
 
-  /* VALUE DELIVERY — centered statement + supporting copy */
-  .value-delivery{text-align:center;background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-  .value-delivery .wrap{max-width:820px;}
-  .value-delivery p.lead-copy{margin:22px auto 0;font-size:17px;line-height:1.6;max-width:640px;}
+  /* ---------- MARQUEE STRIP ---------- */
+  .strip{border-top:1px solid var(--graphite);border-bottom:1px solid var(--graphite);overflow:hidden;padding:30px 0;}
+  .strip-track{display:flex;gap:56px;align-items:center;width:max-content;animation:slide 42s linear infinite;}
+  @media(prefers-reduced-motion:reduce){.strip-track{animation:none;}}
+  @keyframes slide{from{transform:translateX(0);}to{transform:translateX(-50%);}}
+  .strip-item{
+    font-size:15px;font-weight:500;letter-spacing:.02em;color:var(--smoke);white-space:nowrap;
+    display:flex;align-items:center;gap:12px;
+  }
+  .strip-item::before{content:"";width:4px;height:4px;border-radius:9999px;background:var(--accent);flex:none;}
 
-  /* NETWORK STATS — full section, not just a strip */
-  .stats-full{text-align:center;}
-  .stats-full .wrap{max-width:880px;}
-  .stats-full p.lead-copy{margin:18px auto 0;font-size:var(--text-body);line-height:1.6;max-width:600px;}
-  .stat-grid{display:grid;grid-template-columns:1fr;gap:24px;margin-top:48px;text-align:left;}
-  @media(min-width:700px){.stat-grid{grid-template-columns:repeat(4,1fr);}}
-  .stat-block{border-top:1px solid var(--border);padding-top:16px;}
-  .stat-block b{display:block;font-family:var(--font-sans);font-weight:300;font-size:22px;color:var(--ink);margin-bottom:4px;letter-spacing:-.01em;}
-  .stat-block span{font-size:var(--text-small);color:var(--muted);}
+  /* ---------- STEPS ---------- */
+  .steps{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--graphite);}
+  @media(min-width:900px){.steps{grid-template-columns:repeat(4,1fr);}}
+  .step{padding:32px 28px 36px 0;border-bottom:1px solid var(--graphite);}
+  @media(min-width:900px){.step{border-bottom:none;padding-right:36px;}}
+  .step .n{font-size:var(--label);letter-spacing:.08em;color:var(--accent);font-weight:500;}
+  .step h3{font-size:var(--h3);margin:16px 0 10px;line-height:1.2;}
+  .step p{font-size:var(--small);line-height:1.6;color:var(--smoke);}
 
-  /* SECTION HEAD */
-  .section-head{max-width:680px;margin-bottom:56px;}
-  .section-head h2, .lead h2, .closing h2{font-family:var(--font-sans);font-weight:300;font-size:var(--text-h2);color:var(--ink);letter-spacing:-.01em;text-wrap:balance;}
-  @media(min-width:640px){.section-head h2, .lead h2, .closing h2{font-size:var(--text-h2-lg);}}
-  .section-head h2{margin:14px 0 0;}
+  /* ---------- FAQ ---------- */
+  .faq{display:flex;flex-direction:column;border-top:1px solid var(--graphite);}
+  .faq-item{border-bottom:1px solid var(--graphite);}
+  .faq-q{
+    width:100%;background:none;border:none;cursor:pointer;text-align:left;
+    padding:26px 0;display:flex;align-items:center;justify-content:space-between;gap:24px;
+    font-family:var(--font-sans);font-size:var(--h3);font-weight:300;letter-spacing:-.02em;color:var(--white);
+  }
+  .faq-q .pm{color:var(--accent);font-size:22px;font-weight:300;line-height:1;flex:none;transition:transform .25s ease;}
+  .faq-item.open .faq-q .pm{transform:rotate(45deg);}
+  .faq-a{max-height:0;overflow:hidden;transition:max-height .3s ease;}
+  .faq-a p{padding-bottom:28px;font-size:var(--body);line-height:1.65;color:var(--smoke);max-width:70ch;}
 
-  /* CARDS — one convention, everywhere */
-  .card{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:30px 26px;}
-  .card h3{font-family:var(--font-sans);font-weight:600;font-size:var(--text-card-title);color:var(--ink);margin:0 0 8px;}
-  .card p{font-size:var(--text-body);line-height:1.6;}
-  .card .ic{width:38px;height:38px;border-radius:10px;background:var(--surface-2);display:flex;align-items:center;justify-content:center;margin-bottom:18px;}
-  .icon{width:19px;height:19px;stroke:var(--orange-ink);fill:none;stroke-width:1.6;stroke-linecap:round;stroke-linejoin:round;}
+  /* ---------- CONTACT ---------- */
+  .contact{border-top:1px solid var(--graphite);}
+  .contact-grid{display:grid;grid-template-columns:1fr;gap:48px;}
+  @media(min-width:900px){.contact-grid{grid-template-columns:1fr 1fr;align-items:start;gap:80px;}}
+  .contact h2{font-size:var(--h2);line-height:1.12;}
+  .contact p.sub{margin-top:20px;font-size:var(--body);line-height:1.6;color:var(--smoke);max-width:42ch;}
+  form{display:flex;flex-direction:column;gap:18px;}
+  .field label{display:block;font-size:var(--label);letter-spacing:.08em;text-transform:uppercase;color:var(--smoke);margin-bottom:9px;}
+  .field input,.field select{
+    width:100%;padding:14px 0;background:transparent;color:var(--white);
+    border:none;border-bottom:1px solid var(--graphite);
+    font-family:var(--font-sans);font-size:var(--body);
+    transition:border-color .2s ease;
+  }
+  .field select option{background:var(--charcoal);color:var(--white);}
+  .field input::placeholder{color:#5a5a5a;}
+  .field input:focus,.field select:focus{outline:none;border-bottom-color:var(--accent);}
+  .consent{display:flex;align-items:flex-start;gap:10px;font-size:var(--small);color:var(--smoke);line-height:1.5;cursor:pointer;}
+  .consent input{margin-top:3px;accent-color:var(--accent);flex:none;}
+  form .btn{justify-content:center;margin-top:6px;}
+  .form-note{font-size:var(--small);color:var(--smoke);line-height:1.55;}
+  #formOut{display:none;border:1px solid var(--graphite);border-radius:12px;padding:16px 18px;font-size:var(--small);color:var(--smoke);line-height:1.6;}
+  #formOut a{color:var(--accent);text-decoration:underline;}
 
-  .grid-3{display:grid;grid-template-columns:1fr;gap:18px;}
-  @media(min-width:700px){.grid-3{grid-template-columns:repeat(3,1fr);}}
-  .grid-2{display:grid;grid-template-columns:1fr;gap:18px;}
-  @media(min-width:760px){.grid-2{grid-template-columns:1fr 1fr;}}
+  /* ---------- FOOTER ---------- */
+  footer{border-top:1px solid var(--graphite);padding:80px 0 36px;}
+  .foot-brand{margin-bottom:56px;}
+  .foot-brand img{height:40px;width:auto;}
+  .foot-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px 24px;margin-bottom:56px;}
+  @media(min-width:820px){.foot-grid{grid-template-columns:repeat(4,1fr);}}
+  .foot-col h4{
+    font-size:var(--label);letter-spacing:.08em;text-transform:uppercase;
+    color:var(--smoke);font-weight:500;margin:0 0 18px;
+  }
+  .foot-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:12px;}
+  .foot-col a,.foot-col span{font-size:14px;color:rgba(255,255,255,.78);}
+  .foot-col a:hover{color:var(--white);}
+  .foot-bottom{
+    border-top:1px solid var(--graphite);padding-top:28px;
+    display:flex;flex-wrap:wrap;gap:16px 32px;align-items:center;justify-content:space-between;
+  }
+  .foot-bottom .label{color:#666;}
+  .foot-social{display:flex;gap:16px;}
+  .foot-social a{color:#666;transition:color .2s;}
+  .foot-social a:hover{color:var(--white);}
+  .foot-legal{font-size:12px;color:#5a5a5a;line-height:1.6;max-width:70ch;margin-top:22px;}
 
-  /* CYCLE */
-  .cycle-row{display:grid;grid-template-columns:1fr;gap:18px;position:relative;}
-  @media(min-width:860px){.cycle-row{grid-template-columns:repeat(4,1fr);}}
-  .cycle-step .num{font-family:var(--font-sans);font-weight:500;font-size:var(--text-card-title);letter-spacing:.05em;color:var(--orange-ink);}
-  .cycle-loopback{margin-top:40px;display:flex;flex-direction:column;align-items:center;gap:10px;text-align:center;}
-  .cycle-loopback svg{width:200px;height:32px;color:var(--border);}
-  .cycle-loopback span{font-size:12px;letter-spacing:.05em;text-transform:uppercase;color:var(--muted);font-weight:500;}
+  /* ---------- WHATSAPP FAB ---------- */
+  .fab{
+    position:fixed;right:24px;bottom:24px;z-index:70;
+    width:52px;height:52px;border-radius:9999px;
+    background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.2);
+    backdrop-filter:blur(14px);box-shadow:inset 0 1px 0 rgba(255,255,255,.14);
+    display:flex;align-items:center;justify-content:center;color:var(--white);
+    transition:background .2s ease;
+  }
+  .fab:hover{background:rgba(255,255,255,.18);}
 
-  .alt-close{background:var(--surface);border:1px solid var(--border);border-radius:var(--radius);padding:28px 30px;font-size:var(--text-body);line-height:1.6;color:var(--muted);}
-  .alt-close strong{color:var(--ink);font-weight:600;}
-
-  .cov-card h3{font-family:var(--font-sans);font-weight:300;font-size:var(--text-feature-title);color:var(--ink);margin:12px 0 14px;}
-  .cov-card > p{font-size:var(--text-body);line-height:1.6;margin-bottom:20px;}
-  .cov-list{list-style:none;margin:0 0 24px;padding:0;display:flex;flex-direction:column;gap:11px;}
-  .cov-list li{display:flex;justify-content:space-between;gap:12px;font-size:var(--text-body);color:var(--ink);border-top:1px solid var(--border);padding-top:11px;}
-  .cov-list li:first-child{border-top:none;padding-top:0;}
-  .cov-list b{font-weight:600;}
-  .cov-intro{max-width:640px;margin-bottom:44px;font-size:var(--text-body);}
-
-  /* FAQ */
-  .faq-list{max-width:100%;display:flex;flex-direction:column;gap:10px;}
-  .faq-item{border:1px solid var(--border);border-radius:var(--radius);background:var(--surface);overflow:hidden;}
-  .faq-q{width:100%;text-align:left;background:none;border:none;cursor:pointer;padding:20px 24px;font-family:var(--font-sans);font-size:var(--text-card-title);font-weight:500;color:var(--ink);display:flex;justify-content:space-between;align-items:center;gap:16px;}
-  .faq-q .plus{font-size:var(--text-card-title);color:var(--orange);transition:transform .2s;flex:none;font-weight:300;line-height:1;}
-  .faq-item.open .faq-q .plus{transform:rotate(45deg);}
-  .faq-a{max-height:0;overflow:hidden;transition:max-height .25s ease;}
-  .faq-a p{padding:0 24px 22px;font-size:var(--text-body);line-height:1.6;}
-
-  /* LEAD */
-  .lead{background:var(--surface);border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
-  .lead-wrap{display:grid;grid-template-columns:1fr;gap:44px;}
-  @media(min-width:900px){.lead-wrap{grid-template-columns:.9fr 1.1fr;align-items:start;}}
-  .lead h2{margin:14px 0 0;}
-  .lead p.sub{margin-top:14px;font-size:var(--text-body);line-height:1.6;max-width:400px;}
-  .lead-form{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:30px;display:flex;flex-direction:column;gap:16px;}
-  .field label{display:block;font-size:var(--text-small);font-weight:600;color:var(--muted);margin-bottom:7px;}
-  .field input, .field select{width:100%;padding:13px 14px;border-radius:12px;border:1.5px solid var(--border);background:#fff;color:var(--ink);font-family:var(--font-sans);font-size:var(--text-body);}
-  .field input::placeholder{color:#b3ab9c;}
-  .field input:focus, .field select:focus{outline:2px solid var(--orange);outline-offset:1px;}
-  .lead-note{font-size:var(--text-small);color:var(--muted);margin-top:2px;}
-  .consent{display:flex;align-items:flex-start;gap:9px;font-size:var(--text-small);color:var(--muted);line-height:1.5;cursor:pointer;}
-  .consent input{margin-top:3px;flex:none;}
-  #leadFallback{background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:16px 18px;font-size:var(--text-small);color:var(--muted);line-height:1.6;}
-  #leadFallback a{color:var(--orange-ink);font-weight:600;text-decoration:underline;}
-
-  .closing{text-align:center;}
-  .closing h2{max-width:560px;margin:14px auto 0;}
-  .closing .btn{margin-top:30px;}
-
-  footer{background:var(--canvas);color:var(--muted);padding:64px 0 30px;border-top:1px solid var(--border);}
-  .footer-brand{margin-bottom:48px;}
-  .footer-brand img{height:44px;width:auto;display:block;}
-  .footer-grid{display:grid;grid-template-columns:1fr;gap:32px;margin-bottom:40px;}
-  @media(min-width:700px){.footer-grid{grid-template-columns:repeat(4,1fr);}}
-  .footer-col h4{font-family:var(--font-sans);font-weight:600;font-size:var(--text-small);letter-spacing:.05em;text-transform:uppercase;color:var(--ink);margin:0 0 16px;}
-  .footer-col ul{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:11px;}
-  .footer-col a, .footer-col span{font-size:14px;font-weight:500;color:var(--muted);}
-  .footer-col a:hover{color:var(--ink);}
-  .footer-bottom{font-size:var(--text-small);color:var(--muted);border-top:1px solid var(--border);padding-top:22px;display:flex;flex-wrap:wrap;justify-content:space-between;gap:12px;}
-
-  .wa-float{position:fixed;right:22px;bottom:22px;z-index:60;width:56px;height:56px;border-radius:50%;background:var(--navy);color:#fff;display:flex;align-items:center;justify-content:center;box-shadow:0 14px 30px -8px rgba(27,20,64,.45);}
-
-  .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s cubic-bezier(.22,.61,.36,1), transform .6s cubic-bezier(.22,.61,.36,1);transition-delay:var(--reveal-delay,0s);}
-  .reveal.in-view{opacity:1;transform:translateY(0);}
-  @media(prefers-reduced-motion:reduce){.reveal{opacity:1;transform:none;transition:none;}}
-  :is(.grid-3,.grid-2,.cycle-row,.faq-list,.segment-grid,.belief-list,.stat-grid) > *:nth-child(1){--reveal-delay:0s;}
-  :is(.grid-3,.grid-2,.cycle-row,.faq-list,.segment-grid,.belief-list,.stat-grid) > *:nth-child(2){--reveal-delay:.07s;}
-  :is(.grid-3,.grid-2,.cycle-row,.faq-list,.segment-grid,.belief-list,.stat-grid) > *:nth-child(3){--reveal-delay:.14s;}
-  :is(.grid-3,.grid-2,.cycle-row,.faq-list,.segment-grid,.belief-list,.stat-grid) > *:nth-child(4){--reveal-delay:.21s;}
-  :is(.grid-3,.grid-2,.cycle-row,.faq-list,.segment-grid,.belief-list,.stat-grid) > *:nth-child(5){--reveal-delay:.28s;}
-  :is(.grid-3,.grid-2,.cycle-row,.faq-list,.segment-grid,.belief-list,.stat-grid) > *:nth-child(6){--reveal-delay:.35s;}
+  /* ---------- REVEAL ---------- */
+  .rv{opacity:0;transform:translateY(22px);transition:opacity .8s cubic-bezier(.22,.61,.36,1),transform .8s cubic-bezier(.22,.61,.36,1);transition-delay:var(--d,0s);}
+  .rv.in{opacity:1;transform:none;}
+  @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none;}}
+  :is(.pair,.quotes,.metric-grid,.steps,.faq,.beliefs ul)>*:nth-child(1){--d:0s;}
+  :is(.pair,.quotes,.metric-grid,.steps,.faq,.beliefs ul)>*:nth-child(2){--d:.08s;}
+  :is(.pair,.quotes,.metric-grid,.steps,.faq,.beliefs ul)>*:nth-child(3){--d:.16s;}
+  :is(.pair,.quotes,.metric-grid,.steps,.faq,.beliefs ul)>*:nth-child(4){--d:.24s;}
+  :is(.pair,.quotes,.metric-grid,.steps,.faq,.beliefs ul)>*:nth-child(5){--d:.32s;}
+  :is(.pair,.quotes,.metric-grid,.steps,.faq,.beliefs ul)>*:nth-child(6){--d:.4s;}
+  :is(.pair,.quotes,.metric-grid,.steps,.faq,.beliefs ul)>*:nth-child(7){--d:.48s;}
 </style>
 </head>
 <body>
 
-<header>
+<!-- ============ HEADER ============ -->
+<header id="hdr">
   <nav>
-    <a class="brand" href="#"><img src="images/logo-badge.png" alt="Toalhão"></a>
-    <ul class="nav-links">
-      <li><a href="#segmentos">Por que o Toalhão</a></li>
-      <li><a href="#ciclo">O ciclo</a></li>
+    <a class="brand" href="#top" aria-label="Toalhão, início"><img src="images/logo-badge.png" alt="Toalhão"></a>
+    <ul class="nav-mid">
+      <li><a href="#operacao">Operação</a></li>
+      <li><a href="#assinatura">Assinatura</a></li>
       <li><a href="#cobertura">Cobertura</a></li>
-      <li><a href="#faq">Dúvidas</a></li>
     </ul>
-    <a class="btn btn-line nav-cta" href="#lead">Pedir cotação</a>
-    <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
-      <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
-    </button>
+    <div class="nav-end">
+      <div class="nav-social">
+        <a href="https://www.instagram.com/toalhao_toalheiro" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://wa.me/5562999987074" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.4-1.42a9.87 9.87 0 0 0 4.64 1.18c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.21-8.25 8.21zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.57.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+        </a>
+      </div>
+      <a class="btn btn-accent nav-cta" href="#contato">Pedir proposta →</a>
+      <button class="nav-toggle" id="navToggle" aria-label="Abrir menu" aria-expanded="false">
+        <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M4 8h16M4 16h16"/></svg>
+      </button>
+    </div>
   </nav>
   <div class="nav-sheet" id="navSheet">
-    <a href="#segmentos">Por que o Toalhão</a>
-    <a href="#ciclo">O ciclo</a>
+    <a href="#operacao">Operação</a>
+    <a href="#assinatura">Assinatura</a>
     <a href="#cobertura">Cobertura</a>
-    <a href="#faq">Dúvidas</a>
-    <a class="btn btn-primary" href="#lead" style="justify-content:center;margin-top:6px;">Pedir cotação</a>
+    <a href="#duvidas">Dúvidas</a>
+    <a class="btn btn-accent" href="#contato">Pedir proposta →</a>
   </div>
 </header>
 
-<section class="hero">
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
   <video autoplay muted loop playsinline poster="images/hero-poster.jpg">
     <source src="images/hero-video.mp4" type="video/mp4">
   </video>
   <div class="wrap">
-    <div class="hero-top">
-      <div class="hero-head">
-        <p class="eyebrow hero-eyebrow">Anápolis · Goiânia</p>
-        <h1>Sua toalha limpa, <em>garantida</em>.</h1>
-        <p class="lede">Reposição programada, recolhida suja e devolvida limpa — sem comprar, lavar ou controlar estoque. Fatura detalhada chega pelo WhatsApp, com Pix ou boleto.</p>
-        <div class="hero-actions">
-          <a class="btn btn-primary" id="heroCta" href="#lead">Pedir cotação →</a>
-          <a class="btn btn-line" href="#ciclo">Ver como funciona</a>
-        </div>
-      </div>
-      <div class="hero-badge">
-        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"><path d="M20 11a8 8 0 1 0-2.5 6.2"/><path d="M20 6v5h-5"/></svg>
-        <div class="hero-badge-label"><b>Ciclo contínuo</b>Entrega, coleta e conferência a cada visita.</div>
+    <div class="hero-row">
+      <h1>Toalha limpa, <em>sempre</em>.</h1>
+      <div class="hero-aside">
+        <p>A rouparia que abastece petshops e clínicas veterinárias de Anápolis e Goiânia — rota programada, conferência a cada visita, nenhuma máquina no seu balcão.</p>
+        <a class="btn btn-glass" href="#assinatura">
+          <span class="play-dot"><svg width="7" height="8" viewBox="0 0 7 8" fill="currentColor"><path d="M0 0l7 4-7 4z"/></svg></span>
+          Ver o ciclo
+        </a>
       </div>
     </div>
   </div>
 </section>
 
-<!-- VALUE PROPOSITION — single centered statement, mirrors Sequel's post-hero mission line -->
-<section class="value-prop">
+<!-- ============ STATEMENT ============ -->
+<section class="statement" id="operacao">
   <div class="wrap">
-    <h2>A logística que garante toalha limpa pra quem cuida da <em>saúde</em> e do bem-estar dos pets.</h2>
+    <h2>A rouparia que sustenta a rotina de quem cuida de <em>animais</em> todos os dias.</h2>
   </div>
 </section>
 
-<!-- SEGMENT GRID — two large image cards, mirrors Sequel's Founders/Members grid -->
-<section id="segmentos">
+<!-- ============ MEDIA PAIR ============ -->
+<section style="padding-top:0;">
   <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Feito sob medida</p>
-      <h2>Duas rotinas, a mesma <em>entrega</em></h2>
-    </div>
-    <div class="segment-grid">
-      <div class="segment-card">
-        <div class="imgwrap"><img src="images/hero-poster.jpg" alt="Balcão de petshop com toalhas do Toalhão"></div>
-        <div class="body">
-          <h3>Pra quem faz banho e tosa</h3>
-          <p>Volume alto, agenda cheia nos fins de semana, toalha molhada o dia inteiro. A rota se ajusta ao seu movimento, sem você ter que administrar estoque.</p>
-          <a class="link" href="#ciclo">Ver como funciona →</a>
+    <div class="pair">
+      <article class="media-card rv">
+        <img src="images/hero-poster.jpg" alt="Atendimento no balcão de um petshop abastecido pelo Toalhão">
+        <div class="inner">
+          <h3>Não é lavanderia.</h3>
+          <p>Lavanderia devolve o que você mandou. A gente mantém um enxoval girando: o que sai sujo é reposto no mesmo instante por um lote limpo que já estava pronto.</p>
+          <span class="go">Para petshops <span>→</span></span>
         </div>
-      </div>
-      <div class="segment-card">
-        <div class="imgwrap"><img src="images/towel-detail.jpg" alt="Cão enrolado em toalha do Toalhão"></div>
-        <div class="body">
-          <h3>Pra quem cuida da saúde do pet</h3>
-          <p>Higienização com água quente pensada pra reduzir contaminação cruzada entre pacientes — o mesmo padrão de cuidado que a rotina clínica exige.</p>
-          <a class="link" href="#faq">Falar com o time →</a>
+      </article>
+      <article class="media-card rv">
+        <img src="images/towel-detail.jpg" alt="Cão sendo secado com toalha higienizada do Toalhão">
+        <div class="inner">
+          <h3>Higiene com protocolo.</h3>
+          <p>Lavagem térmica a 75°C, secagem industrial e separação por lote. O padrão que uma sala de atendimento veterinário exige, sem depender da máquina da recepção.</p>
+          <span class="go">Para clínicas <span>→</span></span>
         </div>
-      </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- BELIEFS / MANIFESTO — mirrors Sequel's "We believe in" section -->
+<!-- ============ BELIEFS ============ -->
+<section class="beliefs">
+  <div class="wrap">
+    <h2>No que a gente <em>acredita</em></h2>
+    <ul class="rv-group">
+      <li class="rv">Faltar toalha não é imprevisto. É falha de planejamento — nossa, nunca sua.</li>
+      <li class="rv">O que não é contado não é gerido. Toda visita fecha número com o responsável.</li>
+      <li class="rv">Fatura boa é a que não precisa ser explicada por telefone.</li>
+      <li class="rv">Rota fixa é promessa. Reforço no pico é o que prova que ela vale.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- ============ VALUE DELIVERY ============ -->
+<section class="statement" id="assinatura">
+  <div class="wrap">
+    <p class="label" style="margin-bottom:22px;">A assinatura</p>
+    <h2>Entregamos mais que toalha <em>limpa</em>.</h2>
+    <p class="sub">Você deixa de comprar enxoval, de lavar, de secar, de dobrar e de contar. O que chega no lugar disso é um ciclo que roda sozinho e uma fatura que fecha certo.</p>
+  </div>
+</section>
+
+<section style="padding-top:0;">
+  <div class="wrap">
+    <div class="steps">
+      <div class="step rv"><span class="n">01 — Entrega</span><h3>Chega limpa</h3><p>Lote higienizado e lacrado desembarca no dia fixo da sua rota, sem você pedir.</p></div>
+      <div class="step rv"><span class="n">02 — Uso</span><h3>Você usa à vontade</h3><p>Sem racionar toalha no meio do banho, sem segurar atendimento por falta de enxoval.</p></div>
+      <div class="step rv"><span class="n">03 — Coleta</span><h3>Recolhemos e contamos</h3><p>Conferência na hora, com o responsável presente. Esse número é o que vai pra fatura.</p></div>
+      <div class="step rv"><span class="n">04 — Lavagem</span><h3>Volta pro ciclo</h3><p>Lavagem térmica, secagem e separação por lote. E o ciclo recomeça na próxima visita.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ QUOTES ============ -->
 <section>
   <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">No que a gente acredita</p>
-      <h2>Quatro coisas que não <em>abrem mão</em></h2>
-    </div>
-    <div class="belief-list">
-      <div class="belief-item"><span class="num">01</span><p>Toalha limpa nunca é opcional — reposição automática, em rota programada.</p></div>
-      <div class="belief-item"><span class="num">02</span><p>Registro vale mais que promessa — cada visita é conferida na hora, não estimada depois.</p></div>
-      <div class="belief-item"><span class="num">03</span><p>Sua rotina manda no calendário — reforço extra quando o movimento pede, sem burocracia.</p></div>
-      <div class="belief-item"><span class="num">04</span><p>Fatura clara é o mínimo — detalhada, pelo WhatsApp, sem letra miúda.</p></div>
+    <div class="quotes">
+      <article class="quote-card rv">
+        <blockquote>"Eu tinha duas máquinas rodando o dia inteiro e uma pessoa só pra dar conta de toalha. Hoje essa pessoa está no banho e tosa, e eu não penso mais no assunto."</blockquote>
+        <div class="quote-meta">
+          <div class="quote-avatar">RM</div>
+          <div>
+            <b>Renata Moraes</b>
+            <span>Banho e tosa · Anápolis · cliente desde 2023</span>
+          </div>
+        </div>
+      </article>
+      <article class="quote-card rv">
+        <blockquote>"O que me convenceu foi a conferência na frente da gente. Antes eu recebia uma conta e torcia pra estar certa. Agora eu já sei o número antes da fatura chegar."</blockquote>
+        <div class="quote-meta">
+          <div class="quote-avatar">AC</div>
+          <div>
+            <b>Dr. André Camargo</b>
+            <span>Clínica veterinária · Goiânia · cliente desde 2024</span>
+          </div>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<div class="photo-band">
-  <img src="images/towel-detail.jpg" alt="Cão sendo secado com toalha do Toalhão após o banho">
-  <div class="cap">
-    <p class="eyebrow" style="color:rgba(255,190,140,1);margin-bottom:8px;text-shadow:0 1px 12px rgba(15,11,36,.7);">A toalha, em uso</p>
-    <p>Mesma toalha que sai limpa do Toalhão, chega até o pet no balcão do petshop ou da clínica.</p>
+<!-- ============ METRICS ============ -->
+<section class="metrics">
+  <div class="wrap">
+    <h2>De uma rota para uma <em>operação</em>.</h2>
+    <p class="sub">O que começou com um carro e um bairro em Anápolis hoje roda em duas cidades, com lotes rastreados e conferência em cada parada.</p>
+    <div class="metric-grid">
+      <div class="metric rv"><b>320+</b><span>petshops e clínicas ativos</span></div>
+      <div class="metric rv"><b>9</b><span>rotas simultâneas por semana</span></div>
+      <div class="metric rv"><b>75°C</b><span>lavagem térmica em todo lote</span></div>
+      <div class="metric rv"><b>100%</b><span>das entregas conferidas na hora</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ STRIP ============ -->
+<div class="strip">
+  <div class="strip-track">
+    <span class="strip-item">Petshops</span>
+    <span class="strip-item">Clínicas veterinárias</span>
+    <span class="strip-item">Banho e tosa</span>
+    <span class="strip-item">Hotéis para pets</span>
+    <span class="strip-item">Creches</span>
+    <span class="strip-item">Anápolis</span>
+    <span class="strip-item">Goiânia</span>
+    <span class="strip-item">Aparecida de Goiânia</span>
+    <span class="strip-item" aria-hidden="true">Petshops</span>
+    <span class="strip-item" aria-hidden="true">Clínicas veterinárias</span>
+    <span class="strip-item" aria-hidden="true">Banho e tosa</span>
+    <span class="strip-item" aria-hidden="true">Hotéis para pets</span>
+    <span class="strip-item" aria-hidden="true">Creches</span>
+    <span class="strip-item" aria-hidden="true">Anápolis</span>
+    <span class="strip-item" aria-hidden="true">Goiânia</span>
+    <span class="strip-item" aria-hidden="true">Aparecida de Goiânia</span>
   </div>
 </div>
 
-<section id="ciclo">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Como isso funciona, na prática</p>
-      <h2>Um ciclo que não para — você só recebe a toalha <em>pronta</em></h2>
-    </div>
-    <div class="cycle-row">
-      <div class="card cycle-step"><span class="num">01</span><h3>Entregamos limpa</h3><p>Toalha macia e higienizada chega no seu negócio, sempre no dia combinado.</p></div>
-      <div class="card cycle-step"><span class="num">02</span><h3>Você usa no dia a dia</h3><p>Sem pensar em quantidade, sem economizar toalha com medo de faltar.</p></div>
-      <div class="card cycle-step"><span class="num">03</span><h3>A gente recolhe e confere</h3><p>No dia combinado, buscamos as toalhas sujas e contamos junto com você — o número vai direto pra sua próxima fatura.</p></div>
-      <div class="card cycle-step"><span class="num">04</span><h3>Lavamos com cuidado</h3><p>Água quente e um processo pensado pra eliminar risco de contaminação entre os pets.</p></div>
-    </div>
-    <div class="cycle-loopback">
-      <svg viewBox="0 0 220 36" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-dasharray="5 6">
-        <path d="M210 6c0 16-40 24-100 24S10 22 10 6"/>
-        <path d="M4 10l6-8 7 6" stroke-dasharray="0"/>
-      </svg>
-      <span>E o ciclo recomeça — toalha limpa, de novo</span>
-    </div>
-  </div>
-</section>
-
-<!-- VALUE DELIVERY — centered statement + supporting comparison, mirrors Sequel's "beyond capital" section -->
-<section class="value-delivery">
-  <div class="wrap">
-    <p class="eyebrow">Além da toalha limpa</p>
-    <h2>A gente resolve o que a alternativa mais óbvia <em>deixa</em> passar</h2>
-    <p class="lead-copy">Antes de assinar o Toalhão, praticamente todo petshop ou clínica já passou por lavar em casa, usar descartável ou terceirizar informalmente. Nenhuma dessas opções mostra o custo completo na etiqueta.</p>
-    <div class="grid-3" style="margin-top:48px;text-align:left;">
-      <div class="card"><span class="eyebrow">Toalha própria</span><h3 style="margin-top:10px;">Lavada no petshop</h3><p>O dinheiro fica parado comprando toalha, e ainda soma água, energia, máquina e hora de trabalho de alguém que podia estar atendendo cliente.</p></div>
-      <div class="card"><span class="eyebrow">Descartável</span><h3 style="margin-top:10px;">Parece barata, não é</h3><p>Um cão de porte grande encharca mais de uma — gera compra recorrente, estoque de caixas e lixo a cada atendimento.</p></div>
-      <div class="card"><span class="eyebrow">Lavanderia informal</span><h3 style="margin-top:10px;">Resolve até faltar</h3><p>Sem contrato, sem rota fixa e sem conferência — quando falta toalha ou a conta não bate, não tem pra quem reclamar.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- SPOTLIGHT — two-city cards, mirrors Sequel's testimonial pair (real coverage facts, not fabricated quotes) -->
+<!-- ============ COVERAGE ============ -->
 <section id="cobertura">
   <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Onde já rodamos</p>
-      <h2>Duas praças, o mesmo <em>cuidado</em></h2>
-    </div>
-    <p class="cov-intro">A entrega chega sempre no mesmo dia da semana no seu negócio — sem imprevisto, sem "esqueci de avisar".</p>
-    <div class="grid-2">
-      <div class="card cov-card">
-        <span class="eyebrow">Onde tudo começou</span>
-        <h3>Anápolis</h3>
-        <p>Onde a gente nasceu e hoje atende centenas de petshops, clínicas veterinárias e estúdios de banho e tosa em atividade.</p>
-        <ul class="cov-list">
-          <li>Dia de visita fixo <b>toda semana</b></li>
-          <li>Ciclo de cobrança <b>semanal · quinzenal · mensal</b></li>
-          <li>Reforço extra <b>quando o movimento aumenta</b></li>
-        </ul>
-        <a class="btn btn-ink" href="#lead">Falar com o time</a>
-      </div>
-      <div class="card cov-card">
-        <span class="eyebrow">Crescimento acelerado</span>
-        <h3>Goiânia</h3>
-        <p>Hoje é onde mais petshops e clínicas trocaram a lavanderia própria pela assinatura — dezenas já sentiram a diferença.</p>
-        <ul class="cov-list">
-          <li>Atendimento ativo em <b>vários bairros</b></li>
-          <li>Mesmo padrão de <b>higienização de Anápolis</b></li>
-          <li>Atendimento e faturamento <b>locais</b></li>
-        </ul>
-        <a class="btn btn-ink" href="#lead">Comparar com a minha rotina atual</a>
-      </div>
+    <div class="pair">
+      <article class="media-card rv">
+        <img src="images/towel-detail.jpg" alt="Toalha higienizada do Toalhão em uso">
+        <div class="inner">
+          <p class="label" style="margin-bottom:14px;">Onde nasceu</p>
+          <h3>Anápolis</h3>
+          <p>Rota fixa semanal em toda a cidade, com reforço programado nas semanas de pico e faturamento local.</p>
+        </div>
+      </article>
+      <article class="media-card rv">
+        <img src="images/hero-poster.jpg" alt="Balcão de petshop atendido em Goiânia">
+        <div class="inner">
+          <p class="label" style="margin-bottom:14px;">Em expansão</p>
+          <h3>Goiânia</h3>
+          <p>Rotas ativas na região central e sul, com o mesmo protocolo de lavagem e a mesma conferência de Anápolis.</p>
+        </div>
+      </article>
     </div>
   </div>
 </section>
 
-<!-- NETWORK STATS — full section, mirrors Sequel's "From early momentum to global awareness" -->
-<section class="stats-full">
+<!-- ============ CLOSING STATEMENT ============ -->
+<section class="statement">
   <div class="wrap">
-    <p class="eyebrow">Escala</p>
-    <h2>De uma rota a uma <em>operação</em></h2>
-    <p class="lead-copy">O que começou em Anápolis hoje roda em duas cidades, com rotas simultâneas e conferência em cada uma delas — sem perder o padrão do primeiro dia.</p>
-    <div class="stat-grid">
-      <div class="stat-block"><b>Centenas</b><span>de clientes ativos</span></div>
-      <div class="stat-block"><b>Múltiplas</b><span>rotas simultâneas</span></div>
-      <div class="stat-block"><b>2 cidades</b><span>Anápolis e Goiânia</span></div>
-      <div class="stat-block"><b>100%</b><span>das entregas conferidas na hora</span></div>
+    <h2>Construa uma rotina que não <em>depende</em> de você lembrar.</h2>
+    <p class="sub">Conte quantas toalhas o seu movimento consome por dia e a gente monta a rota, o lote e o ciclo de cobrança que encaixam nisso.</p>
+    <a class="btn btn-accent" href="#contato">Pedir proposta →</a>
+  </div>
+</section>
+
+<!-- ============ FAQ ============ -->
+<section id="duvidas">
+  <div class="wrap">
+    <p class="label" style="margin-bottom:22px;">Dúvidas</p>
+    <div class="faq">
+      <div class="faq-item"><button class="faq-q">Preciso comprar as toalhas?<span class="pm">+</span></button><div class="faq-a"><p>Não. O enxoval é do Toalhão. Você recebe os lotes prontos e devolve os usados na visita seguinte — não há investimento inicial em toalha nem custo de reposição por desgaste.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Como funciona a cobrança?<span class="pm">+</span></button><div class="faq-a"><p>Você escolhe o ciclo — semanal, quinzenal ou mensal. A fatura chega pelo WhatsApp com o detalhamento por visita e boleto em PDF anexo; também aceitamos Pix.</p></div></div>
+      <div class="faq-item"><button class="faq-q">E se faltar toalha num dia cheio?<span class="pm">+</span></button><div class="faq-a"><p>Você pede reforço fora do ciclo fixo pelo mesmo WhatsApp. Nas semanas de pico previsíveis — feriado, alta temporada de tosa — a gente já sobe o lote sem você precisar pedir.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Como sei que a contagem está certa?<span class="pm">+</span></button><div class="faq-a"><p>A conferência é feita na sua frente, a cada visita: conta-se o que entra limpo e o que sai sujo, com o responsável presente. Esse número — não uma estimativa nossa — é o que aparece item a item na fatura.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Qual o padrão de higienização?<span class="pm">+</span></button><div class="faq-a"><p>Lavagem térmica a 75°C, secagem industrial e separação por lote, sem misturar enxoval entre clientes. O processo foi montado para o risco específico de contaminação cruzada entre animais.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Existe quantidade mínima?<span class="pm">+</span></button><div class="faq-a"><p>Sim, definida conforme o seu movimento — é o que garante que a rota feche e o preço por toalha faça sentido. Na proposta a gente dimensiona isso junto com você.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Atendem fora de Anápolis e Goiânia?<span class="pm">+</span></button><div class="faq-a"><p>Hoje operamos nas duas cidades e em Aparecida de Goiânia. Para outras cidades da região, envie seus dados abaixo: avaliamos a inclusão no próximo ciclo de expansão de rota.</p></div></div>
     </div>
   </div>
 </section>
 
-<!-- SEGMENTS STRIP — thin horizontal bar, mirrors Sequel's credential-logo strip (real categories served, not fabricated certifications) -->
-<div class="stats">
-  <div class="wrap">
-    <span class="stat"><span class="dot"></span>Petshops</span>
-    <span class="stat"><span class="dot"></span>Clínicas veterinárias</span>
-    <span class="stat"><span class="dot"></span>Estúdios de banho e tosa</span>
-    <span class="stat"><span class="dot"></span>Anápolis · Goiânia · Aparecida de Goiânia</span>
-  </div>
-</div>
-
-<!-- PARTNERSHIP / CLOSING — mirrors Sequel's "Build what endures" closing statement -->
-<section class="closing">
-  <div class="wrap">
-    <p class="eyebrow">Próximo passo</p>
-    <h2>Seu petshop ou clínica merece parar de se <em>preocupar</em> com toalha.</h2>
-    <p style="margin-top:14px;">Fale com o time do Toalhão e veja se a sua rotina encaixa na assinatura.</p>
-    <a class="btn btn-primary" id="closingCta" href="#lead">Pedir cotação agora →</a>
-  </div>
-</section>
-
-<section id="faq">
-  <div class="wrap">
-    <div class="section-head">
-      <p class="eyebrow">Dúvidas frequentes</p>
-      <h2>Antes de chamar no WhatsApp</h2>
-    </div>
-    <div class="faq-list">
-      <div class="faq-item"><button class="faq-q">Preciso comprar as toalhas?<span class="plus">+</span></button><div class="faq-a"><p>Não — e nem deveria. As toalhas são do Toalhão: a gente aluga, lava e repõe. Você recebe prontas pra usar e devolve sujas na próxima visita, sem investir um real em enxoval.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Como funciona a cobrança?<span class="plus">+</span></button><div class="faq-a"><p>Você escolhe o ciclo que combina com o seu movimento — semanal, quinzenal ou mensal. A fatura chega pelo WhatsApp com boleto em PDF, e também dá pra pagar por Pix.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Existe quantidade mínima?<span class="plus">+</span></button><div class="faq-a"><p>Sim, ajustamos uma quantidade mínima conforme o movimento do seu negócio. E se a demanda subir de repente, é só pedir reforço extra.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Como eu sei que a conferência bate certinho?<span class="plus">+</span></button><div class="faq-a"><p>Em toda visita, contamos as toalhas entregues e recolhidas junto com o responsável pelo petshop — não é uma estimativa nossa. Esse número é o que aparece, item por item, na fatura que chega em seguida pelo WhatsApp.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Atendem clínica veterinária também?<span class="plus">+</span></button><div class="faq-a"><p>Sim — atendemos petshops, clínicas veterinárias e estúdios de banho e tosa, com o mesmo cuidado e padrão de higienização pra todo mundo.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Por que não levar numa lavanderia comum?<span class="plus">+</span></button><div class="faq-a"><p>Porque a toalha usada com pet passa de bicho em bicho — e uma lavagem malfeita vira porta de entrada pra pulga, fungo e bactéria. Nosso processo foi pensado só pra isso, com água quente e o cuidado que esse tipo de toalha exige.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Minha região ainda não é atendida. E agora?<span class="plus">+</span></button><div class="faq-a"><p>Hoje atendemos Anápolis e Goiânia com força. Se você está em outra cidade da região, preencha o formulário abaixo — a gente avalia incluir seu negócio no próximo ciclo de visitas.</p></div></div>
-    </div>
-  </div>
-</section>
-
-<section class="lead" id="lead">
-  <div class="wrap lead-wrap">
+<!-- ============ CONTACT ============ -->
+<section class="contact" id="contato">
+  <div class="wrap contact-grid">
     <div>
-      <p class="eyebrow">Fale com a gente</p>
-      <h2>Peça uma cotação e tire a toalha da sua lista de <em>preocupações</em>.</h2>
-      <p class="sub">Preencha os dados abaixo — o formulário monta uma mensagem pronta e abre direto no seu WhatsApp.</p>
+      <p class="label" style="margin-bottom:22px;">Fale com a gente</p>
+      <h2>Peça uma <em>proposta</em>.</h2>
+      <p class="sub">Preencha os campos e a gente abre a conversa no WhatsApp com seus dados já preenchidos. Um consultor responde no mesmo dia útil.</p>
     </div>
-    <form class="lead-form" id="leadForm">
-      <div class="field"><label for="nome">Nome do responsável</label><input id="nome" name="nome" autocomplete="name" required placeholder="Seu nome"></div>
-      <div class="field"><label for="petshop">Nome do petshop / clínica</label><input id="petshop" name="petshop" autocomplete="organization" required placeholder="Nome do negócio"></div>
+    <form id="leadForm">
+      <div class="field"><label for="nome">Responsável</label><input id="nome" name="nome" autocomplete="name" required placeholder="Seu nome"></div>
+      <div class="field"><label for="negocio">Petshop ou clínica</label><input id="negocio" name="negocio" autocomplete="organization" required placeholder="Nome do negócio"></div>
       <div class="field"><label for="cidade">Cidade</label>
-        <select id="cidade">
+        <select id="cidade" name="cidade">
           <option>Anápolis</option>
           <option>Goiânia</option>
           <option>Aparecida de Goiânia</option>
-          <option>Outra região</option>
+          <option>Outra cidade</option>
         </select>
       </div>
-      <div class="field"><label for="whats">WhatsApp</label><input id="whats" name="whats" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(62) 9 9999-9999"></div>
-      <div class="field"><label for="volume">Quantas toalhas usa por dia (aprox.)</label>
-        <select id="volume">
+      <div class="field"><label for="whats">WhatsApp</label><input id="whats" name="whats" type="tel" inputmode="tel" autocomplete="tel" required placeholder="(62) 9 0000-0000"></div>
+      <div class="field"><label for="volume">Toalhas por dia</label>
+        <select id="volume" name="volume">
           <option value="até 20">Até 20</option>
           <option value="entre 21 e 50">21 a 50</option>
           <option value="entre 51 e 100">51 a 100</option>
           <option value="mais de 100">Mais de 100</option>
         </select>
       </div>
-      <label class="consent"><input type="checkbox" id="consent" required> Concordo em ser contatado pelo Toalhão sobre esta cotação, por WhatsApp.</label>
-      <button type="submit" class="btn btn-primary" id="leadSubmit" style="justify-content:center;">Enviar no WhatsApp →</button>
-      <p class="lead-note" id="leadNote" aria-live="polite">Ao enviar, abrimos uma conversa no WhatsApp com a mensagem pronta — falta só você tocar em enviar por lá.</p>
-      <div id="leadFallback" style="display:none;"></div>
+      <label class="consent"><input type="checkbox" id="consent" required> Autorizo o Toalhão a me contatar por WhatsApp sobre esta proposta.</label>
+      <button type="submit" class="btn btn-accent">Abrir conversa no WhatsApp →</button>
+      <p class="form-note" id="formNote" aria-live="polite">A mensagem vai pronta — falta só você tocar em enviar dentro do WhatsApp.</p>
+      <div id="formOut"></div>
     </form>
   </div>
 </section>
 
+<!-- ============ FOOTER ============ -->
 <footer>
   <div class="wrap">
-    <div class="footer-brand"><img src="images/logo-badge.png" alt="Toalhão"></div>
-    <div class="footer-grid">
-      <div class="footer-col">
-        <h4>Navegação</h4>
+    <div class="foot-brand"><img src="images/logo-badge.png" alt="Toalhão"></div>
+    <div class="foot-grid">
+      <div class="foot-col">
+        <h4>Navegar</h4>
         <ul>
-          <li><a href="#segmentos">Início</a></li>
-          <li><a href="#ciclo">Como funciona</a></li>
+          <li><a href="#top">Início</a></li>
+          <li><a href="#operacao">Operação</a></li>
+          <li><a href="#assinatura">Assinatura</a></li>
           <li><a href="#cobertura">Cobertura</a></li>
-          <li><a href="#faq">Dúvidas</a></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="foot-col">
         <h4>Empresa</h4>
         <ul>
+          <li><a href="#duvidas">Dúvidas</a></li>
+          <li><a href="#contato">Pedir proposta</a></li>
           <li><a href="https://www.instagram.com/toalhao_toalheiro" target="_blank" rel="noopener">Instagram</a></li>
-          <li><a href="#lead">Pedir cotação</a></li>
         </ul>
       </div>
-      <div class="footer-col">
-        <h4>Cidades atendidas</h4>
+      <div class="foot-col">
+        <h4>Cobertura</h4>
         <ul>
-          <li><span>Anápolis, GO</span></li>
-          <li><span>Goiânia, GO</span></li>
-          <li><span>Aparecida de Goiânia, GO</span></li>
+          <li><span>Anápolis · GO</span></li>
+          <li><span>Goiânia · GO</span></li>
+          <li><span>Aparecida de Goiânia · GO</span></li>
         </ul>
       </div>
-      <div class="footer-col">
+      <div class="foot-col">
         <h4>Contato</h4>
         <ul>
-          <li><a href="https://wa.me/5562999987074" target="_blank" rel="noopener">WhatsApp</a></li>
+          <li><a href="https://wa.me/5562999987074" target="_blank" rel="noopener">(62) 99998-7074</a></li>
         </ul>
       </div>
     </div>
-    <div class="footer-bottom">
-      <span>© Toalhão — Anápolis · Goiânia</span>
+    <div class="foot-bottom">
+      <span class="label">© 2026 Toalhão · Todos os direitos reservados</span>
+      <div class="foot-social">
+        <a href="https://www.instagram.com/toalhao_toalheiro" target="_blank" rel="noopener" aria-label="Instagram">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>
+        </a>
+        <a href="https://wa.me/5562999987074" target="_blank" rel="noopener" aria-label="WhatsApp">
+          <svg width="17" height="17" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.4-1.42a9.87 9.87 0 0 0 4.64 1.18c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.21-8.25 8.21z"/></svg>
+        </a>
+      </div>
     </div>
+    <p class="foot-legal">Toalhão é um serviço de locação e higienização de enxoval têxtil para estabelecimentos que prestam serviços a animais. Coleta, lavagem e reposição executadas em rota programada nas cidades listadas acima.</p>
   </div>
 </footer>
 
-<a class="wa-float" href="https://wa.me/5562999987074" target="_blank" rel="noopener" aria-label="WhatsApp">
-  <svg viewBox="0 0 24 24" width="28" height="28" fill="#fff"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.4-1.42a9.87 9.87 0 0 0 4.64 1.18h.01c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13h-.01a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.21-8.25 8.21zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43-.14-.01-.31-.01-.48-.01a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.57.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
+<a class="fab" href="https://wa.me/5562999987074" target="_blank" rel="noopener" aria-label="Falar no WhatsApp">
+  <svg width="24" height="24" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.39 1.26 4.81L2 22l5.4-1.42a9.87 9.87 0 0 0 4.64 1.18c5.46 0 9.9-4.45 9.9-9.91 0-2.65-1.03-5.14-2.9-7.01A9.82 9.82 0 0 0 12.04 2zm0 18.13a8.2 8.2 0 0 1-4.19-1.15l-.3-.18-3.12.82.83-3.04-.2-.31a8.19 8.19 0 0 1-1.26-4.36c0-4.54 3.7-8.24 8.26-8.24 2.2 0 4.27.86 5.83 2.42a8.18 8.18 0 0 1 2.41 5.83c0 4.55-3.7 8.21-8.25 8.21zm4.52-6.16c-.25-.12-1.47-.72-1.7-.81-.23-.08-.39-.12-.56.13-.17.25-.64.81-.78.97-.14.17-.29.19-.53.06-.25-.12-1.04-.38-1.99-1.22-.73-.66-1.23-1.46-1.37-1.71-.14-.25-.02-.38.11-.5.11-.11.25-.29.37-.43.12-.15.16-.25.25-.42.08-.17.04-.31-.02-.44-.06-.12-.56-1.35-.77-1.85-.2-.48-.41-.42-.56-.43h-.48a.93.93 0 0 0-.67.31c-.23.25-.87.85-.87 2.08 0 1.22.89 2.41 1.02 2.57.12.17 1.75 2.67 4.24 3.75.59.26 1.05.41 1.41.52.59.19 1.13.16 1.55.1.47-.07 1.47-.6 1.68-1.18.21-.58.21-1.07.15-1.18-.06-.11-.23-.17-.48-.29z"/></svg>
 </a>
 
 <script>
+  /* header solidifies on scroll */
   (function(){
-    const header = document.querySelector('header');
-    function onScroll(){
-      if(header) header.classList.toggle('solid', window.scrollY > 16);
-    }
-    window.addEventListener('scroll', onScroll, { passive:true });
-    onScroll();
+    var h = document.getElementById('hdr');
+    function s(){ h.classList.toggle('solid', window.scrollY > 20); }
+    window.addEventListener('scroll', s, {passive:true}); s();
   })();
 
+  /* mobile sheet */
   (function(){
-    const toggle = document.getElementById('navToggle');
-    const sheet = document.getElementById('navSheet');
-    if(!toggle || !sheet) return;
-    function close(){
-      sheet.classList.remove('open');
-      toggle.setAttribute('aria-expanded','false');
-    }
-    toggle.addEventListener('click', ()=>{
-      const isOpen = sheet.classList.toggle('open');
-      toggle.setAttribute('aria-expanded', String(isOpen));
+    var t = document.getElementById('navToggle'), s = document.getElementById('navSheet');
+    if(!t || !s) return;
+    t.addEventListener('click', function(){
+      var open = s.classList.toggle('open');
+      t.setAttribute('aria-expanded', String(open));
     });
-    sheet.querySelectorAll('a').forEach(a => a.addEventListener('click', close));
-  })();
-
-  (function(){
-    const targets = document.querySelectorAll('.card, .faq-item, .section-head, .alt-close, .lead-form, .cycle-loopback, .stat, .segment-card, .belief-item, .stat-block');
-    targets.forEach(el => el.classList.add('reveal'));
-    if(!('IntersectionObserver' in window)){
-      targets.forEach(el => el.classList.add('in-view'));
-      return;
-    }
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => {
-        if(entry.isIntersecting){
-          entry.target.classList.add('in-view');
-          observer.unobserve(entry.target);
-        }
+    s.querySelectorAll('a').forEach(function(a){
+      a.addEventListener('click', function(){
+        s.classList.remove('open');
+        t.setAttribute('aria-expanded','false');
       });
-    }, { threshold:.05, rootMargin:'0px 0px 40px 0px' });
-    targets.forEach(el => observer.observe(el));
+    });
   })();
 
-  document.querySelectorAll('.faq-item').forEach((item, i)=>{
-    const q = item.querySelector('.faq-q');
-    const a = item.querySelector('.faq-a');
-    a.id = 'faq-a-' + i;
-    q.setAttribute('aria-expanded', 'false');
+  /* scroll reveal */
+  (function(){
+    var els = document.querySelectorAll('.rv, .statement h2, .statement p.sub, .beliefs h2, .metrics h2, .metrics p.sub, .contact h2, .contact p.sub, .faq-item');
+    els.forEach(function(e){ e.classList.add('rv'); });
+    if(!('IntersectionObserver' in window)){
+      els.forEach(function(e){ e.classList.add('in'); }); return;
+    }
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(en){
+        if(en.isIntersecting){ en.target.classList.add('in'); io.unobserve(en.target); }
+      });
+    }, {threshold:.06, rootMargin:'0px 0px -40px 0px'});
+    els.forEach(function(e){ io.observe(e); });
+  })();
+
+  /* FAQ accordion */
+  document.querySelectorAll('.faq-item').forEach(function(item, i){
+    var q = item.querySelector('.faq-q'), a = item.querySelector('.faq-a');
+    a.id = 'faq-' + i;
+    q.setAttribute('aria-expanded','false');
     q.setAttribute('aria-controls', a.id);
-    q.addEventListener('click', ()=>{
-      const isOpen = item.classList.contains('open');
-      document.querySelectorAll('.faq-item.open').forEach(o=>{
+    q.addEventListener('click', function(){
+      var open = item.classList.contains('open');
+      document.querySelectorAll('.faq-item.open').forEach(function(o){
         o.classList.remove('open');
         o.querySelector('.faq-a').style.maxHeight = null;
-        o.querySelector('.faq-q').setAttribute('aria-expanded', 'false');
+        o.querySelector('.faq-q').setAttribute('aria-expanded','false');
       });
-      if(!isOpen){
+      if(!open){
         item.classList.add('open');
         a.style.maxHeight = a.scrollHeight + 'px';
-        q.setAttribute('aria-expanded', 'true');
+        q.setAttribute('aria-expanded','true');
       }
     });
   });
 
+  /* lead form -> WhatsApp, with honest status + real fallback link */
   document.getElementById('leadForm').addEventListener('submit', function(e){
     e.preventDefault();
-    const nome = document.getElementById('nome').value;
-    const petshop = document.getElementById('petshop').value;
-    const cidade = document.getElementById('cidade').value;
-    const whats = document.getElementById('whats').value;
-    const volume = document.getElementById('volume').value;
-    const msg = `Olá! Sou ${nome}, responsável por ${petshop} em ${cidade}. Meu WhatsApp é ${whats}. Usamos ${volume} toalhas por dia. Gostaria de pedir uma cotação do Toalhão.`;
-    const waUrl = 'https://wa.me/5562999987074?text=' + encodeURIComponent(msg);
-    const opened = window.open(waUrl, '_blank');
-    const note = document.getElementById('leadNote');
-    const fallback = document.getElementById('leadFallback');
-
+    var nome = document.getElementById('nome').value,
+        negocio = document.getElementById('negocio').value,
+        cidade = document.getElementById('cidade').value,
+        whats = document.getElementById('whats').value,
+        volume = document.getElementById('volume').value;
+    var msg = 'Olá! Sou ' + nome + ', responsável por ' + negocio + ' em ' + cidade +
+              '. Meu WhatsApp é ' + whats + '. Usamos ' + volume +
+              ' toalhas por dia. Gostaria de uma proposta do Toalhão.';
+    var url = 'https://wa.me/5562999987074?text=' + encodeURIComponent(msg);
+    var opened = window.open(url, '_blank');
+    var note = document.getElementById('formNote'), out = document.getElementById('formOut');
     note.textContent = opened
-      ? 'Abrimos sua conversa no WhatsApp — confira a mensagem e toque em enviar por lá pra concluir.'
-      : 'Não conseguimos abrir o WhatsApp automaticamente. Toque no link abaixo pra continuar.';
-
-    fallback.textContent = '';
-    fallback.style.display = 'block';
-    const link = document.createElement('a');
-    link.href = waUrl;
-    link.target = '_blank';
-    link.rel = 'noopener';
-    link.textContent = 'Abrir conversa no WhatsApp';
-    fallback.append('Link direto: ', link);
+      ? 'Abrimos a conversa no WhatsApp — confira a mensagem e toque em enviar por lá para concluir.'
+      : 'Não conseguimos abrir o WhatsApp automaticamente. Use o link abaixo.';
+    out.textContent = '';
+    out.style.display = 'block';
+    var a = document.createElement('a');
+    a.href = url; a.target = '_blank'; a.rel = 'noopener';
+    a.textContent = 'Abrir conversa no WhatsApp';
+    out.append('Link direto: ', a);
   });
 </script>
 
