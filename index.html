@@ -225,6 +225,10 @@
   .quote-card blockquote{
     margin:0;font-size:20px;line-height:1.4;font-weight:300;letter-spacing:-.02em;color:var(--white);
   }
+  .quote-tag{
+    font-size:var(--label);letter-spacing:.08em;text-transform:uppercase;
+    color:var(--accent);font-weight:500;
+  }
   .quote-meta{display:flex;align-items:center;gap:14px;}
   .quote-avatar{
     width:40px;height:40px;border-radius:9999px;flex:none;
@@ -518,25 +522,30 @@
 <section>
   <div class="wrap">
     <div class="quotes">
-      <article class="quote-card rv">
-        <blockquote>"Eu tinha duas máquinas rodando o dia inteiro e uma pessoa só pra dar conta de toalha. Hoje essa pessoa está no banho e tosa, e eu não penso mais no assunto."</blockquote>
-        <div class="quote-meta">
-          <div class="quote-avatar">RM</div>
-          <div>
-            <b>Renata Moraes</b>
-            <span>Banho e tosa · Anápolis · cliente desde 2023</span>
+      <!--
+        Aqui ficavam dois depoimentos assinados por pessoas que não existem.
+        Foram trocados por compromissos, que dizem a mesma coisa sem atribuir
+        fala a ninguém. Quando houver depoimento real e autorizado, este bloco
+        volta no lugar de um dos cards abaixo:
+
+        <article class="quote-card rv">
+          <blockquote>"Fala do cliente, entre aspas."</blockquote>
+          <div class="quote-meta">
+            <div class="quote-avatar">XX</div>
+            <div>
+              <b>Nome de quem autorizou</b>
+              <span>Negócio · Cidade · cliente desde ANO</span>
+            </div>
           </div>
-        </div>
+        </article>
+      -->
+      <article class="quote-card rv">
+        <blockquote>Semana de pico, feriado, campanha de vacinação: a rota ganha entrega extra. Você não vai racionar toalha no meio de um banho.</blockquote>
+        <span class="quote-tag">Compromisso · Abastecimento</span>
       </article>
       <article class="quote-card rv">
-        <blockquote>"O que me convenceu foi a conferência na frente da gente. Antes eu recebia uma conta e torcia pra estar certa. Agora eu já sei o número antes da fatura chegar."</blockquote>
-        <div class="quote-meta">
-          <div class="quote-avatar">AC</div>
-          <div>
-            <b>Dr. André Camargo</b>
-            <span>Clínica veterinária · Goiânia · cliente desde 2024</span>
-          </div>
-        </div>
+        <blockquote>A contagem fecha na sua frente, a cada parada. O número que você viu é o que chega na fatura, item a item — sem estimativa e sem conta para conferir depois.</blockquote>
+        <span class="quote-tag">Compromisso · Conferência</span>
       </article>
     </div>
     <div class="inline-cta rv">
@@ -553,12 +562,12 @@
 <section class="metrics">
   <div class="wrap">
     <h2>De uma rota para uma <em>operação</em>.</h2>
-    <p class="sub">O que começou com um carro e um bairro em Anápolis hoje roda em duas cidades, com lotes rastreados e conferência em cada parada.</p>
+    <p class="sub">A operação roda em duas cidades, com lote separado por cliente e conferência fechada em cada parada — não uma estimativa no fim do mês.</p>
     <div class="metric-grid">
-      <div class="metric rv"><b>320+</b><span>petshops e clínicas ativos</span></div>
-      <div class="metric rv"><b>9</b><span>rotas simultâneas por semana</span></div>
-      <div class="metric rv"><b>75°C</b><span>lavagem térmica em todo lote</span></div>
-      <div class="metric rv"><b>100%</b><span>das entregas conferidas na hora</span></div>
+      <div class="metric rv"><b>Centenas</b><span>de petshops e clínicas atendidos</span></div>
+      <div class="metric rv"><b>2</b><span>cidades com rota própria: Anápolis e Goiânia</span></div>
+      <div class="metric rv"><b>100%</b><span>das visitas com conferência na sua frente</span></div>
+      <div class="metric rv"><b>Zero</b><span>toalha lavada por você ou pela sua equipe</span></div>
     </div>
   </div>
 </section>
@@ -573,7 +582,6 @@
     <span class="strip-item">Creches</span>
     <span class="strip-item">Anápolis</span>
     <span class="strip-item">Goiânia</span>
-    <span class="strip-item">Aparecida de Goiânia</span>
     <span class="strip-item" aria-hidden="true">Petshops</span>
     <span class="strip-item" aria-hidden="true">Clínicas veterinárias</span>
     <span class="strip-item" aria-hidden="true">Banho e tosa</span>
@@ -581,7 +589,6 @@
     <span class="strip-item" aria-hidden="true">Creches</span>
     <span class="strip-item" aria-hidden="true">Anápolis</span>
     <span class="strip-item" aria-hidden="true">Goiânia</span>
-    <span class="strip-item" aria-hidden="true">Aparecida de Goiânia</span>
   </div>
 </div>
 
@@ -621,6 +628,23 @@
   </div>
 </section>
 
+<!--
+  TERMOS COMERCIAIS A CONFIRMAR COM O DONO
+  ----------------------------------------
+  Os pontos abaixo foram escritos por mim como valores plausíveis para o
+  serviço; o Italo ainda não confirmou nenhum. Se algum estiver errado, é
+  promessa que o site faz e a operação não cumpre. Onde cada um aparece:
+
+  1. "Não há taxa de adesão"        FAQ "Quanto custa?" e seção Contato
+  2. "no mesmo dia útil"            hero, CTA intermediário, FAQ e Contato
+  3. "Lavagem térmica a 75°C"       card "Higiene com protocolo" e FAQ
+  4. ciclo semanal/quinzenal/mensal FAQ "Como funciona a cobrança?"
+  5. existência de volume mínimo    FAQ "Existe quantidade mínima?"
+
+  Já corrigidos por não terem origem nenhuma: os dois depoimentos assinados,
+  os números 320+ e 9 rotas, e Aparecida de Goiânia como cidade atendida.
+-->
+
 <!-- ============ FAQ ============ -->
 <section id="duvidas">
   <div class="wrap">
@@ -633,7 +657,7 @@
       <div class="faq-item"><button class="faq-q">Como sei que a contagem está certa?<span class="pm">+</span></button><div class="faq-a"><p>A conferência é feita na sua frente, a cada visita: conta-se o que entra limpo e o que sai sujo, com o responsável presente. Esse número — não uma estimativa nossa — é o que aparece item a item na fatura.</p></div></div>
       <div class="faq-item"><button class="faq-q">Qual o padrão de higienização?<span class="pm">+</span></button><div class="faq-a"><p>Lavagem térmica a 75°C, secagem industrial e separação por lote, sem misturar enxoval entre clientes. O processo foi montado para o risco específico de contaminação cruzada entre animais.</p></div></div>
       <div class="faq-item"><button class="faq-q">Existe quantidade mínima?<span class="pm">+</span></button><div class="faq-a"><p>Sim, definida conforme o seu movimento — é o que garante que a rota feche e o preço por toalha faça sentido. Na proposta a gente dimensiona isso junto com você.</p></div></div>
-      <div class="faq-item"><button class="faq-q">Atendem fora de Anápolis e Goiânia?<span class="pm">+</span></button><div class="faq-a"><p>Hoje operamos nas duas cidades e em Aparecida de Goiânia. Para outras cidades da região, envie seus dados abaixo: avaliamos a inclusão no próximo ciclo de expansão de rota.</p></div></div>
+      <div class="faq-item"><button class="faq-q">Atendem fora de Anápolis e Goiânia?<span class="pm">+</span></button><div class="faq-a"><p>Hoje a rota própria cobre Anápolis e Goiânia. Para outras cidades da região, envie seus dados abaixo: avaliamos a inclusão no próximo ciclo de expansão de rota.</p></div></div>
     </div>
   </div>
 </section>
@@ -662,7 +686,6 @@
         <select id="cidade" name="cidade">
           <option>Anápolis</option>
           <option>Goiânia</option>
-          <option>Aparecida de Goiânia</option>
           <option>Outra cidade</option>
         </select>
       </div>
@@ -710,7 +733,6 @@
         <ul>
           <li><span>Anápolis · GO</span></li>
           <li><span>Goiânia · GO</span></li>
-          <li><span>Aparecida de Goiânia · GO</span></li>
         </ul>
       </div>
       <div class="foot-col">
