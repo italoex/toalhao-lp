@@ -1,0 +1,21 @@
+# Toalhão — https://www.toalhao.com
+# Site institucional de uma página. Nada aqui é privado ou gerado por usuário.
+
+User-agent: *
+Allow: /
+
+# Rastreadores de IA são bem-vindos: parte da procura por este serviço
+# hoje acontece dentro de assistentes, não só no buscador.
+User-agent: GPTBot
+Allow: /
+
+User-agent: ClaudeBot
+Allow: /
+
+User-agent: PerplexityBot
+Allow: /
+
+User-agent: Google-Extended
+Allow: /
+
+Sitemap: https://www.toalhao.com/sitemap.xml
