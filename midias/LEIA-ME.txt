@@ -11,6 +11,10 @@ Nomeie cada arquivo com o nome do slot. A extensão pode ser qualquer uma:
     hero-poster.jpg          -> opcional; se faltar, é extraído do vídeo
     card-petshop.jpg         -> card "Você nunca espera a sua toalha voltar"
     card-clinica.jpg         -> card "Higiene com protocolo"
+    passo-entrega.jpg        -> passo 01, Entrega (deitada)
+    passo-uso.jpg            -> passo 02, Uso (deitada)
+    passo-coleta.jpg         -> passo 03, Coleta (deitada)
+    passo-ciclo.jpg          -> passo 04, Lavagem (deitada)
     cobertura-anapolis.jpg   -> card de cobertura, Anápolis
     cobertura-goiania.jpg    -> card de cobertura, Goiânia
     logo.png                 -> logo (PNG com fundo transparente)

@@ -278,7 +278,13 @@
   .steps{display:grid;grid-template-columns:1fr;gap:0;border-top:1px solid var(--graphite);}
   @media(min-width:900px){.steps{grid-template-columns:repeat(4,1fr);}}
   .step{padding:32px 28px 36px 0;border-bottom:1px solid var(--graphite);}
-  @media(min-width:900px){.step{border-bottom:none;padding-right:36px;}}
+  @media(min-width:900px){.step{border-bottom:none;padding-right:24px;}}
+  .step-img{
+    width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:14px;
+    background:var(--charcoal);margin-bottom:20px;display:block;
+    filter:saturate(.9) brightness(.86);transition:filter .5s ease;
+  }
+  .step:hover .step-img{filter:saturate(1) brightness(.98);}
   .step .n{font-size:var(--label);letter-spacing:.08em;color:var(--accent);font-weight:500;}
   .step h3{font-size:var(--h3);margin:16px 0 10px;line-height:1.2;}
   .step p{font-size:var(--small);line-height:1.6;color:var(--smoke);}
@@ -500,10 +506,10 @@
 <section style="padding-top:0;">
   <div class="wrap">
     <div class="steps">
-      <div class="step rv"><span class="n">01 — Entrega</span><h3>Chega limpa</h3><p>Lote higienizado e lacrado desembarca no dia fixo da sua rota, sem você pedir.</p></div>
-      <div class="step rv"><span class="n">02 — Uso</span><h3>Você usa à vontade</h3><p>Sem racionar toalha no meio do banho, sem segurar atendimento por falta de enxoval.</p></div>
-      <div class="step rv"><span class="n">03 — Coleta</span><h3>Recolhemos e contamos</h3><p>Conferência na hora, com o responsável presente. Esse número é o que vai pra fatura.</p></div>
-      <div class="step rv"><span class="n">04 — Lavagem</span><h3>Volta pro ciclo</h3><p>Lavagem térmica, secagem e separação por lote. E o ciclo recomeça na próxima visita.</p></div>
+      <div class="step rv"><!-- slot: passo-entrega --><img class="step-img" src="images/passo-entrega.jpg" alt="Entregador do Toalhão passando o lote de toalhas limpas para a atendente do petshop" loading="lazy"><span class="n">01 — Entrega</span><h3>Chega limpa</h3><p>Lote higienizado e lacrado desembarca no dia fixo da sua rota, sem você pedir.</p></div>
+      <div class="step rv"><!-- slot: passo-uso --><img class="step-img" src="images/passo-uso.jpg" alt="Cão sendo secado com toalha do Toalhão no banho e tosa" loading="lazy"><span class="n">02 — Uso</span><h3>Você usa à vontade</h3><p>Sem racionar toalha no meio do banho, sem segurar atendimento por falta de enxoval.</p></div>
+      <div class="step rv"><!-- slot: passo-coleta --><img class="step-img" src="images/passo-coleta.jpg" alt="Conferência de uma toalha, peça a peça, na coleta" loading="lazy"><span class="n">03 — Coleta</span><h3>Recolhemos e contamos</h3><p>Conferência na hora, com o responsável presente. Esse número é o que vai pra fatura.</p></div>
+      <div class="step rv"><!-- slot: passo-ciclo --><img class="step-img" src="images/passo-ciclo.jpg" alt="Toalha saindo da lavadora industrial após a lavagem térmica" loading="lazy"><span class="n">04 — Lavagem</span><h3>Volta pro ciclo</h3><p>Lavagem térmica, secagem e separação por lote. E o ciclo recomeça na próxima visita.</p></div>
     </div>
   </div>
 </section>

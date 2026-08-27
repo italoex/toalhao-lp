@@ -131,6 +131,10 @@ acertar isso sozinho.
 | `hero-poster` | `hero-poster.jpg` | Primeiro quadro do topo, enquanto o vídeo carrega | 1920×1080 |
 | `card-petshop` | `card-petshop.jpg` | Card "Você nunca espera a sua toalha voltar" | 1400×1400, quadrado |
 | `card-clinica` | `card-clinica.jpg` | Card "Higiene com protocolo" | 1400×1400, quadrado |
+| `passo-entrega` | `passo-entrega.jpg` | Passo 01 — Entrega | 1400×1050, deitada |
+| `passo-uso` | `passo-uso.jpg` | Passo 02 — Uso | 1400×1050, deitada |
+| `passo-coleta` | `passo-coleta.jpg` | Passo 03 — Coleta | 1400×1050, deitada |
+| `passo-ciclo` | `passo-ciclo.jpg` | Passo 04 — Lavagem | 1400×1050, deitada |
 | `cobertura-anapolis` | `cobertura-anapolis.jpg` | Card de cobertura — Anápolis | 1400×1400, quadrado |
 | `cobertura-goiania` | `cobertura-goiania.jpg` | Card de cobertura — Goiânia | 1400×1400, quadrado |
 | `logo` | `logo-badge.png` | Logo no topo e no rodapé | PNG com fundo transparente, 600px |
@@ -150,6 +154,8 @@ Isso muda mais o resultado do que a resolução:
 - **Cards quadrados:** o texto entra **por baixo**, sobre um degradê escuro.
   Deixe o **terço inferior** mais limpo e mantenha o assunto principal na
   metade de cima.
+- **Passos do processo:** deitadas, 4:3. O texto entra **abaixo** da imagem,
+  não por cima — então aqui não é preciso poupar canto nenhum.
 - **Logo:** o site é preto. A marca precisa funcionar sobre fundo escuro — de
   preferência com contorno claro ou versão clara.
 
@@ -182,3 +188,27 @@ convertidos pelo ffmpeg automaticamente.
 
 - `python3` com Pillow — instale com `pip install pillow`
 - `ffmpeg` — no Ubuntu/Debian, `sudo apt install ffmpeg`
+
+---
+
+## Foto que chegou comprimida
+
+Foto que passou por WhatsApp, print de tela ou download de rede social chega
+pequena e com quadriculado nas áreas lisas. Dá para recuperar parte disso:
+
+```bash
+python3 scripts/realce-foto.py entrada.jpg saida.png --lado 1200 \
+    --amostra 0.40,0.52,0.62,0.60 --forca-cor 0.7
+```
+
+O script desfaz o quadriculado da compressão, corrige o dominante de cor,
+amplia com um filtro melhor que o do navegador e devolve micro-contraste.
+
+O `--amostra` é uma região que você sabe que é branca, em frações da imagem
+(`x0,y0,x1,y1`) — numa foto do veículo, a carroceria. É a partir dela que o
+dominante é medido. Sem esse parâmetro, a correção de cor é pulada.
+
+**O que isso não faz:** criar detalhe que não está no arquivo. Ampliar de
+450px para 1200px limpa defeito, não inventa nitidez. Arquivo grande de
+origem continua sendo a única forma de ter detalhe de verdade — o script
+existe para quando esse arquivo não existe mais.
