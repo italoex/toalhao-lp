@@ -9,3 +9,12 @@ images/.tmp-conversao.*
 # Artefatos do Python
 __pycache__/
 *.pyc
+
+# Masters de vídeo: pesados demais para o histórico do Git.
+# midias/hero.mp4 tem 53 MB; entrar no histórico é praticamente
+# irreversível (exige reescrever o histórico para remover depois).
+# O master está no Google Drive; o que o site usa é images/hero-video.mp4,
+# gerado a partir dele. Para versionar mesmo assim, remova a linha abaixo.
+midias/*.mp4
+midias/*.mov
+midias/*.mkv

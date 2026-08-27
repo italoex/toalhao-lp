@@ -85,6 +85,17 @@ SLOTS = [
         "onde": "Vídeo de fundo do topo da página (tela inteira)",
         "dica": "Filme na horizontal. O texto fica no canto inferior esquerdo — "
                 "deixe essa área com pouca informação visual.",
+        # O comercial original termina com um cartão de logo que entra em fade
+        # a partir de 18,1s. Como aqui o vídeo roda em loop, esse cartão
+        # apareceria e cortaria seco de volta para a primeira cena. Cortar
+        # antes do fade deixa o loop limpo. Ajuste ou remova se trocar o vídeo.
+        "cortar_em": 18.0,
+        # Este slot fica atrás de um degradê escuro e de texto: é cenário, não
+        # conteúdo que alguém assiste de perto. Comparando CRF 20/23/26 em
+        # zoom 1:1 na etiqueta bordada (a textura mais fina do vídeo) não há
+        # diferença visível, e CRF 20 custa 2,8 MB a mais. 23 é o ponto certo
+        # aqui; os outros slots seguem o nível global.
+        "crf": 23,
     },
     {
         "nome": "hero-poster",
@@ -248,13 +259,17 @@ def processar_video(origem, slot):
     filtro = (f"scale='min({alvo_l},iw)':'min({alvo_a},ih)'"
               f":force_original_aspect_ratio=decrease:force_divisible_by=2")
 
-    resultado = subprocess.run(
-        ["ffmpeg", "-y", "-i", origem,
-         "-vf", filtro,
-         "-c:v", "libx264", "-crf", str(VIDEO_CRF), "-preset", "slow",
-         "-pix_fmt", "yuv420p", "-movflags", "+faststart",
-         "-an", destino],
-        capture_output=True, text=True)
+    cmd = ["ffmpeg", "-y", "-i", origem]
+    # Corte opcional de duração (ver "cortar_em" na definição do slot).
+    if slot.get("cortar_em"):
+        cmd += ["-t", str(slot["cortar_em"])]
+    cmd += ["-vf", filtro,
+            "-c:v", "libx264", "-crf", str(slot.get("crf", VIDEO_CRF)),
+            "-preset", "slow",
+            "-pix_fmt", "yuv420p", "-movflags", "+faststart",
+            "-an", destino]
+
+    resultado = subprocess.run(cmd, capture_output=True, text=True)
 
     if resultado.returncode != 0:
         return False, resultado.stderr.strip().splitlines()[-1][:160]
