@@ -1,17 +1,34 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" role="img" aria-label="Toalhão">
-  <!-- Toalha laranja da marca Toalhão, pendurada no varão -->
-  <g stroke="#201450" stroke-width="4" stroke-linejoin="round" stroke-linecap="round" fill="none">
-    <!-- varão: só o trecho à esquerda aparece; o resto fica atrás da toalha -->
-    <path d="M9 14 H26" stroke="#fff" stroke-width="9"/>
-    <path d="M9 14 H26"/>
-    <circle cx="9.5" cy="14" r="5.5" fill="#fff"/>
-    <!-- corpo da toalha -->
-    <path d="M17 9 C13.5 24 12.5 40 13 56 C13.1 59 14.8 60.3 17.8 60.2 C31 59.8 33 59.8 46.2 60.2 C49.2 60.3 50.9 59 51 56 C51.5 40 50.5 24 47 9 Z"
-          fill="#FC8309"/>
-    <!-- vinco do avesso -->
-    <path d="M17 9 C20.5 15 21.8 21 21.4 27.5" stroke-width="3"/>
-    <!-- bainha -->
-    <path d="M13.3 47 C23 44.6 32 48.8 41 46.6 C44.8 45.7 47.9 44.3 50.6 42.6"
-          stroke="#fff" stroke-width="4"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100" role="img" aria-label="Toalhão">
+  <!-- A toalha da marca Toalhão: laranja #FC8309, contorno #201450, pendurada
+       no varão de pontas arredondadas, com a bainha diagonal e a dobra lateral. -->
+  <defs>
+    <path id="varao" d="M10 38 L92 19"/>
+    <path id="corpo" d="M36 16
+             C48 11 62 10 74.5 14
+             C76.6 27 75.4 42 76.4 57
+             C75.6 71 74.2 84 72 91
+             C60 95 48 95.2 38.5 92.6
+             C34.6 91.6 31.4 89 30 84.6
+             C29 72 29.4 57 29.8 44
+             C30.3 31 33 20 36 16 Z"/>
+    <path id="vinco" d="M38.6 15.2 C35.6 30 35 48 35.6 64 C36 77 37 86 38.8 93.4"/>
+    <path id="bainha" d="M30.3 78.5 C45 84 61 82.6 76.6 74"/>
+  </defs>
+
+  <g fill="none" stroke-linecap="round" stroke-linejoin="round">
+    <g stroke="#fff" stroke-width="8.6">
+      <use href="#varao"/>
+      <circle cx="10" cy="38" r="6.8"/>
+      <circle cx="92" cy="18" r="5.4"/>
+      <use href="#corpo"/>
+    </g>
+    <use href="#varao" stroke="#fff" stroke-width="5.4"/>
+    <use href="#varao" stroke="#201450" stroke-width="3.1"/>
+    <circle cx="10" cy="38" r="6.8" fill="#fff" stroke="#201450" stroke-width="3.1"/>
+    <circle cx="92" cy="18" r="5.4" fill="#fff" stroke="#201450" stroke-width="3.1"/>
+    <use href="#corpo" fill="#FC8309" stroke="#201450" stroke-width="3.1"/>
+    <use href="#vinco" stroke="#201450" stroke-width="2.4"/>
+    <use href="#bainha" stroke="#201450" stroke-width="4.6"/>
+    <use href="#bainha" stroke="#fff" stroke-width="2.2"/>
   </g>
 </svg>
