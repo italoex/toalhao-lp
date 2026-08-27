@@ -14,6 +14,11 @@ Como usar
 
        python3 scripts/midias.py
 
+   Para mudar o nível de qualidade:
+
+       python3 scripts/midias.py --qualidade maxima
+       python3 scripts/midias.py --qualidade leve
+
 3. Os arquivos otimizados são gravados em `images/`, que é o que o site usa.
    Seus originais em `midias/` nunca são alterados.
 
@@ -21,12 +26,11 @@ Princípios de qualidade aplicados
 ---------------------------------
 * Nunca amplia. Se o original for menor que o alvo, mantém o tamanho original
   (ampliar só geraria borrão) e avisa que a imagem vai ficar mole na tela.
-* JPEG em qualidade 92 com croma 4:4:4 (sem subamostragem), progressivo.
+* JPEG com croma 4:4:4 (sem subamostragem), progressivo.
   4:4:4 preserva a cor nas bordas — é o que evita franja colorida em texto,
   pelo de animal e detalhe fino.
 * PNG mantém transparência e é gravado sem perdas.
-* Vídeo em H.264 CRF 20, preset slow, faststart, sem áudio (é fundo mudo).
-  CRF 20 é praticamente indistinguível do original em tela.
+* Vídeo em H.264, preset slow, faststart, sem áudio (é fundo mudo).
 * Metadados de rotação de celular são aplicados antes de redimensionar.
 """
 
@@ -39,9 +43,31 @@ RAIZ = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 ORIGEM = os.path.join(RAIZ, "midias")
 DESTINO = os.path.join(RAIZ, "images")
 
-# Qualidade de compressão
-JPEG_QUALIDADE = 92
-VIDEO_CRF = 20
+# ---------------------------------------------------------------------------
+# Níveis de qualidade.
+#
+# `escala` multiplica o tamanho alvo de cada slot. `crf` é a compressão do
+# vídeo (menor = melhor e mais pesado; cada -6 dobra o arquivo). `jpeg` é a
+# qualidade das fotos.
+#
+# O padrão é `alta`, que já fica no ponto de retorno decrescente para web: daí
+# para cima o arquivo cresce muito e a diferença na tela some. Use `maxima` se
+# você tem tela 4K e prioriza fidelidade acima de tempo de carregamento.
+# ---------------------------------------------------------------------------
+NIVEIS = {
+    "maxima": {"escala": 2.0, "crf": 16, "jpeg": 97,
+               "resumo": "fidelidade acima de tudo; arquivos bem maiores"},
+    "alta":   {"escala": 1.0, "crf": 20, "jpeg": 92,
+               "resumo": "padrão; equilíbrio entre nitidez e carregamento"},
+    "leve":   {"escala": 0.7, "crf": 25, "jpeg": 86,
+               "resumo": "carregamento rápido; aceita perder algum detalhe"},
+}
+NIVEL_PADRAO = "alta"
+
+# Preenchidos em main() a partir do nível escolhido.
+JPEG_QUALIDADE = NIVEIS[NIVEL_PADRAO]["jpeg"]
+VIDEO_CRF = NIVEIS[NIVEL_PADRAO]["crf"]
+ESCALA = NIVEIS[NIVEL_PADRAO]["escala"]
 
 # ---------------------------------------------------------------------------
 # Os slots do site. `largura`/`altura` são o ALVO MÁXIMO (2x o tamanho real de
@@ -134,6 +160,11 @@ VERDE, AMARELO, VERMELHO, CINZA, RESET = (
     "\033[32m", "\033[33m", "\033[31m", "\033[90m", "\033[0m")
 
 
+def alvo(slot):
+    """Tamanho alvo do slot já ajustado pelo nível de qualidade escolhido."""
+    return (int(slot["largura"] * ESCALA), int(slot["altura"] * ESCALA))
+
+
 def achar_original(nome):
     """Procura midias/<nome>.<qualquer extensão>."""
     if not os.path.isdir(ORIGEM):
@@ -180,7 +211,7 @@ def processar_imagem(origem, slot):
     largura_original, altura_original = img.size
 
     # Redimensiona só para BAIXO. Ampliar não cria detalhe, só borra.
-    img.thumbnail((slot["largura"], slot["altura"]), Image.LANCZOS)
+    img.thumbnail(alvo(slot), Image.LANCZOS)
 
     if preservar_alfa:
         img.save(destino, "PNG", optimize=True)
@@ -200,9 +231,10 @@ def processar_imagem(origem, slot):
         os.remove(temp)
 
     aviso = None
-    if largura_original < slot["minimo"]:
+    minimo = int(slot["minimo"] * ESCALA)
+    if largura_original < minimo:
         aviso = (f"original tem só {largura_original}px de largura; "
-                 f"o ideal é {slot['minimo']}px ou mais — vai aparecer mole")
+                 f"o ideal é {minimo}px ou mais — vai aparecer mole")
 
     return True, aviso
 
@@ -212,7 +244,8 @@ def processar_video(origem, slot):
     largura_original, altura_original = dimensoes_video(origem)
 
     # scale só reduz: se já couber no alvo, mantém o tamanho original.
-    filtro = (f"scale='min({slot['largura']},iw)':'min({slot['altura']},ih)'"
+    alvo_l, alvo_a = alvo(slot)
+    filtro = (f"scale='min({alvo_l},iw)':'min({alvo_a},ih)'"
               f":force_original_aspect_ratio=decrease:force_divisible_by=2")
 
     resultado = subprocess.run(
@@ -227,9 +260,10 @@ def processar_video(origem, slot):
         return False, resultado.stderr.strip().splitlines()[-1][:160]
 
     aviso = None
-    if largura_original and largura_original < slot["minimo"]:
+    minimo = int(slot["minimo"] * ESCALA)
+    if largura_original and largura_original < minimo:
         aviso = (f"original tem só {largura_original}px de largura; "
-                 f"o ideal é {slot['minimo']}px ou mais — vai aparecer mole")
+                 f"o ideal é {minimo}px ou mais — vai aparecer mole")
     return True, aviso
 
 
@@ -256,11 +290,27 @@ def tamanho(caminho):
 
 
 def main():
+    global JPEG_QUALIDADE, VIDEO_CRF, ESCALA
+
+    import argparse
+    ap = argparse.ArgumentParser(
+        description="Prepara as mídias do site a partir dos originais em midias/.")
+    ap.add_argument(
+        "--qualidade", "-q", choices=list(NIVEIS), default=NIVEL_PADRAO,
+        help="; ".join(f"{k}: {v['resumo']}" for k, v in NIVEIS.items()))
+    args = ap.parse_args()
+
+    nivel = NIVEIS[args.qualidade]
+    JPEG_QUALIDADE = nivel["jpeg"]
+    VIDEO_CRF = nivel["crf"]
+    ESCALA = nivel["escala"]
+
     os.makedirs(ORIGEM, exist_ok=True)
     os.makedirs(DESTINO, exist_ok=True)
 
     print(f"\n  Lendo originais de {CINZA}midias/{RESET}")
-    print(f"  Gravando otimizados em {CINZA}images/{RESET}\n")
+    print(f"  Gravando otimizados em {CINZA}images/{RESET}")
+    print(f"  Qualidade: {args.qualidade} {CINZA}— {nivel['resumo']}{RESET}\n")
 
     processados = feitos = avisos = 0
 

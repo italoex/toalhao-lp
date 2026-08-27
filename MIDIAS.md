@@ -51,6 +51,44 @@ número um de foto borrada em tela grande.
 
 ---
 
+## Níveis de qualidade
+
+O padrão é `alta`. Para mudar:
+
+```bash
+python3 scripts/midias.py --qualidade maxima
+python3 scripts/midias.py --qualidade leve
+```
+
+| Nível | Foto | Vídeo | Para quem |
+|---|---|---|---|
+| `maxima` | 2800px, JPEG 97 | CRF 16 | Prioriza fidelidade acima do tempo de carregamento |
+| `alta` *(padrão)* | 1400px, JPEG 92 | CRF 20 | Equilíbrio entre nitidez e carregamento |
+| `leve` | 980px, JPEG 86 | CRF 25 | Site rápido em conexão ruim |
+
+Medido com o mesmo original de 4000×4000:
+
+```
+leve      979×979     259 KB
+alta     1400×1400    630 KB
+maxima   2800×2800  2.596 KB
+```
+
+**Vale usar `maxima`?** Na maior parte dos casos, não. Os cards aparecem com
+cerca de 590px na tela; `alta` já entrega o dobro disso, que cobre telas
+retina. De `alta` para `maxima` o arquivo quadruplica e a diferença só aparece
+se alguém der zoom. Como é um site que abre no celular do dono do petshop,
+peso de página costuma valer mais que nitidez que ninguém vê.
+
+Onde `maxima` compensa: se você for reaproveitar as fotos em outro lugar
+(impresso, catálogo) e quiser um único arquivo servindo aos dois.
+
+**Importante:** o nível nunca amplia. Se o seu original tem 1024px, `maxima`
+não vai inventar resolução — só melhora a compressão. Qualidade máxima de
+verdade começa no arquivo que entra.
+
+---
+
 ## Arquivo grande demais (acima de 25 MB)
 
 Um vídeo de fundo **não precisa** ser grande. Um original de câmera pode ter
