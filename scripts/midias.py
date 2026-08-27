@@ -164,9 +164,13 @@ SLOTS = [
         "altura": 600,
         "minimo": 300,
         "onde": "Logo no topo e no rodapé",
-        "dica": "Use PNG com fundo transparente. O site é escuro, então a "
-                "marca precisa funcionar sobre preto.",
+        "dica": "Pode mandar com fundo chapado — ele é recortado sozinho. "
+                "O site é escuro, então a marca precisa funcionar sobre preto.",
         "preservar_alfa": True,
+        # O logo vem sobre um fundo laranja chapado de mockup, que não faz
+        # parte da marca. Chave de cor simples não serve: a toalha do próprio
+        # logo é do mesmo laranja e sumiria junto. Ver remover_fundo().
+        "remover_fundo": True,
     },
 ]
 
@@ -176,6 +180,56 @@ EXT_VIDEO = (".mp4", ".mov", ".mkv", ".webm", ".avi", ".m4v")
 
 VERDE, AMARELO, VERMELHO, CINZA, RESET = (
     "\033[32m", "\033[33m", "\033[31m", "\033[90m", "\033[0m")
+
+
+def remover_fundo(img, interno=26, externo=62):
+    """Deixa transparente só o fundo que encosta na borda da imagem.
+
+    Chave de cor comum (apagar todo pixel parecido com a cor de fundo) não
+    serve aqui: a toalha do logo é do mesmo laranja do fundo, e some junto
+    com parte do gato, do cachorro e da tagline. Este preenchimento parte das
+    bordas e só se espalha por pixels contíguos parecidos com o fundo, então
+    para no contorno branco do adesivo e preserva tudo que está dentro.
+
+    A faixa entre `interno` e `externo` vira alpha parcial, para a borda ficar
+    suave em vez de serrilhada.
+    """
+    import numpy as np
+
+    rgb = img.convert("RGB")
+    a = np.asarray(rgb).astype(np.int16)
+
+    borda = np.concatenate([a[0], a[-1], a[:, 0], a[:, -1]])
+    fundo = np.median(borda, axis=0)
+
+    dist = np.sqrt(((a - fundo) ** 2).sum(axis=2))
+    parecido = dist <= externo
+
+    # Espalha a partir das bordas, só dentro de `parecido`.
+    alcancado = np.zeros(parecido.shape, bool)
+    alcancado[0, :] |= parecido[0, :]
+    alcancado[-1, :] |= parecido[-1, :]
+    alcancado[:, 0] |= parecido[:, 0]
+    alcancado[:, -1] |= parecido[:, -1]
+    while True:
+        n = alcancado.copy()
+        n[1:, :] |= alcancado[:-1, :]
+        n[:-1, :] |= alcancado[1:, :]
+        n[:, 1:] |= alcancado[:, :-1]
+        n[:, :-1] |= alcancado[:, 1:]
+        n &= parecido
+        if (n == alcancado).all():
+            break
+        alcancado = n
+
+    alpha = np.full(a.shape[:2], 255, np.uint8)
+    rampa = np.clip((dist - interno) / (externo - interno), 0, 1) * 255
+    alpha[alcancado] = rampa[alcancado].astype(np.uint8)
+
+    from PIL import Image as _Image
+    saida = _Image.fromarray(np.dstack([np.asarray(rgb), alpha]), "RGBA")
+    caixa = saida.getbbox()
+    return saida.crop(caixa) if caixa else saida
 
 
 def alvo(slot):
@@ -227,6 +281,10 @@ def processar_imagem(origem, slot):
     # Aplica a rotação gravada pelo celular antes de qualquer coisa.
     img = ImageOps.exif_transpose(img)
     largura_original, altura_original = img.size
+
+    # Recorta o fundo chapado, se o slot pedir (ver remover_fundo).
+    if slot.get("remover_fundo"):
+        img = remover_fundo(img)
 
     # Redimensiona só para BAIXO. Ampliar não cria detalhe, só borra.
     img.thumbnail(alvo(slot), Image.LANCZOS)
