@@ -48,5 +48,10 @@ Anápolis
 ## Páginas
 
 - [Página principal](https://www.toalhao.com/): serviço, ciclo, cobertura e dúvidas.
+- [Anápolis](https://www.toalhao.com/anapolis/) e [Goiânia](https://www.toalhao.com/goiania/):
+  o serviço em cada cidade atendida.
+- [Quanto custa lavar toalha no petshop](https://www.toalhao.com/quanto-custa-lavar-toalha/):
+  calculadora do custo de lavar por conta própria; os números são do próprio
+  visitante, nenhum valor é estimado pelo site.
 - [Política de privacidade](https://www.toalhao.com/privacidade.html): o formulário
   não grava dados em servidor — monta a mensagem no navegador e abre o WhatsApp.
