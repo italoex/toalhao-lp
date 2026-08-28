@@ -76,6 +76,10 @@ não num registrador tipo GoDaddy.
 
 ### 2. Perfil da Empresa no Google — o maior retorno local
 
+> **O texto pronto para colar está em [PERFIL-GOOGLE.md](PERFIL-GOOGLE.md)** —
+> nome, categorias, descrição dentro do limite de caracteres, lista de
+> serviços, perguntas e respostas e ordem das fotos.
+
 Mais decisivo que o site inteiro para quem busca "aluguel de toalhas pet
 perto de mim". É gratuito, em `business.google.com`.
 
