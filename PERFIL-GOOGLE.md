@@ -162,12 +162,88 @@ enxoval entre clientes.
 Rota própria em Anápolis e Goiânia. Outras cidades da região são avaliadas
 caso a caso.
 
-## Avaliações
+## Ordem de preenchimento
 
-É o que mais move posição no mapa — mais que qualquer texto desta página.
+Nem todo campo pesa igual. Se der para fazer só três coisas hoje, faça as três
+primeiras:
 
-Peça pelo WhatsApp, logo depois de uma entrega que correu bem, mandando o link
-direto de avaliação (o Google gera um em "Peça avaliações"). Não ofereça nada
-em troca: além de ser contra as regras, avaliação comprada é reconhecível.
+1. **Categoria principal** — é o que mais define em quais buscas você entra.
+2. **Área de atendimento** (Anápolis e Goiânia, sem endereço visível) — define
+   em quais lugares você aparece.
+3. **Foto do veículo** — é o que faz clicarem em vez de rolar.
+4. Serviços — cada um vira uma linha pesquisável.
+5. Telefone e site.
+6. Descrição — pesa pouco no ranqueamento; serve para convencer quem já chegou.
+7. Perguntas e respostas.
 
-Comece pelos clientes que já aparecem no seu site.
+Descrição é a que todo mundo caprichha primeiro e é quase a que menos importa
+para ser encontrado.
+
+---
+
+## Avaliações — o fator que mais pesa
+
+Mais que categoria, mais que descrição, mais que o site. Número de avaliações e
+frequência com que chegam movem o mapa local mais que qualquer outra coisa.
+
+Onde pegar o link: no perfil, em **"Peça avaliações"**, o Google gera um link
+curto que abre a caixa de avaliação já pronta. Sem esse link o cliente precisa
+procurar sua empresa no Maps, e a maioria desiste no caminho.
+
+**Quando pedir:** logo depois de uma entrega que correu bem, ou de um reforço
+que salvou um dia cheio. O pedido funciona quando o serviço acabou de provar
+valor — não em campanha genérica no fim do mês.
+
+**Nunca ofereça desconto ou brinde em troca.** É contra as regras do Google, e
+avaliação comprada tem cara de comprada: todas chegam no mesmo dia, com texto
+parecido e nota cheia. Isso derruba a confiança de quem lê.
+
+### Mensagem para cliente antigo
+
+```
+Oi, [nome]! Tudo certo por aí?
+
+O Toalhão está montando a página no Google e a sua opinião ajudaria muito
+quem está decidindo agora — a maioria dos petshops pesquisa antes de trocar
+de fornecedor.
+
+Se puder deixar uma avaliação, leva menos de um minuto: [link]
+
+Se der, conta o que mais te ajudou no dia a dia. Vale mais que nota cheia
+sem comentário.
+```
+
+### Mensagem logo após uma entrega
+
+```
+Entrega feita, [nome]! Conferimos [X] toalhas hoje.
+
+Se o atendimento tem te atendido bem, deixa uma avaliação rápida pra gente?
+[link]
+
+Ajuda outros petshops da região a acharem a rota.
+```
+
+### Se não responder
+
+Cobre **uma vez só**, umas duas semanas depois, e sem peso:
+
+```
+Oi, [nome]! Passando só pra lembrar daquela avaliação, caso tenha se perdido
+na correria: [link]
+
+Se não rolar, tudo certo do mesmo jeito — seguimos na rota normalmente.
+```
+
+### Detalhes que mudam o resultado
+
+- **Peça o comentário, não só a estrela.** Avaliação que diz "nunca mais faltou
+  toalha numa sexta" traz cliente; cinco estrelas sem texto, não. O Google
+  também lê esses termos.
+- **Responda todas**, inclusive as boas, em poucos dias. Perfil que responde
+  aparece mais, e a resposta é lida por quem está decidindo.
+- **Ritmo constante vale mais que volume.** Duas por mês, sempre, vale mais que
+  vinte de uma vez e nada depois — e não levanta suspeita.
+- **Comece pelos clientes que já estão no site**, o petshop de Anápolis e o
+  centro veterinário de Goiânia. Se eles autorizarem a avaliação, provavelmente
+  autorizam o depoimento também — que é a peça que ainda falta na página.
