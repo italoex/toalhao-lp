@@ -404,3 +404,8 @@
   }
   .ver-avaliacoes a:hover{color:var(--white);}
   .ver-avaliacoes span{color:var(--accent);}
+
+  /* A marca aparece no primeiro parágrafo por causa de busca por nome, mas
+     visualmente deve pesar igual ao resto: aqui <strong> é sinal semântico,
+     não ênfase de leitura. */
+  .hero-aside strong{font-weight:500;}
