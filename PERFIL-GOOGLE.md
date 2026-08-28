@@ -9,14 +9,70 @@ está aberto.
 
 ---
 
+## Antes de tudo: o perfil já existe
+
+Ao digitar "Toalhão" em `business.google.com`, aparece na lista:
+
+```
+Toalhão - Locação de Toalhas para Pet Shop, Banho e T...
+Residencial RIO JORDÃO, Anápolis - GO
+```
+
+Esse é o endereço do CNPJ. **É o perfil da empresa, já cadastrado.**
+
+**Clique nele — não em "Criar uma empresa com esse nome".** Criar um segundo
+gera duplicata: as avaliações se dividem entre os dois, o ranqueamento se
+confunde e o Google pode suspender ambos. Desfazer duplicata dá muito mais
+trabalho do que evitar.
+
+A partir daí, um de dois caminhos:
+
+- **Ninguém reivindicou ainda** → o Google oferece assumir o perfil e parte
+  direto para a verificação.
+- **Alguém já reivindicou** (uma agência antiga, um parente, uma conta sua
+  esquecida) → aparece "Solicitar acesso". O Google manda um aviso ao dono
+  atual, que tem alguns dias para responder. Se não responder, o acesso passa
+  para você. Vale antes tentar lembrar em qual conta Google isso pode ter
+  sido feito — é bem mais rápido que o pedido de acesso.
+
+### Verificação
+
+Costuma ser por **vídeo curto gravado no celular**: mostrar o veículo
+adesivado, o material de trabalho e a operação, sem cortes. O veículo com a
+marca ajuda muito aqui — é prova visual difícil de forjar.
+
+### Depois de assumir, confira duas coisas
+
+1. **Endereço aparecendo?** Vá em *Informações → Local e área*. Se estiver
+   como endereço visível, mude para **"Atendo clientes no endereço deles"** e
+   defina Anápolis e Goiânia. Além de tirar o endereço do ar, é o que faz a
+   empresa aparecer nas buscas das duas cidades.
+2. **O nome atual traz descrição junto** ("Locação de Toalhas para Pet Shop,
+   Banho e T..."). Veja a observação na seção seguinte.
+
+---
+
 ## Nome
+
+O perfil hoje está como **"Toalhão - Locação de Toalhas para Pet Shop, Banho
+e Tosa"**. Isso é uma decisão sua, com um trade-off real:
+
+- **A favor de manter:** palavra-chave no nome ajuda a ranquear, e o seu
+  veículo realmente traz "Locação de Toalhas para Petshop" adesivado logo
+  abaixo da marca — então dá para defender que faz parte da identidade.
+- **Contra:** a regra do Google é usar o nome real da empresa, e ele trata
+  descrição acrescentada como manipulação. Qualquer concorrente pode
+  denunciar, e o Google altera sozinho — em caso reincidente, suspende.
+
+Justamente porque ajuda a ranquear é que o Google policia isso.
+
+Se optar pela segurança, o nome fica:
 
 ```
 Toalhão
 ```
 
-Só isso. Não acrescente palavra-chave ao nome ("Toalhão Locação de Toalhas") —
-o Google pune isso e pode suspender o perfil.
+Não é urgente. Prioridade agora é assumir o perfil; o nome se resolve depois.
 
 ## Categorias
 
