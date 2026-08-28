@@ -79,8 +79,14 @@ SLOTS = [
         "nome": "hero",
         "tipo": "video",
         "saida": "hero-video.mp4",
-        "largura": 1920,
-        "altura": 1080,
+        # 720p, e não 1080p. Este vídeo nunca é assistido: fica atrás de um
+        # véu escuro, com saturação e brilho reduzidos por CSS, e ainda com
+        # texto por cima. Comparando quadro a quadro no tamanho real de
+        # exibição, 720p CRF 26 difere do 1080p CRF 23 em 1,5 de 255 por canal
+        # — invisível — e custa 2,6 MB em vez de 6,9 MB. Como ele só é baixado
+        # no desktop, isso derruba a página de 7,7 MB para 3,4 MB.
+        "largura": 1280,
+        "altura": 720,
         "minimo": 1280,
         "onde": "Vídeo de fundo do topo da página (tela inteira)",
         "dica": "Filme na horizontal. O texto fica no canto inferior esquerdo — "
@@ -90,12 +96,9 @@ SLOTS = [
         # apareceria e cortaria seco de volta para a primeira cena. Cortar
         # antes do fade deixa o loop limpo. Ajuste ou remova se trocar o vídeo.
         "cortar_em": 18.0,
-        # Este slot fica atrás de um degradê escuro e de texto: é cenário, não
-        # conteúdo que alguém assiste de perto. Comparando CRF 20/23/26 em
-        # zoom 1:1 na etiqueta bordada (a textura mais fina do vídeo) não há
-        # diferença visível, e CRF 20 custa 2,8 MB a mais. 23 é o ponto certo
-        # aqui; os outros slots seguem o nível global.
-        "crf": 23,
+        # Ver a nota sobre a resolução acima: em 720p, CRF 26 é o ponto onde
+        # a diferença some na tela. Os outros slots seguem o nível global.
+        "crf": 26,
         # O material veio gerado por IA (Gemini/Veo) e traz a marca d'água em
         # estrela, estática, por volta de x 3400-3570 / y 1730-1920 no quadro
         # 4K. O filtro delogo apaga a estrela mas deixa um borrão retangular
