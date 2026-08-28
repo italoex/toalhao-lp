@@ -43,17 +43,36 @@ eu regenero.
 Sem isso o Google até acha o site sozinho, mas você fica cego: não sabe por
 quais termos aparece, em que posição, nem se há erro de indexação.
 
-1. Acesse `search.google.com/search-console`
-2. **Adicionar propriedade → prefixo do URL** → `https://www.toalhao.com`
-   (com o **www**; o domínio sem www redireciona para ele)
-3. Escolha verificação por **tag HTML**. Vai aparecer algo como
-   `<meta name="google-site-verification" content="AbC123...">`
-4. **Me mande esse código** que eu coloco no site e faço o deploy
-5. Volte e clique em Verificar
-6. Depois, em **Sitemaps**, envie: `sitemap.xml`
+O tipo **Domínio** (o que o Google abre quando você digita `toalhao.com` sem o
+`https://`) é o melhor: cobre `www`, sem `www` e qualquer subdomínio de uma
+vez. Em troca, ele exige um registro no DNS em vez de uma tag no site.
 
-> Alternativa: propriedade do tipo **Domínio**, verificada por registro TXT no
-> DNS. Cobre www e não-www de uma vez, mas exige acesso ao painel do registrador.
+**O DNS do toalhao.com está na Vercel** — conferido: os nameservers são
+`ns1.vercel-dns.com` e `ns2.vercel-dns.com`. Então o registro se cria lá, e
+não num registrador tipo GoDaddy.
+
+1. No Search Console, clique em **COPIAR** para pegar o valor inteiro
+   (`google-site-verification=...`) — na tela ele aparece cortado
+2. Abra `vercel.com/italoex/~/domains` e clique em **toalhao.com**
+3. Vá em **DNS Records** e adicione:
+
+   | Campo | Valor |
+   |---|---|
+   | Name | *deixe em branco* (é o apex) |
+   | Type | **TXT** |
+   | Value | o `google-site-verification=...` copiado |
+   | TTL | o padrão |
+
+4. Salve, espere cerca de um minuto — DNS da Vercel propaga rápido
+5. Volte ao Search Console e clique em **VERIFICAR**
+6. Depois, em **Sitemaps**, envie `https://www.toalhao.com/sitemap.xml`
+
+> Não havia nenhum TXT no domínio antes, então esse é o primeiro — não há
+> risco de sobrescrever configuração de e-mail nem nada existente.
+
+> Se travar, a saída alternativa é criar uma segunda propriedade do tipo
+> **prefixo do URL** com `https://www.toalhao.com` e verificar por tag HTML.
+> Aí é só me mandar o código que eu instalo e publico.
 
 ### 2. Perfil da Empresa no Google — o maior retorno local
 
