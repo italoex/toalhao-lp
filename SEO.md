@@ -65,7 +65,17 @@ não num registrador tipo GoDaddy.
 
 4. Salve, espere cerca de um minuto — DNS da Vercel propaga rápido
 5. Volte ao Search Console e clique em **VERIFICAR**
-6. Depois, em **Sitemaps**, envie `https://www.toalhao.com/sitemap.xml`
+6. Depois, em **Sitemaps**, envie a **URL completa**:
+
+   ```
+   https://www.toalhao.com/sitemap.xml
+   ```
+
+   > Tem que ser a URL inteira. Numa propriedade do tipo **Domínio** o campo
+   > não mostra prefixo nenhum — o Google não sabe se você quer `www`, sem
+   > `www`, http ou https —, então só `sitemap.xml` devolve "Endereço do
+   > sitemap inválido". Em propriedade de prefixo de URL bastaria o caminho
+   > relativo, porque o prefixo aparece escrito antes do campo.
 
 > Não havia nenhum TXT no domínio antes, então esse é o primeiro — não há
 > risco de sobrescrever configuração de e-mail nem nada existente.
