@@ -394,3 +394,13 @@
   /* Links dentro de resposta de FAQ e de texto corrido: sem isso herdam
      color:inherit e text-decoration:none da regra global e somem. */
   .faq-a p a, .texto p a{color:var(--accent);text-decoration:underline;text-underline-offset:2px;}
+
+  /* Link para a fonte dos depoimentos. Atribuir "Avaliação no Google" sem
+     caminho para conferir vale pouco: o que dá credibilidade é poder checar. */
+  .ver-avaliacoes{margin-top:22px;text-align:center;}
+  .ver-avaliacoes a{
+    font-size:var(--small);color:var(--smoke);
+    text-decoration:underline;text-underline-offset:3px;transition:color .2s ease;
+  }
+  .ver-avaliacoes a:hover{color:var(--white);}
+  .ver-avaliacoes span{color:var(--accent);}
